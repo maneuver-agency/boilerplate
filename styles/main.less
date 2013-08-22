@@ -1,0 +1,64 @@
+@import "framework.less";
+
+/* STYLE TILE
+************************/
+
+@clr-mood:     #616F65;
+@clr-mood2:    #70C8BC;
+
+@footermargin:    50px;
+@footerheight:    100px;
+
+@radius: 10px;
+
+.font-arial { font-family: Arial, sans-serif; font-weight: 300; font-style: normal; }
+.font-nimbus { font-family: "nimbus-sans-condensed",sans-serif; font-style: normal; font-weight: 400; }
+.font-nimbusbold { font-family: "nimbus-sans-condensed",sans-serif; font-style: normal; font-weight: 700; }
+.font-proxima { font-family: "proxima-nova",sans-serif; font-style: normal; font-weight: 400; }
+.font-proximabold { font-family: "proxima-nova",sans-serif; font-style: normal; font-weight: 700; }
+
+body { .font-arial(); }
+.bodytext {  }
+
+#page-content {
+  h1 { }
+  h2 { }
+  h3 { }
+  h4 { }
+}
+
+a { text-decoration: none; color:inherit;
+  &:hover { text-decoration: underline; color:@clr-mood; }
+}
+
+/* LAYOUT
+************************/
+
+#site-logo { float:left;
+  a { .at2x('@{imgpath}site-logo.png', 114px, 114px); }
+}
+#main-menu { float:right; }
+#page-footer { background: @clr-mood; }
+
+
+/* Z-INDEX
+************************/
+
+
+/***********************/
+
+
+/* MEDIA QUERIES
+************************/
+
+@media (min-width: 1200px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+@media (max-width: 767px) {
+
+}

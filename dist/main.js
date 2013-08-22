@@ -1,0 +1,1 @@
+!function(){var a="/";Modernizr.load([{load:[a+"dist/polyfills.js",a+"dist/components.js"]},{test:jQuery("html").hasClass("load-angular"),yep:[a+"dist/app.js"],complete:function(){"undefined"!=typeof angular&&angular.bootstrap(document,["genApp"])}},{load:[a+"dist/utils.js",a+"dist/application.js"],complete:function(){App.init()}}])}();

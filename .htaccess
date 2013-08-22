@@ -1,0 +1,5 @@
+AuthUserFile  /etc/apache2/.htpasswd
+#AuthGroupFile /dev/null
+AuthName "secret maneuver development operation [codename: panzer]"
+AuthType Basic
+require user maneuver client

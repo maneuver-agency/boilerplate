@@ -1,0 +1,1 @@
+!function(){"use strict";var a=function(){this.ticking=!1};a.prototype.init=function(){},a.prototype.requestTick=function(){b.ticking||(window.requestAnimationFrame(App.onAnimationFrame),b.ticking=!0)},a.prototype.onAnimationFrame=function(){b.ticking=!1};var b=new a;window.App=b}(jQuery);
