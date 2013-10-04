@@ -3,7 +3,10 @@
       template = hash.length ? hash : 'front';
 
   // load contents from template file
-  $('#page-content').load('templates/' + template + '.html');
+  $('#page-content').load('templates/' + template + '.html', function(e){
+    $(this).trigger('templateloaded');
+  });
+  window.scrollTo(0,0);
 
   // set active trail on navigation
   $('.nav a').removeClass('active-trail').filter('[href="/'+ hash +'"]').addClass('active-trail');

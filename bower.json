@@ -4,9 +4,10 @@
   "devDependencies": {
     "angular": "~1.0.7",
     "enquire": "~2.0.2",
-    "bootstrap": "~2.3.2",
+    "bootstrap": "3",
     "underscore": "~1.4.4",
     "modernizr": "~2.6.2",
-    "font-awesome": "~3.2.1"
+    "font-awesome": "~3.2.1",
+    "gmaps": "~0.4.5"
   }
 }

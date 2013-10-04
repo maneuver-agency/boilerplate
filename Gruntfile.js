@@ -12,9 +12,10 @@ module.exports = function(grunt) {
       scripts: {
         files: {
           'dist/components.js' : [
-            'components/underscore/underscore.js',
-            'components/enquire/dist/enquire.min.js',
-            'components/bootstrap/js/bootstrap-alert.js'
+            'bower_components/underscore/underscore.js',
+            'bower_components/enquire/dist/enquire.min.js',
+            'bower_components/bootstrap/js/bootstrap-alert.js',
+            'bower_components/gmaps/gmaps.js'
           ],
           'dist/modernizr.js' : ['scripts/modernizr.js'],
           'dist/main.js' : ['scripts/main.js'],
@@ -26,7 +27,7 @@ module.exports = function(grunt) {
       angular: {
         files: {
           'dist/app.js' : [
-            'components/angular/angular.js',
+            'bower_components/angular/angular.js',
             'scripts/angular/angular-local_nl.js',
             'scripts/angular/app.js',
             'scripts/angular/controllers.js',
@@ -101,14 +102,6 @@ module.exports = function(grunt) {
         files: ['styles/*.less'],
         tasks: ['less']
       }
-    },
-
-    modernizr: {
-      // devFile : "scripts/modernizr.js",
-      outputFile: "dist/modernizr.js",
-      tests: [],
-      parseFiles: false,
-      customTests: []
     }
 
   });
@@ -119,9 +112,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-modernizr');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'uglify', 'less', 'modernizr']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'less']);
 
 };
