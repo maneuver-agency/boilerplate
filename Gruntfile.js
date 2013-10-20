@@ -9,14 +9,26 @@ module.exports = function(grunt) {
       options: {
         beautify: false
       },
-      scripts: {
+      require: {
+        files: {
+          'dist/require.js' : 'bower_components/requirejs/require.js'
+        }
+      },
+      components: {
+        options: {
+          beautify: false
+        },
         files: {
           'dist/components.js' : [
             'bower_components/underscore/underscore.js',
             'bower_components/enquire/dist/enquire.min.js',
             'bower_components/bootstrap/js/bootstrap-alert.js',
             'bower_components/gmaps/gmaps.js'
-          ],
+          ]
+        }
+      },
+      scripts: {
+        files: {
           'dist/modernizr.js' : ['scripts/modernizr.js'],
           'dist/main.js' : ['scripts/main.js'],
           'dist/utils.js': ['scripts/utils.js'],
@@ -24,7 +36,12 @@ module.exports = function(grunt) {
           'dist/application.js': ['scripts/application.js']
         }
       },
-      angular: {
+      modules: {
+        files: {
+          'dist/modules/gmap.js' : 'scripts/modules/gmap.js'
+        }
+      }
+      /*angular: {
         files: {
           'dist/app.js' : [
             'bower_components/angular/angular.js',
@@ -40,7 +57,7 @@ module.exports = function(grunt) {
           mangle: false,
           beautify: false
         }
-      }
+      }*/
     },
 
     // preprocess less into css
@@ -78,7 +95,8 @@ module.exports = function(grunt) {
         expr: true,
         ignores: ['scripts/modernizr.js']
       },
-      scripts: ['scripts/*.js', 'scripts/angular/*.js']
+      scripts: ['scripts/*.js', 'scripts/angular/*.js'],
+      modules: ['scripts/modules/*.js']
     },
 
     // do stuff when files change
@@ -92,11 +110,15 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['scripts/*.js'],
-        tasks: ['jshint', 'uglify:scripts']
+        tasks: ['jshint:scripts', 'uglify:scripts']
+      },
+      modules: {
+        files: ['scripts/modules/*.js'],
+        tasks: ['jshint:modules', 'uglify:modules']
       },
       angular: {
         files: ['scripts/angular/*.js'],
-        tasks: ['jshint', 'uglify:angular']
+        tasks: ['jshint:scripts', 'uglify:angular']
       },
       styles: {
         files: ['styles/*.less'],

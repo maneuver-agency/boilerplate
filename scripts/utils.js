@@ -1,23 +1,19 @@
-/***************/
-/*** GENETIC ***/
-/***************/
-
 (function($){
     var i, len, $images, $enquires;
 
     $enquires = $('[data-enquire]');
     for (i=0, len=$enquires.length; i < len; i++) {
         var $el = $enquires.eq(i),
-            mq = $el.data('enquire');
+        mq = $el.data('enquire');
 
         enquire.register(mq, {
             deferSetup: true,
             setup: function(){
                 $el.find('[data-tag]').each(function(){
                     var $oldEl = $(this),
-                        data = $oldEl.data(),
-                        $newEl = $('<' + data.tag + ' />'),
-                        fade = data.fade || false;
+                    data = $oldEl.data(),
+                    $newEl = $('<' + data.tag + ' />'),
+                    fade = data.fade || false;
 
                     delete data.tag;
                     $newEl.attr(data).addClass(this.className);
@@ -43,7 +39,7 @@
     $images = $('img[data-media], img.retina');
     for (i=0, len=$images.length; i<len; i++) {
         var $img = $images.eq(i),
-            data = $img.data();
+        data = $img.data();
 
         if ($img.hasClass('retina')) {
             data.media = '(-webkit-min-device-pixel-ratio : 2), (min-resolution: 192dpi)';
@@ -59,39 +55,47 @@
 
     $(document).
 
-    // clickables
+    // Make entire elements clickable and follow the containing link.
     on('click', '[data-clickable]:has(a[href])', function(){
         var $this = $(this),
-            $link = $(this).find('a');
+        $link = $(this).find('a');
 
         switch ($link.attr('target')) {
             case '_blank':
-                window.open($link.attr('href'));
-                break;
+            window.open($link.attr('href'));
+            break;
             default:
-                window.location = $link.attr('href');
+            window.location = $link.attr('href');
         }
     }).
 
-    // animate jump links
+    // Animate jump links.
     on('click', 'a[href^=#]', function(e){
-        var $target = $(this.href);
+        var id = $(this).attr('href'),
+        $target = $(id);
 
         if ($target.length) {
           $('html, body').stop().animate({
             scrollTop: $target.offset().top - 30
-          }, 750, 'swing', function(){
+        }, 750, 'swing', function(){
             window.location.hash = id;
-          });
-        }
-        e.preventDefault();
-    });
+        });
+      }
+      e.preventDefault();
+  });
 
-    // mailto anti spam
+    // Replace hashed email adresses for antispam.
     $('a[data-mailto]').each(function(){
         $(this).text($(this).attr('href').replace('mailto:', ''));
     });
 
 })(jQuery);
+
+/**
+ * Capitalize first character of string.
+ */
+ String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+};
 
 
