@@ -462,7 +462,7 @@ html,body{height:100%;margin:0;padding:0}
 #page-tabs{display:none}
 .clickable{cursor:pointer}
 .googlemaps img{max-width:none}
-#mnvr{position:absolute;bottom:0;right:0}#mnvr .inner{display:block;width:13px;height:6px;margin:auto;background:url('/assets/img/mnvr-dark.png') no-repeat 0 0;opacity:30;filter:alpha(opacity=3000);-webkit-transition:all 250ms ease-in-out;transition:all 250ms ease-in-out}#mnvr .inner:hover{width:63px;opacity:50;filter:alpha(opacity=5000)}
+#mnvr{position:absolute;bottom:0;right:0}#mnvr .inner{display:block;width:13px;height:6px;margin:auto;background:url('/assets/img/mnvr-dark.png') no-repeat 0 0;opacity:.3;filter:alpha(opacity=30);-webkit-transition:all 250ms ease-in-out;transition:all 250ms ease-in-out}#mnvr .inner:hover{width:63px;opacity:.3;filter:alpha(opacity=30)}
 .chromeframe{padding:20px 0;text-align:center;background:#F0AD4E;font-size:16px}.chromeframe a{text-decoration:underline}
 @media (max-width:767px){body{padding-left:0;padding-right:0} .container{padding-left:20px;padding-right:20px}}form .form-item{margin:5px 0}
 form input[type=text],form input[type=password],form input[type=email],form input[type=number],form textarea{border-radius:0;-webkit-box-shadow:none;box-shadow:none;background:#eee;padding:4px 12px;margin-bottom:0;height:30px;border:1px solid #e2e2e2;outline:none;-webkit-appearance:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-size:12px;max-width:100% !important}form input[type=text]:focus,form input[type=password]:focus,form input[type=email]:focus,form input[type=number]:focus,form textarea:focus{background-color:#e5e5e5;-webkit-box-shadow:none;box-shadow:none;border-color:#e2e2e2}

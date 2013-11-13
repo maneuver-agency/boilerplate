@@ -69,6 +69,14 @@ module.exports = function(grunt) {
         files: {
           'dist/main.css' : ['styles/main.less']
         }
+      },
+      ckeditor: {
+        options: {
+          compress: true,
+        },
+        files: {
+          'dist/ckeditor.css' : ['styles/ckeditor.less']
+        }
       }
     },
 
@@ -110,19 +118,27 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['scripts/*.js'],
-        tasks: ['jshint:scripts', 'uglify:scripts']
+        tasks: ['newer:jshint:scripts', 'newer:uglify:scripts', 'notify:complete']
       },
       modules: {
         files: ['scripts/modules/*.js'],
-        tasks: ['jshint:modules', 'uglify:modules']
+        tasks: ['newer:jshint:modules', 'newer:uglify:modules', 'notify:complete']
       },
       angular: {
         files: ['scripts/angular/*.js'],
-        tasks: ['jshint:scripts', 'uglify:angular']
+        tasks: ['newer:jshint:scripts', 'newer:uglify:angular', 'notify:complete']
       },
       styles: {
         files: ['styles/*.less'],
-        tasks: ['less']
+        tasks: ['less', 'notify:complete']
+      }
+    },
+
+    notify: {
+      complete: {
+        options: {
+          message: 'Grunt Watch Complete',
+        }
       }
     }
 
@@ -134,6 +150,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-newer');
+  grunt.loadNpmTasks('grunt-notify');
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'uglify', 'less']);

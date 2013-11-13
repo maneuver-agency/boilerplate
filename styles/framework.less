@@ -17,6 +17,7 @@
 
 @imgpath:         '/assets/img/'; //'/sites/all/themes/front/assets/img/';
 
+@import "vars.less";
 
 /* MIXINS
 ************************/
@@ -184,6 +185,13 @@
     background-size: @w @h;
   }
 }
+.svgbg(@src, @w, @h, @fallback: '') { background:url(@src) no-repeat 0 0; width:@w; height:@h; display: inline-block; background-size:@w @h;
+  .no-svg & { background:url(@fallback); }
+}
+.svgbg(@src, @w, @h, @fallback: '') when(@fallback = '') {
+  @fallback: ~`"@{src}".replace('.svg', '.png')`;
+  .no-svg & { background:url(@fallback); }
+}
 
 .reset-nav() {
   > li > a { padding:0; margin:0; background:none; .radius(0); }
@@ -205,7 +213,9 @@ nav a:hover { text-decoration: none; }
 html, body { height:100%; margin:0; padding:0; }
 #page-wrap { height:100%; min-height:100%; height:auto; margin-bottom: -@footerheight - @footermargin; }
 #page-push { height: @footerheight + @footermargin; }
-#page-footer { height: @footerheight; margin-top:@footermargin; }
+#page-footer { height: @footerheight; margin-top:@footermargin;
+  @media (max-width: @screen-phone) { & { height:auto; } }
+}
 #maneuver { position: absolute; bottom:15px; right:15px; }
 .active.admin-menu-tab { display: none; }
 #page-tabs { display: none; }
