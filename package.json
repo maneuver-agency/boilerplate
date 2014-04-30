@@ -9,14 +9,5 @@
   "repository": "",
   "author": "Genetic",
   "license": "BSD",
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.2",
-    "grunt-contrib-less": "~0.6.1",
-    "grunt-contrib-imagemin": "~0.1.4",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-watch": "~0.4.4",
-    "grunt-newer": "~0.5.4",
-    "grunt-notify": "~0.2.16"
-  }
+  "devDependencies": {}
 }
