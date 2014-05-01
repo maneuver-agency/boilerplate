@@ -1,5 +1,19 @@
-AuthUserFile  /etc/apache2/.htpasswd
+#AuthUserFile  /etc/apache2/.htpasswd
 #AuthGroupFile /dev/null
-AuthName "secret maneuver development operation [codename: panzer]"
-AuthType Basic
-require user maneuver client
+#AuthName "secret maneuver development operation [codename: panzer]"
+#AuthType Basic
+#require user maneuver client
+
+DirectoryIndex index.php index.html
+
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} .
+RewriteCond %{HTTP_HOST} !mnvr.be
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !=/favicon.ico
+RewriteRule ^ ./index.php [L]

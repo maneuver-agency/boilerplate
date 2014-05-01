@@ -2,12 +2,12 @@
   "name": "Prototype",
   "version": "0.0.0",
   "devDependencies": {
-    "angular": "~1.0.7",
     "enquire": "~2.0.2",
     "bootstrap": "3",
     "underscore": "~1.4.4",
     "modernizr": "~2.6.2",
     "gmaps": "~0.4.5",
-    "requirejs": "~2.1.8"
+    "requirejs": "~2.1.8",
+    "lesshat": "~3.0.0"
   }
 }

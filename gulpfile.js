@@ -5,18 +5,25 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
-    watch = require('gulp-watch'),
     plumber = require('gulp-plumber');
 
 // TODO: jshint & imagemin
 
+gulp.watch('styles/**/*.less', ['styles']);
+gulp.watch('scripts/**/*.js', ['scripts']);
+gulp.watch('assets/img/*.svg', ['svg']);
+
+/* DEFAULT */
 gulp.task('default', ['styles', 'scripts'], function(){
 
 });
 
+/* MY STYLES */
 gulp.task('styles', function(){
-  return gulp.src(['styles/main.less'])
-    .pipe(watch())
+  return gulp.src([
+      'bower_components/lesshat/build/lesshat-prefixed.less',
+      'styles/main.less'
+    ])
     .pipe(plumber())
     .pipe(less({
       paths: ['styles'],
@@ -28,7 +35,8 @@ gulp.task('styles', function(){
     .pipe(notify({message: 'Styles task completed'}));
 });
 
-gulp.task('scripts', ['require', 'components', 'modules'], function(){
+/* MY SCRIPTS */
+gulp.task('scripts', ['modules'], function(){
   return gulp.src([
       'scripts/modernizr.js',
       'scripts/main.js',
@@ -41,6 +49,7 @@ gulp.task('scripts', ['require', 'components', 'modules'], function(){
     .pipe(notify({message: 'Scripts task completed'}));
 });
 
+/* BOWER COMPONENTS */
 gulp.task('components', function(){
   return gulp.src([
       'bower_components/underscore/underscore.js',
@@ -53,6 +62,7 @@ gulp.task('components', function(){
     .pipe(gulp.dest('dist'));
 });
 
+/* REQUIRE */
 gulp.task('require', function(){
   return gulp.src([
       'bower_components/requirejs/require.js',
@@ -61,6 +71,7 @@ gulp.task('require', function(){
     .pipe(gulp.dest('dist'));
 });
 
+/* MODULES */
 gulp.task('modules', function(){
   return gulp.src([
       'scripts/modules/*.js',

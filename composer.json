@@ -1,0 +1,12 @@
+{
+    "name": "maneuver/prototype",
+    "require": {
+        "twig/twig": "1.*"
+    },
+    "authors": [
+        {
+            "name": "David",
+            "email": "david@genetic.be"
+        }
+    ]
+}
