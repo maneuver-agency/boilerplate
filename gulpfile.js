@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
-    plumber = require('gulp-plumber');
+    plumber = require('gulp-plumber'),
+    svg2png = require('gulp-svg2png');
 
 // TODO: jshint & imagemin
 
@@ -78,4 +79,11 @@ gulp.task('modules', function(){
     ])
     .pipe(uglify())
     .pipe(gulp.dest('dist/modules'));
+});
+
+/* SVG 2 PNG */
+gulp.task('svg', function(){
+  return gulp.src('assets/img')
+    .pipe(svg2png())
+    .pipe(gulp.dest('assets/img'));
 });
