@@ -25,7 +25,7 @@ gulp.task('styles', function(){
       'bower_components/lesshat/build/lesshat-prefixed.less',
       'styles/main.less'
     ])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Styles Error: <%= error.message %>")}))
     .pipe(less({
       paths: ['styles'],
       compress: true,
@@ -33,7 +33,10 @@ gulp.task('styles', function(){
     .pipe(minifycss())
     .pipe(rename('main.css'))
     .pipe(gulp.dest('dist'))
-    .pipe(notify({message: 'Styles task completed'}));
+    .pipe(notify({
+      onLast: true,
+      message: 'Styles task completed'
+    }));
 });
 
 /* MY SCRIPTS */
@@ -47,15 +50,17 @@ gulp.task('scripts', ['modules'], function(){
     ])
     .pipe(uglify())
     .pipe(gulp.dest('dist'))
-    .pipe(notify({message: 'Scripts task completed'}));
+    .pipe(notify({
+      onLast: true,
+      message: 'Scripts task completed'
+    }));
 });
 
 /* BOWER COMPONENTS */
 gulp.task('components', function(){
   return gulp.src([
-      'bower_components/underscore/underscore.js',
-      'bower_components/enquire/dist/enquire.min.js',
-      'bower_components/bootstrap/js/bootstrap-alert.js',
+      'bower_components/picturefill/picturefill.js',
+      // 'bower_components/bootstrap/js/bootstrap-alert.js',
       'bower_components/gmaps/gmaps.js'
     ])
     .pipe(concat('components.js'))

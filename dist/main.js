@@ -1,1 +1,1 @@
-require(["polyfills","components","utils","application"],function(a,b,c,d){d.init()});
+require(["polyfills","components","utils","application"],function(i,n,l,o){o.init()});
