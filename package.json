@@ -10,15 +10,15 @@
   "author": "Genetic",
   "license": "BSD",
   "devDependencies": {
-    "gulp-rename": "~1.2.0",
-    "gulp-uglify": "~0.2.1",
-    "gulp-minify-css": "~0.3.4",
-    "gulp-concat": "~2.2.0",
     "gulp": "~3.6.2",
-    "gulp-watch": "~0.6.4",
-    "gulp-plumber": "~0.6.1",
-    "gulp-notify": "~1.2.5",
+    "gulp-concat": "~2.2.0",
+    "gulp-imagemin": "^0.5.1",
     "gulp-less": "~1.2.3",
-    "gulp-svg2png": "~0.2.3"
+    "gulp-minify-css": "~0.3.4",
+    "gulp-notify": "~1.2.5",
+    "gulp-plumber": "~0.6.1",
+    "gulp-rename": "~1.2.0",
+    "gulp-svg2png": "~0.2.3",
+    "gulp-uglify": "~0.2.1"
   }
 }

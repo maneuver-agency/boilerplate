@@ -1,72 +1,28 @@
-@import "framework.less";
+// @import "/bower_components/lesshat/build/lesshat.less";
+@import "bootstrap.less";
+@import "fonts.less";
+@import "mixins.less";
+@import "vars.less";
 
-/* STYLE TILE
-************************/
+/* STRUCTURE & DEFAULTS  */
 
-.font-arial { font-family: Arial, sans-serif; font-weight: 300; font-style: normal; }
-.font-nimbus { font-family: "nimbus-sans-condensed",sans-serif; font-style: normal; font-weight: 400; }
-.font-nimbusbold { font-family: "nimbus-sans-condensed",sans-serif; font-style: normal; font-weight: 700; }
-.font-proxima { font-family: "proxima-nova",sans-serif; font-style: normal; font-weight: 400; }
-.font-proximabold { font-family: "proxima-nova",sans-serif; font-style: normal; font-weight: 700; }
-
-body { .font-arial(); }
-.bodytext { }
-
-#page-content {
-  h1 { }
-  h2 { }
-  h3 { }
-  h4 { }
+body * { .box-sizing(border-box); }
+html, body { height:100%; margin:0; padding:0; .smooth-text(); }
+body, h1, h2, h3, h4, h5, h6 { line-height: 1; }
+#page-wrap { height:100%; min-height:100%; height:auto; margin-bottom: -@footerheight - @footermargin; }
+#page-push { height: @footerheight + @footermargin; }
+#page-footer { height: @footerheight; margin-top:@footermargin;
+  @media (max-width: @screen-phone) { & { height:auto; } }
 }
-
-a { text-decoration: none; color:inherit;
-  &:hover { text-decoration: underline; color:@clr-mood; }
+#mnvr { position:absolute; bottom:0; right:0;
+  .inner { display:block; width:13px; height:6px; margin:auto; background:url('@{imgpath}mnvr-dark.png') no-repeat 0 0;  .opacity(.3); .transition(all 250ms ease-in-out);
+    &:hover { width:63px; .opacity(.3); }
+  }
 }
-
-/* LAYOUT
-************************/
-
-#site-logo { float:left;
-  a { .at2x('@{imgpath}site-logo.png', 114px, 114px); }
+.chromeframe { padding: 20px 0; text-align: center; background: #F0AD4E; font-size: 16px;
+  a { text-decoration: underline; }
 }
-#main-menu { float:right; }
-#page-footer { background: @clr-mood; }
-
-
-/* Z-INDEX
-************************/
-
-
-/***********************/
-
-
-/* MEDIA QUERIES
-************************/
-
-@media (min-width: @screen-lg-desktop) {
-
-}
-@media (max-width: @screen-lg-desktop) {
-
-}
-
-@media (min-width: @screen-desktop) {
-
-}
-@media (max-width: @screen-desktop) {
-
-}
-
-@media (min-width: @screen-tablet) {
-
-}
-@media (max-width: @screen-tablet) {
-
-}
-
-@media (min-width: @screen-phone) {
-
-}
-@media (max-width: @screen-phone) {
-
-}
+.googlemaps img { max-width: none; }
+.js [data-clickable] { cursor: pointer; }
+::selection { background: @clr-selection; color:#fff; }
+::-moz-selection { background: @clr-selection; color:#fff; }

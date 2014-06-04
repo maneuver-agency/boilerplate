@@ -1,0 +1,22 @@
+
+/* HELPERS */
+
+.reset()          { margin:0; padding:0; border:none; background:none; list-style: none; line-height: 1; .box-shadow(none); }
+.smooth-text()    { -webkit-font-smoothing:antialiased; text-rendering: optimizeLegibility; }
+.up()             { text-transform: uppercase; }
+
+
+/* FALLBACKS */
+
+.svgbg(@src, @w, @h, @fallback: '') { background:url(@src) no-repeat 0 0; width:@w; height:@h; display: inline-block; background-size:@w @h;
+  .no-svg & { background:url(@fallback); }
+}
+.svgbg(@src, @w, @h, @fallback: '') when(@fallback = '') {
+  @fallback: ~`"@{src}".replace('.svg', '.png')`;
+  .no-svg & { background:url(@fallback); }
+}
+
+.clearfix { zoom:1;
+  &:before, &:after { content:""; display:table; }
+  &:after { clear: both; }
+}
