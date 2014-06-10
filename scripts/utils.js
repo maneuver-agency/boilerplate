@@ -1,4 +1,4 @@
-(function($){
+define([], function(){
 
     $(document).
 
@@ -45,13 +45,11 @@
     });
   }
 
-})(jQuery);
-
-/**
- * Capitalize first character of string.
- */
- String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
+  /**
+   * Capitalize first character of string.
+   */
+   String.prototype.capitalize = function() {
+      return this.charAt(0).toUpperCase() + this.slice(1);
+  };
+});
 

@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     plumber = require('gulp-plumber'),
-    imagemine = require('gulp-imagemine'),
+    imagemin = require('gulp-imagemin'),
     svg2png = require('gulp-svg2png');
 
 // TODO: jshint & imagemin
@@ -14,7 +14,6 @@ var gulp = require('gulp'),
 gulp.watch('styles/**/*.less', ['styles']);
 gulp.watch('scripts/**/*.js', ['scripts']);
 gulp.watch('assets/img/*.svg', ['svg']);
-gulp.watch('public/assets/img/**/*', ['images']);
 
 /* DEFAULT */
 gulp.task('default', ['styles', 'scripts'], function(){
@@ -70,10 +69,11 @@ gulp.task('components', function(){
     .pipe(gulp.dest('dist'));
 });
 
-/* REQUIRE */
-gulp.task('require', function(){
+/* STATIC SCRIPTS */
+gulp.task('static-scripts', function(){
   return gulp.src([
       'bower_components/requirejs/require.js',
+      'bower_components/jquery/dist/jquery.js'
     ])
     .pipe(uglify())
     .pipe(gulp.dest('dist'));
@@ -98,11 +98,11 @@ gulp.task('svg', function(){
 /* IMAGEMIN */
 gulp.task('imagemin', function(){
   return gulp.src([
-    'public/assets/img/*.png',
-    'public/assets/img/*.jpg',
-    'public/assets/img/*.jpeg',
-    'public/assets/img/*.gif'
+    'assets/img/*.png',
+    'assets/img/*.jpg',
+    'assets/img/*.jpeg',
+    'assets/img/*.gif'
     ])
     .pipe(imagemin())
-    .pipe(gulp.dest('public/assets/img'));
+    .pipe(gulp.dest('assets/img'));
 });
