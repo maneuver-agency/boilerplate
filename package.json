@@ -10,6 +10,7 @@
   "author": "Genetic",
   "license": "BSD",
   "devDependencies": {
+    "bower": "^1.3.5",
     "gulp": "~3.6.2",
     "gulp-concat": "~2.2.0",
     "gulp-imagemin": "^0.5.1",

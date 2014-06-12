@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     plumber = require('gulp-plumber'),
     imagemin = require('gulp-imagemin'),
-    svg2png = require('gulp-svg2png');
+    svg2png = require('gulp-svg2png'),
+    bower = require('bower');
 
 // TODO: jshint & imagemin
 
@@ -81,11 +82,28 @@ gulp.task('static-scripts', function(){
 
 /* MODULES */
 gulp.task('modules', function(){
+
+  bowerapi.commands.list().on('end', function(results){
+    if (results.dependencies.flexslider !== undefined) {
+      gulp.start('flexslider');
+    }
+  });
+
   return gulp.src([
       'scripts/modules/*.js',
     ])
     .pipe(uglify())
     .pipe(gulp.dest('dist/modules'));
+});
+
+/* FLEXSLIDER */
+gulp.task('flexslider', function(){
+  gulp.src([
+    'bower_components/flexslider/jquery.flexslider.js'
+  ])
+  .pipe(uglify())
+  .pipe(rename('flexslider.js'))
+  .pipe(gulp.dest('dist/modules'));
 });
 
 /* SVG 2 PNG */

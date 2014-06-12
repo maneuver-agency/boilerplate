@@ -1,42 +1,46 @@
-=============
-INSTRUCTIONS:
-=============
+## Instructions
 
-1. make sure node and npm are installed on your system (http://nodejs.org/)
-2. if grunt is not yet installed run 'sudo npm install -g grunt-cli' (http://gruntjs.com/getting-started)
-3. if bower is not yet installed run 'sudo npm install -g bower' (http://bower.io/)
-4. cd into project folder
-5. run 'npm install'
-6. run 'bower install'
-7. fire up a local dev server via node or apache (http://simbco.github.io/httpster/)
-8. good to go!
+1. Mke sure node, npm, composer and bower are installed on your system.
+2. Run the following commands:
+    ```
+    npm install
+    ```
+    ```
+    composer install
+    ```
+    ```
+    bower install
+    ```
+3. If gulp is not yet installed run 'sudo npm install -g gulp'
+4. Kickstart the automation tool with the command:
+    ```
+    gulp
+    ```
+5. Happy coding!
 
 
-=================
-FOLDER STRUCTURE:
-=================
-
-/_tmp
-Contains all temporary files like images normally provided by CMS software and the router.js file that takes care of the navigation of the site.
-This folder can be ignored when implementing a CMS.
+## Folder Structure
 
 /assets
 Images, fonts and other assets.
 
-/components
+/bower_components
 All bower components. Automatically created by bower when running 'bower install'.
 
 /dist
-Contains all files needed to be delivered to the browser. Automatically created by grunt.
+Contains all files needed to be delivered to the browser. Automatically created by gulp.
 
 /node_modules
 All node mobules. Automatically created by npm when running 'npm install'.
 
 /scripts
-Uncompressed javascript files. Grunt will create an uglified version into the /dist folder. (see Gruntfile.js)
+Uncompressed javascript files. Gulp will create an uglified version into the /dist folder. (see gulpfile.js)
 
 /styles
-LESS files. Grunt will process these into compressed CSS files into the /dist folder. (see Gruntfiles.js)
+LESS files. Gulp will process these into compressed CSS files into the /dist folder. (see gulpfile.js)
 
 /templates
-Contains all content pages as html files. Can be ignored when implementing a CMS.
+Contains all content pages as html files.
+
+/vendor
+Containes composer packages.

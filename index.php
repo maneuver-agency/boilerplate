@@ -1,15 +1,21 @@
 <?php
 
+ini_set('display_errors', 1);
+
+define('ENV', determineEnv(array(
+  'local'       => 'local.mnvr.be',
+  'staging'     => 'mnvr.be',
+  'production'  => 'kove.be',
+)));
+
 /*** CONFIG ****/
 
 $config = array(
-  'sitename' => 'Prototype',
-  'siteurl' => 'http://prototype.local.mnvr.be'
+  'sitename' => 'prototype',
+  'siteurl' => 'http://' . $_SERVER['HTTP_HOST'],
 );
 
 /**************/
-
-ini_set('display_errors', 1);
 
 define('DOCROOT', $_SERVER['DOCUMENT_ROOT']);
 require_once('vendor/autoload.php');
@@ -35,5 +41,18 @@ if (!file_exists(DOCROOT . '/templates/' . $file)) {
 // Load and render template.
 $template = $twig->loadTemplate($file);
 echo $template->render($config);
+
+/***************/
+/*** METHODS ***/
+/***************/
+
+function determineEnv($environments) {
+  foreach ($environments as $env => $domain) {
+    if (strpos($_SERVER['SERVER_NAME'], $domain)) {
+      return $env;
+    }
+  }
+  return array_pop($environments);
+}
 
 ?>
