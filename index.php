@@ -8,14 +8,7 @@ define('ENV', determineEnv(array(
   'production'  => 'kove.be',
 )));
 
-/*** CONFIG ****/
-
-$config = array(
-  'sitename' => 'prototype',
-  'siteurl' => 'http://' . $_SERVER['HTTP_HOST'],
-);
-
-/**************/
+include 'config.php';
 
 define('DOCROOT', $_SERVER['DOCUMENT_ROOT']);
 require_once('vendor/autoload.php');
@@ -25,6 +18,8 @@ $loader = new Twig_Loader_Filesystem(DOCROOT . '/templates');
 $twig = new Twig_Environment($loader, array(
   'cache' => FALSE, //DOCROOT . '/cache',
 ));
+
+include('extensions.php');
 
 // Simple routing
 // See http://toroweb.org/ for a slightly more advanced way.

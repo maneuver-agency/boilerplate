@@ -12,8 +12,8 @@ body * { .box-sizing(border-box); .smooth-text(); }
 html, body { height:100%; margin:0; padding:0; }
 body, h1, h2, h3, h4, h5, h6 { line-height: 1; }
 #site-wrap { height:100%; min-height:100%; height:auto; margin-bottom: -@footerheight - @footermargin; }
-#site-push { height: @footerheight + @footermargin; }
-#site-footer { height: @footerheight; margin-top:@footermargin;
+#site-push { height: @footerheight + @footermargin; position: relative; z-index: 1; }
+#site-footer { height: @footerheight; margin-top:@footermargin; position: relative; z-index: 2;
   @media (max-width: @screen-phone) { & { height:auto; } }
 }
 #mnvr { position:absolute; bottom:0; right:0;

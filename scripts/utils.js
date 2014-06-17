@@ -25,7 +25,7 @@ define([], function(){
           $('html, body').stop().animate({
             scrollTop: $target.offset().top - 30
         }, 750, 'swing', function(){
-            window.location.hash = id;
+            // window.location.hash = id;
         });
       }
       e.preventDefault();
