@@ -1,1 +1,1 @@
-require(["polyfills","components","utils","application"],function(i,n,l,o){o.init()});
+require(["polyfills","jquery"],function(){require(["components"],function(){require(["utils","application"],function(i,n){n.init()})})});

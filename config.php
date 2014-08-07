@@ -3,9 +3,12 @@
 /*** CONFIG ****/
 
 $config = array(
-  'sitename' => 'prototype',
-  'siteurl' => 'http://' . $_SERVER['HTTP_HOST'],
+  'theme' => (object) array(
+    'sitename' => 'prototype',
+    'siteurl' => 'http://' . $_SERVER['HTTP_HOST'],
+  ),
   'paths' => (object) array(
+    'theme' => '/',
     'images' => '/assets/img/'
   )
 );

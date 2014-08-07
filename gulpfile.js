@@ -8,16 +8,37 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     imagemin = require('gulp-imagemin'),
     svg2png = require('gulp-svg2png'),
+    browserSync = require('browser-sync'),
     bower = require('bower');
 
 // TODO: jshint & imagemin
 
-gulp.watch('styles/**/*.less', ['styles']);
-gulp.watch('scripts/**/*.js', ['scripts']);
-gulp.watch('assets/img/*.svg', ['svg']);
+gulp.task('watch', function(){
+  gulp.watch('styles/**/*.less', ['styles']);
+  gulp.watch('scripts/**/*.js', ['scripts']);
+  gulp.watch('assets/img/*.svg', ['svg']);
+});
+
+gulp.task('bs-watch', function(){
+  browserSync.init(null, {
+    proxy: "prototype.local.mnvr.be"
+  });
+
+  gulp.watch('styles/**/*.less', ['styles'])/*.on('change', function(){
+    browserSync.reload({stream: true});
+  })*/;
+  gulp.watch('scripts/**/*.js', ['scripts']).on('change', function(){
+    browserSync.reload({once: true});
+  });
+  gulp.watch('templates/**/*.twig').on('change', function(){
+    browserSync.reload({once: true});
+  });
+
+  gulp.watch('assets/img/*.svg', ['svg']);
+});
 
 /* DEFAULT */
-gulp.task('default', ['styles', 'scripts'], function(){
+gulp.task('default', ['styles', 'scripts', 'components', 'static-scripts', 'svg', 'imagemin'], function(){
 
 });
 
@@ -38,7 +59,8 @@ gulp.task('styles', function(){
     .pipe(notify({
       onLast: true,
       message: 'Styles task completed'
-    }));
+    }))
+    .pipe(browserSync.reload({stream:true}));
 });
 
 /* MY SCRIPTS */
@@ -62,8 +84,9 @@ gulp.task('scripts', ['modules'], function(){
 gulp.task('components', function(){
   return gulp.src([
       'bower_components/picturefill/picturefill.js',
-      // 'bower_components/bootstrap/js/bootstrap-alert.js',
-      'bower_components/gmaps/gmaps.js'
+      'bower_components/bootstrap/js/transition.js',
+      'bower_components/bootstrap/js/collapse.js',
+      // 'bower_components/gmaps/gmaps.js'
     ])
     .pipe(concat('components.js'))
     .pipe(uglify())
@@ -83,7 +106,7 @@ gulp.task('static-scripts', function(){
 /* MODULES */
 gulp.task('modules', function(){
 
-  bowerapi.commands.list().on('end', function(results){
+  bower.commands.list().on('end', function(results){
     if (results.dependencies.flexslider !== undefined) {
       gulp.start('flexslider');
     }

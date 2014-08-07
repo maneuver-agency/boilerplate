@@ -1,4 +1,4 @@
-define(['modules/gmap'], function(gmap){
+define([], function(){
 
   "use strict";
 
@@ -20,7 +20,7 @@ define(['modules/gmap'], function(gmap){
 
     $(document)
     .on('click', function(e){
-      console.log('document clicked');
+
     });
   }
 
