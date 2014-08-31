@@ -8,6 +8,13 @@ define([], function(){
     ticking = false;
 
     bindEvents();
+
+    outdatedBrowser({
+      bgColor: '#f25648',
+      color: '#ffffff',
+      lowerThan: 'transform',
+      languagePath: ''
+    });
   }
 
   /*

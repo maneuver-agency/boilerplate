@@ -1,16 +1,35 @@
 
-.fontastic() { font-family: "fontastic" !important; }
-
 // Source.
-.font-source() { font-family: "source-sans-pro", sans-serif; font-style: normal; font-weight: 400; }
-.font-source-light() { .font-source(); font-weight: 300; }
-.font-source-bold() { .font-source(); font-weight: 700;  }
+.font-source() { font-family: "source-sans-pro", sans-serif; font-style: normal; .font-normal(); }
+.font-source-light() { .font-source(); .font-light(); }
+.font-source-bold() { .font-source(); .font-bold();  }
 
 // Proxima Nova.
-.font-proxima() { font-family: 'proxima-nova', sans-serif; font-weight: 400; font-style: normal; }
-.font-proxima-thin() { .font-proxima(); font-weight: 100; }
-.font-proxima-light() { .font-proxima(); font-weight: 300; }
-.font-proxima-semibold() { .font-proxima(); font-weight:600; }
-.font-proxima-bold() { .font-proxima(); font-weight:700; }
-.font-proxima-extrabold() { .font-proxima(); font-weight: 800; }
-.font-proxima-black() { .font-proxima(); font-weight: 900; }
+.font-proxima() { font-family: 'proxima-nova', sans-serif; .font-normal(); font-style: normal; }
+.font-proxima-thin() { .font-proxima(); .font-thin(); }
+.font-proxima-light() { .font-proxima(); .font-light(); }
+.font-proxima-semibold() { .font-proxima(); .font-semibold(); }
+.font-proxima-bold() { .font-proxima(); .font-bold(); }
+.font-proxima-extrabold() { .font-proxima(); .font-extrabold(); }
+.font-proxima-black() { .font-proxima(); .font-black(); }
+
+// Museo Sans
+.font-museo() { font-family: 'museo-sans', sans-serif; .font-normal(); font-style: normal; }
+.font-museo-thin() { .font-museo(); .font-thin(); }
+.font-museo-semibold() { .font-museo(); .font-semibold(); }
+.font-museo-bold() { .font-museo(); .font-bold(); }
+.font-museo-black() { .font-museo(); .font-black(); }
+
+/* Change depending on the font used ! */
+.font-thin() { font-weight: 100; }
+.font-light() { font-weight: 300; }
+.font-normal() { font-weight: 400; }
+.font-semibold() { font-weight: 600; }
+.font-bold() { font-weight: 700; }
+.font-extrabold() { font-weight: 800; }
+.font-black() { font-weight: 900; }
+
+.fontastic() { font-family: "fontastic" !important; }
+.font-icon {
+  &:before { .fontastic(); }
+}

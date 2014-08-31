@@ -1,4 +1,4 @@
-angular.module('genetic.services', ['ngResource']).
+angular.module('mnvr.services', ['ngResource']).
 
 factory('myService', function($resource){
 

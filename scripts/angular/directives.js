@@ -1,4 +1,4 @@
-angular.module('genetic.directives', [])
+angular.module('mnvr.directives', [])
 
 .directive('myDirective', function() {
   return {

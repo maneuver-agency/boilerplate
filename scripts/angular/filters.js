@@ -1,4 +1,4 @@
-angular.module('genetic.filters', [])
+angular.module('mnvr.filters', [])
 
 .filter('myFilter', function () {
     return function (input, selection) {

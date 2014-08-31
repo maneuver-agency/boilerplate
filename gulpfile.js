@@ -11,14 +11,15 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     bower = require('bower');
 
-// TODO: jshint & imagemin
-
+/* WATCH */
+// Watch regularly updated files.
 gulp.task('watch', function(){
   gulp.watch('styles/**/*.less', ['styles']);
   gulp.watch('scripts/**/*.js', ['scripts']);
   gulp.watch('assets/img/*.svg', ['svg']);
 });
 
+// Watch regularly updated files + use Browser Sync.
 gulp.task('bs-watch', function(){
   browserSync.init(null, {
     proxy: "prototype.local.mnvr.be"
@@ -38,14 +39,20 @@ gulp.task('bs-watch', function(){
 });
 
 /* DEFAULT */
-gulp.task('default', ['styles', 'scripts', 'components', 'static-scripts', 'svg', 'imagemin'], function(){
+// The whole shabang.
+gulp.task('default', ['styles', 'scripts', 'components', 'modules', 'static-scripts', 'svg', 'imagemin'], function(){
 
 });
 
-/* MY STYLES */
+// Error handler to prevent gulp watch from breaking.
+function onError(err) {
+  console.log(err.toString());
+  this.emit('end');
+}
+
+/* STYLES */
 gulp.task('styles', function(){
   return gulp.src([
-      'bower_components/lesshat/build/lesshat-prefixed.less',
       'styles/main.less'
     ])
     .pipe(plumber({errorHandler: notify.onError("Styles Error: <%= error.message %>")}))
@@ -53,6 +60,7 @@ gulp.task('styles', function(){
       paths: ['styles'],
       compress: true,
     }))
+    .on('error', onError)
     .pipe(minifycss())
     .pipe(rename('main.css'))
     .pipe(gulp.dest('dist'))
@@ -63,7 +71,7 @@ gulp.task('styles', function(){
     .pipe(browserSync.reload({stream:true}));
 });
 
-/* MY SCRIPTS */
+/* SCRIPTS */
 gulp.task('scripts', ['modules'], function(){
   return gulp.src([
       'scripts/modernizr.js',
@@ -86,6 +94,7 @@ gulp.task('components', function(){
       'bower_components/picturefill/picturefill.js',
       'bower_components/bootstrap/js/transition.js',
       'bower_components/bootstrap/js/collapse.js',
+      'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.js',
       // 'bower_components/gmaps/gmaps.js'
     ])
     .pipe(concat('components.js'))
@@ -111,6 +120,11 @@ gulp.task('modules', function(){
       gulp.start('flexslider');
     }
   });
+  bower.commands.list().on('end', function(results){
+    if (results.dependencies.fancybox !== undefined) {
+      gulp.start('fancybox');
+    }
+  });
 
   return gulp.src([
       'scripts/modules/*.js',
@@ -126,6 +140,16 @@ gulp.task('flexslider', function(){
   ])
   .pipe(uglify())
   .pipe(rename('flexslider.js'))
+  .pipe(gulp.dest('dist/modules'));
+});
+
+/* FANCYBOX */
+gulp.task('fancybox', function(){
+  gulp.src([
+    'bower_components/fancybox/source/jquery.fancybox.js'
+  ])
+  .pipe(uglify())
+  .pipe(rename('fancybox.js'))
   .pipe(gulp.dest('dist/modules'));
 });
 

@@ -1,1 +1,1 @@
-angular.module('genApp', ['genetic.directives', 'genetic.filters', 'genetic.services']);
+angular.module('genApp', ['mnvr.directives', 'mnvr.filters', 'mnvr.services']);

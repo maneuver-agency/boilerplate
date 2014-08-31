@@ -2,13 +2,9 @@
 
 ini_set('display_errors', 1);
 
-define('ENV', determineEnv(array(
-  'local'       => 'local.mnvr.be',
-  'staging'     => 'mnvr.be',
-  'production'  => 'kove.be',
-)));
-
 include 'config.php';
+
+define('ENV', determineEnv($config['environments']));
 
 define('DOCROOT', $_SERVER['DOCUMENT_ROOT']);
 require_once('vendor/autoload.php');
