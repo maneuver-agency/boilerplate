@@ -22,7 +22,7 @@ $config = array(
   // Different paths used throughout template files.
   'paths' => (object) array(
     'theme' => '/',
-    'images' => '/assets/img/'
+    'images' => '/assets/img/',
   ),
 
 );

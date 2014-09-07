@@ -52,6 +52,21 @@ define([], function(){
     });
   }
 
+  // Equal height columns.
+  (function() {
+    $('[data-equal-height]').each(function(){
+      var selector = $(this).data('equal-height') || '> *',
+          $children = $(selector, this),
+          th = 0;
+
+      $children.each(function(){
+        th = Math.max(th, $(this).height());
+      });
+
+      $children.height(th);
+    });
+  })();
+
   /**
    * Capitalize first character of string.
    */

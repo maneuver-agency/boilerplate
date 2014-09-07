@@ -10,7 +10,7 @@ define('DOCROOT', $_SERVER['DOCUMENT_ROOT']);
 require_once('vendor/autoload.php');
 
 // Setup Twig templating engine
-$loader = new Twig_Loader_Filesystem(DOCROOT . '/templates');
+$loader = new Twig_Loader_Filesystem(DOCROOT);
 $twig = new Twig_Environment($loader, array(
   'cache' => FALSE, //DOCROOT . '/cache',
 ));
@@ -30,7 +30,7 @@ if (!file_exists(DOCROOT . '/templates/' . $file)) {
 }
 
 // Load and render template.
-$template = $twig->loadTemplate($file);
+$template = $twig->loadTemplate('/templates/' . $file);
 echo $template->render($config);
 
 /***************/
