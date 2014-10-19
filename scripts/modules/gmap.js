@@ -9,11 +9,14 @@ define(function(){
       id: '#gmaps',
       lat: 51.159444,
       lng: 4.181447,
-      markers: [{lat: 51.159444, lng: 4.181447}],
+      markers: [],
       addZoomControls: true
     }, options);
 
-    console.log(settings);
+    // Add default marker.
+    if (settings.markers !== false && settings.markers.length === 0) {
+      settings.markers.push({lat: settings.lat, lng: settings.lng});
+    }
 
     if (GMaps !== undefined) {
 
