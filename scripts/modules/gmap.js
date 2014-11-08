@@ -18,7 +18,7 @@ define(function(){
       settings.markers.push({lat: settings.lat, lng: settings.lng});
     }
 
-    if (GMaps !== undefined) {
+    if (GMaps !== undefined && $(settings.id).length) {
 
       gmap = new GMaps({
         div: settings.id,
