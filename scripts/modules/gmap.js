@@ -1,6 +1,6 @@
 define(function(){
 
-  var gmap;
+  var gmap, markers = [];
 
   function build(options) {
     var $zoomcontrols, i, len, settings;
@@ -10,7 +10,9 @@ define(function(){
       lat: 51.159444,
       lng: 4.181447,
       markers: [],
-      addZoomControls: true
+      addZoomControls: true,
+      scrollwheel: false,
+      zoom: 11
     }, options);
 
     // Add default marker.
@@ -18,12 +20,13 @@ define(function(){
       settings.markers.push({lat: settings.lat, lng: settings.lng});
     }
 
-    if (GMaps !== undefined && $(settings.id).length) {
+    if (typeof GMaps !== 'undefined' && $(settings.id).length) {
 
       gmap = new GMaps({
         div: settings.id,
         lat: settings.lat,
         lng: settings.lng,
+        zoom: settings.zoom,
         panControl: false,
         scaleControl: false,
         zoomControlOpt: {style: 'SMALL'},
@@ -31,26 +34,34 @@ define(function(){
         overviewMapControl: false,
         streetViewControl: false,
         mapTypeControl: false,
-        scrollwheel: false,
+        scrollwheel: settings.scrollwheel,
+        dragend: settings.dragend || function(){},
+        radius_changed: settings.change || function(){},
+        center_changed: settings.change || function(){},
+        zoom_changed: settings.change || function(){},
+        // mouseup: settings.mouseup || function(){ console.log("mpouseup"); },
         styles: [
           {
             "stylers": [
-              { "gamma": 0.9 },
-              { "saturation": -83 }
+              { "gamma": 1 },
+              { "saturation": -50 }
             ]
           }
         ]
       });
 
       for(i=0, len=settings.markers.length; i<len; i++) {
-        settings.markers[i].icon = '/assets/img/marker.png';
-        gmap.addMarker(settings.markers[i]);
+        settings.markers[i].icon = '/theme/bertoy14/assets/img/marker.png';
+        if (typeof settings.clickMarker == 'function') {
+          settings.markers[i].click = settings.clickMarker;
+        }
+        markers.push(gmap.addMarker(settings.markers[i]));
       }
 
       if (settings.addZoomControls) {
         $zoomcontrols = $('<div />', {class: 'zoom-controls'}).appendTo('#gmaps');
-        $('<div />', {class: 'zoom-in'}).text('+').appendTo($zoomcontrols);
-        $('<div />', {class: 'zoom-out'}).text('--').appendTo($zoomcontrols);
+        $('<div />', {class: 'zoom-in'}).html('<i class="icon-plus"></i>').appendTo($zoomcontrols);
+        $('<div />', {class: 'zoom-out'}).html('<i class="icon-minus"></i>').appendTo($zoomcontrols);
 
         $('#gmaps')
         .on('click', '.zoom-in', function(e){
@@ -77,17 +88,71 @@ define(function(){
               strokeOpacity: 0.6,
               strokeWeight: 6
             });
+            fitZoom();
           } else {
             gmap.setCenter(position.coords.latitude, position.coords.longitude);
+            gmap.setZoom(11);
           }
-          gmap.fitZoom();
+        },
+        error: function(error) {
+          // fitZoom();
+        },
+        not_supported: function(){
+          // fitZoom();
         }
       });
     }
   }
 
+  function gotoAddress(address) {
+    if (gmap && address) {
+      GMaps.geocode({
+        address: address,
+        callback: function(results, status) {
+          if (status == 'OK') {
+            var latlng = results[0].geometry.location;
+            gmap.setCenter(latlng.lat(), latlng.lng());
+            gmap.setZoom(11);
+          }
+        }
+      });
+    }
+  }
+
+  function fitZoom(){
+    if (gmap) {
+      gmap.fitZoom();
+    }
+  }
+
+  function getVisibleMarkers() {
+    if (gmap && markers.length) {
+      var bounds = gmap.map.getBounds(),
+          list = [];
+
+      [].map.call(markers, function(marker){
+        if (bounds.contains(marker.position)) {
+          list.push(marker);
+        }
+      });
+
+      return list;
+    }
+  }
+
+  function getAllMarkers() {
+    return markers;
+  }
+
   return {
+    getMap: function(){ return gmap.map; },
+
     create: build,
-    locate: findLocation
+    locate: findLocation,
+    fit: fitZoom,
+    goTo: gotoAddress,
+
+    getVisibleMarkers: getVisibleMarkers,
+    getAllMarkers: getAllMarkers
   };
 });
