@@ -3,7 +3,7 @@ define([], function(){
   $(document).
 
   // Make entire elements clickable and follow the containing link.
-  on('click', '[data-clickable]:has(a[href])', function(){
+  on('click', '[data-clickable]:has(a[href])', function(e){
       var $this = $(this),
       $link = $(this).find('a');
 
@@ -14,6 +14,7 @@ define([], function(){
           default:
           window.location = $link.attr('href');
       }
+      e.preventDefault();
   }).
 
   // Animate jump links.
@@ -55,15 +56,20 @@ define([], function(){
   // Equal height columns.
   (function() {
     $('[data-equal-height]').each(function(){
-      var selector = $(this).data('equal-height') || '> *',
-          $children = $(selector, this),
-          th = 0;
+      var $el = $(this),
+          selector = $el.data('equal-height') || '> *',
+          selectors = selector.split(',');
 
-      $children.each(function(){
-        th = Math.max(th, $(this).height());
+      [].map.call(selectors, function(sel){
+        var $children = $(sel, $el),
+            th = 0;
+
+        $children.each(function(){
+          th = Math.max(th, $(this).height());
+        });
+
+        $children.height(th);
       });
-
-      $children.height(th);
     });
   })();
 
