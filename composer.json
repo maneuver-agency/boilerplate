@@ -1,7 +1,12 @@
 {
     "name": "maneuver/prototype",
     "require": {
-        "twig/twig": "1.*"
+        "twig/twig": "1.*",
+        "silex/silex": "~1.2",
+        "aptoma/twig-markdown": "~1.1",
+        "symfony/yaml": "~2.6",
+        "michelf/php-markdown": "~1.4",
+        "doctrine/dbal": "~2.5"
     },
     "authors": [
         {

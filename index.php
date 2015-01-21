@@ -2,36 +2,72 @@
 
 ini_set('display_errors', 1);
 
+require_once('vendor/autoload.php');
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\Yaml\Yaml;
+use Aptoma\Twig\Extension\MarkdownExtension;
+use Aptoma\Twig\Extension\MarkdownEngine;
+
 include 'config.php';
 
 define('ENV', determineEnv($config['environments']));
 
-define('DOCROOT', $_SERVER['DOCUMENT_ROOT']);
-require_once('vendor/autoload.php');
+/* BUILD APP */
 
-// Setup Twig templating engine
-$loader = new Twig_Loader_Filesystem(DOCROOT);
-$twig = new Twig_Environment($loader, array(
-  'cache' => FALSE, //DOCROOT . '/cache',
+$app = new Silex\Application();
+
+// Set debug when testing local.
+if (ENV == 'local') {
+  $app['debug'] = TRUE;
+}
+
+// Add Doctrine Service Provider
+// $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+//   'db.options' => array(
+//     'driver'    => 'pdo_mysql',
+//     'dbname'    => 'maneuver_db',
+//     'host'      => '94.198.160.60',
+//     'user'      => 'maneuver_dbo',
+//     'password'  => 'mnvr140DB',
+//   ),
+// ));
+
+// Add Twig Service Provider.
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+  'twig.path' => __DIR__,
+  'twig.options' => array(
+    'strict_variables' => FALSE,
+  ),
 ));
 
-include('extensions.php');
+// Extend twig.
+$app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
+  include('extensions.php');
+  $engine = new MarkdownEngine\MichelfMarkdownEngine();
+  $twig->addExtension(new MarkdownExtension($engine));
+  return $twig;
+}));
 
-// Simple routing
-// See http://toroweb.org/ for a slightly more advanced way.
-$uri = $_SERVER['REQUEST_URI'];
-$file = 'index.twig';
-if ($uri != '/') {
-  $file = ltrim($uri, '/') . '.twig';
-}
-if (!file_exists(DOCROOT . '/templates/' . $file)) {
-  $file = '404.twig';
-  header("HTTP/1.0 404 Not Found");
-}
+// **ROUTE**
+// General template + homepage.
+$app->get('/{template}', function(Silex\Application $app, $template) use ($config) {
 
-// Load and render template.
-$template = $twig->loadTemplate('/templates/' . $file);
-echo $template->render($config);
+  $file = $template . '.twig';
+  if (!file_exists(__DIR__ . '/templates/' . $file)) {
+    $file = '404.twig';
+    header("HTTP/1.0 404 Not Found");
+  }
+
+  $config['is_front'] = $template == 'index';
+
+  return $app['twig']->render('/templates/'.$file, $config);
+})
+->value('template', 'index');
+
+// Kickstart.
+$app->run();
 
 /***************/
 /*** METHODS ***/
@@ -44,6 +80,31 @@ function determineEnv($environments) {
     }
   }
   return array_pop($environments);
+}
+
+function loadTranslations($lang){
+  global $translations;
+
+  $file = __DIR__ . '/content/translations/' . $lang . '.yml';
+  if (!$translations && file_exists($file)) {
+    $translations = Yaml::parse(file_get_contents($file));
+  }
+}
+
+function loadContent($template, $lang) {
+  $globalfile = __DIR__ . '/content/' . $lang . '/global.yml';
+  $pagefile = __DIR__ . '/content/' . $lang . '/' . $template . '.yml';
+  $content = array();
+
+  // var_dump(Yaml::parse(file_get_contents($globalfile)));exit;
+
+  if (file_exists($globalfile)) {
+    $content = array_merge($content, Yaml::parse(file_get_contents($globalfile)));
+  }
+  if (file_exists($pagefile)) {
+    $content = array_merge($content, Yaml::parse(file_get_contents($pagefile)));
+  }
+  return $content;
 }
 
 ?>
