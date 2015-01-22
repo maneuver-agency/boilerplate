@@ -3,10 +3,8 @@
   "version": "0.0.0",
   "devDependencies": {
     "bootstrap": "3",
-    "gmaps": "~0.4.5",
     "requirejs": "~2.1.8",
     "lesshat": "~3.0.0",
-    "picturefill": "~1.2.1",
     "outdated-browser": "~1.1.0"
   }
 }
