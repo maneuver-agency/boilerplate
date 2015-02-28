@@ -1,7 +1,153 @@
-{% include 'includes/_header.twig' %}
+{% set lang = 'en' %}
 
-{% block content %}
+<!DOCTYPE html lang="{{ lang }}">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <title>{{ theme.sitename }}</title>
 
-{% endblock %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="{{ theme.description }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-{% include 'includes/_footer.twig' %}
+    <link rel="alternate" href="{{ theme.siteurl }}" hreflang="{{ lang }}" />
+    <link rel="shortcut icon" href="{{ paths.theme }}assets/favicon.ico">
+
+    <!-- ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/icon_128x128.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/icon_128x128.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/icon_128x128.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/icon_256x256.png" />
+
+    <!-- windows 8 -->
+    <meta name="application-name" content="{{ theme.sitename }}"/>
+    <meta name="msapplication-TileColor" content="#aa936d"/>
+    <meta name="msapplication-TileImage" content="/assets/metro-tile-icon.png"/>
+
+    {% set ogdesc = theme.description %}
+    {% set ogtitle = theme.sitename %}
+    {% set ogimage = paths.theme ~ 'assets/facebook.jpg' %}
+
+    {% if record.contenttype.slug == 'projects' %}
+      {% set ogdesc = record.body %}
+      {% set ogtitle = record.title %}
+      {% set ogimage = '/' ~ record.image %}
+    {% endif %}
+
+    <!-- facebook -->
+    <meta property="og:site_name" content="{{ theme.sitename }}" />
+    <meta property="og:title" content="{{ ogtitle }}" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="{{ theme.siteurl ~ ogimage }}" />
+    <meta property="og:url" content="{{ paths.canonicalurl }}" />
+    <meta property="og:description" content="{{ ogdesc }}">
+    <meta property="fb:admins" content="666015894">
+
+    <link rel="stylesheet" href="{{ paths.theme }}dist/main.css">
+    <script src="{{ paths.theme }}dist/modernizr.js"></script>
+    {#<script type="text/javascript">
+      (function(d) {
+        var config = {
+          kitId: 'xfa4jza',
+          scriptTimeout: 3000
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+    </script>#}
+    <script type="text/javascript">
+      /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-37257618-11', 'vanraemdonck.be');
+      ga('send', 'pageview'); */
+    </script>
+  </head>
+
+  <body>
+
+    <div id="fb-root"></div>
+    <script>
+      /*window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '',
+          channelUrl : '',
+          status     : false,
+          xfbml      : false
+        });
+      };
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));*/
+    </script>
+
+    <main class="site-wrap" role="main">
+
+      <header class="site-header navbar navbar-static-top" role="banner">
+        <div class="container">
+          <div id="site-logo" class="navbar-header">
+            <a href="/" title="home" class="navbar-brand">{{ theme.sitename }}</a>
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".main-menu">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <nav id="main-menu" class="main-menu navbar-collapse collapse" role="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/about">about</a></li>
+              <li><a href="/products">products</a></li>
+              <li><a href="/contact">contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <div class="site-content">
+
+        <div class="site-jumbotron jumbotron">
+          <h1>Awesome catchy one-liner</h1>
+        </div>
+
+        {% block content %}
+
+        {% endblock %}
+
+      </div>
+      <div class="site-push"></div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div id="mnvr">
+          <a class="inner" href="http://www.maneuver.be" target="_blank" title="site by maneuver"></a>
+        </div>
+      </div>
+    </footer>
+
+    <div id="outdated">
+      <h6>Your browser is out-of-date!</h6>
+      <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+      <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+    </div>
+
+    <!--<script src="http://maps.google.com/maps/api/js?sensor=true"></script>-->
+    <script data-main="{{ paths.theme }}dist/main.js" src="{{ paths.theme }}dist/require.js"></script>
+    <!--[if lt IE 9]>
+      <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+    <![endif]-->
+  </body>
+</html>
+

@@ -13,6 +13,7 @@ use Aptoma\Twig\Extension\MarkdownEngine;
 include 'config.php';
 
 define('ENV', determineEnv($config['environments']));
+$config['ENV'] = ENV;
 
 /* BUILD APP */
 
@@ -21,6 +22,14 @@ $app = new Silex\Application();
 // Set debug when testing local.
 if (ENV == 'local') {
   $app['debug'] = TRUE;
+}
+
+// Try to detect brower language.
+if (count($config['languages']) > 1 && !empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+  $browser_lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+  if (in_array($browser_lang, $config['languages'])) {
+    $config['default_language'] = $browser_lang;
+  }
 }
 
 // Add Doctrine Service Provider
@@ -36,9 +45,10 @@ if (ENV == 'local') {
 
 // Add Twig Service Provider.
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-  'twig.path' => __DIR__,
+  'twig.path' => __DIR__ . '/templates/',
   'twig.options' => array(
     'strict_variables' => FALSE,
+    'cache' => FALSE //__DIR__.'/cache'
   ),
 ));
 
@@ -49,6 +59,21 @@ $app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
   $twig->addExtension(new MarkdownExtension($engine));
   return $twig;
 }));
+
+// Set error handler.
+$app->error(function (\Exception $e, $code) use ($app, $config) {
+  switch ($code) {
+    case 404:
+      $file = '404.twig';
+      // $message = 'The requested page could not be found.';
+      break;
+    default:
+      $file = '500.twig';
+      // $message = 'We are sorry, but something went terribly wrong.';
+  }
+
+   return $app['twig']->render($file, $config);
+});
 
 // **ROUTE**
 // General template + homepage.
@@ -62,7 +87,7 @@ $app->get('/{template}', function(Silex\Application $app, $template) use ($confi
 
   $config['is_front'] = $template == 'index';
 
-  return $app['twig']->render('/templates/'.$file, $config);
+  return $app['twig']->render($file, $config);
 })
 ->value('template', 'index');
 

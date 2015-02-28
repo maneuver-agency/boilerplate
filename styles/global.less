@@ -1,5 +1,3 @@
-@import "bower_components/lesshat/build/lesshat-prefixed.less";
-// @import "bower_components/normalize-less/normalize.less";
 @import "bootstrap.less";
 @import "vars.less";
 @import "fonts.less";
@@ -22,6 +20,7 @@ p:first-child { margin-top:0; }
 ::-moz-selection { background: @clr-selection; color:#fff; }
 .placeholder .form-label { display: none; }
 textarea { resize:none; }
+svg, img[src$=".svg"] { max-width: 100%; }
 
 /*************/
 /* STRUCTURE */
@@ -84,6 +83,14 @@ textarea { resize:none; }
 .flex(@x: 1) { .lh-flex(@x); }
 .middle { .flexbox-vertical(); .lh-justify-content(center); }
 
+/* spacer classes */
+.spacer(@m, @dir) when (@m <= 200) {
+  .spacer--@{dir}@{m} { margin-@{dir}:~"@{m}px"; }
+  .spacer(@m+10, @dir);
+}
+.spacer(10, top);
+.spacer(10, bottom);
+
 
 /* svg background fallback */
 .svgbg(@src, @w, @h, @fallback: '') { background:url(@src) no-repeat 0 0; width:@w; height:@h; display: inline-block; background-size:@w @h;
@@ -104,6 +111,7 @@ textarea { resize:none; }
 
 .bg-primary     { background-color:@clr-primary; }
 .bg-secondary   { background-color:@clr-secondary; }
+.bg-silver      { background-color: @clr-silver; }
 
 /*********************/
 /* BUTTONS OVERRIDES */

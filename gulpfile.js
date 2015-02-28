@@ -9,6 +9,8 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     svg2png = require('gulp-svg2png'),
     browserSync = require('browser-sync'),
+    postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer-core'),
     bower = require('bower');
 
 /* WATCH */
@@ -21,7 +23,7 @@ gulp.task('watch', function(){
 
 // Watch regularly updated files + use Browser Sync.
 gulp.task('bs-watch', function(){
-  browserSync.init(null, {
+  browserSync({
     proxy: "prototype.local.mnvr.be"
   });
 
@@ -61,6 +63,9 @@ gulp.task('styles', function(){
       compress: true,
     }))
     .on('error', onError)
+    .pipe(postcss([autoprefixer({
+      browsers: ['last 2 version']
+    })]))
     .pipe(minifycss())
     .pipe(rename('main.css'))
     .pipe(gulp.dest('dist'))

@@ -10,6 +10,7 @@
   "author": "Genetic",
   "license": "BSD",
   "devDependencies": {
+    "autoprefixer-core": "^5.1.7",
     "bower": "*",
     "browser-sync": "*",
     "gulp": "*",
@@ -19,6 +20,7 @@
     "gulp-minify-css": "*",
     "gulp-notify": "*",
     "gulp-plumber": "*",
+    "gulp-postcss": "^4.0.3",
     "gulp-rename": "*",
     "gulp-svg2png": "*",
     "gulp-uglify": "*"

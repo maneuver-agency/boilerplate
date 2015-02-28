@@ -11,6 +11,9 @@ $config = array(
     'production'  => 'prototype.be',
   ),
 
+  'languages' => array('en', 'nl'),
+  'default_language' => 'en',
+
   // Set theme variables.
   'theme' => (object) array(
     'sitename' => 'prototype',

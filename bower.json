@@ -4,7 +4,6 @@
   "devDependencies": {
     "bootstrap": "3",
     "requirejs": "~2.1.8",
-    "lesshat": "~3.0.0",
     "outdated-browser": "~1.1.0"
   }
 }
