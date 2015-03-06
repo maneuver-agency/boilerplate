@@ -42,8 +42,8 @@ svg, img[src$=".svg"] { max-width: 100%; }
   }
 }
 #mnvr { position:absolute; bottom:0; right:0;
-  .inner { display:block; width:13px; height:6px; margin:auto; background:url('@{imgpath}mnvr-dark.png') no-repeat 0 0;  .opacity(.3); .lh-transition(all 250ms ease-in-out);
-    &:hover { width:63px; .opacity(.3); }
+  .inner { display:block; width:13px; height:6px; margin:auto; background:url('@{imgpath}mnvr-dark.png') no-repeat 0 0;  opacity:.3; transition:all 250ms ease-in-out;
+    &:hover { width:63px; opacity:.3; }
   }
 }
 
@@ -78,10 +78,10 @@ svg, img[src$=".svg"] { max-width: 100%; }
 }
 
 /* flexbox shortcuts */
-.flexbox-vertical() { .lh-display(flex); .lh-flex-direction(column); }
-.flexbox-horizontal() { .lh-display(flex); .lh-flex-direction(row); }
-.flex(@x: 1) { .lh-flex(@x); }
-.middle { .flexbox-vertical(); .lh-justify-content(center); }
+.flexbox-vertical() { display:flex; flex-direction:column; }
+.flexbox-horizontal() { display:flex; flex-direction:row; }
+.flex(@x: 1) { flex:@x; }
+.middle { .flexbox-vertical(); justify-content:center; }
 
 /* spacer classes */
 .spacer(@m, @dir) when (@m <= 200) {
@@ -118,7 +118,7 @@ svg, img[src$=".svg"] { max-width: 100%; }
 /*********************/
 
 // .btn { padding-left:40px; padding-right:40px; border-width: 2px; .font-franklin-medium();
-//   .lh-transition(background-color 150ms @easeOutCubic, color 150ms @easeOutCubic, border-color 150ms @easeOutCubic);
+//   transition:background-color 150ms @easeOutCubic, color 150ms @easeOutCubic, border-color 150ms @easeOutCubic;
 // }
 // .btn-primary {
 //   .button-variant(@clr-primary, transparent, @clr-primary);
