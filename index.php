@@ -45,10 +45,10 @@ if (count($config['languages']) > 1 && !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 
 // Add Twig Service Provider.
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-  'twig.path' => __DIR__ . '/templates/',
+  'twig.path' => __DIR__ . '/',
   'twig.options' => array(
     'strict_variables' => FALSE,
-    'cache' => FALSE //__DIR__.'/cache'
+    'cache' => ENV == 'local' ? FALSE : __DIR__.'/cache', // don't cache while developing
   ),
 ));
 
@@ -72,7 +72,7 @@ $app->error(function (\Exception $e, $code) use ($app, $config) {
       // $message = 'We are sorry, but something went terribly wrong.';
   }
 
-   return $app['twig']->render($file, $config);
+   return $app['twig']->render('/templates/'.$file, $config);
 });
 
 // **ROUTE**
@@ -87,7 +87,7 @@ $app->get('/{template}', function(Silex\Application $app, $template) use ($confi
 
   $config['is_front'] = $template == 'index';
 
-  return $app['twig']->render($file, $config);
+  return $app['twig']->render('/templates/'.$file, $config);
 })
 ->value('template', 'index');
 

@@ -1,23 +1,37 @@
 define([], function(){
 
+
+  /**
+   * Make entire elements clickable
+   * Add class to enforce pointer cursor.
+   **/
+  $('[data-clickable]:has(a[href])').each(function(){
+    $(this).addClass('clickable');
+  });
+
+
   $(document).
 
-  // Make entire elements clickable and follow the containing link.
-  on('click', '[data-clickable]:has(a[href])', function(e){
+  /**
+   * Follow the containing link.
+   **/
+  on('click', '.clickable', function(e){
       var $this = $(this),
-      $link = $(this).find('a');
+          $link = $this.find('a');
 
       switch ($link.attr('target')) {
           case '_blank':
-          window.open($link.attr('href'));
-          break;
+            window.open($link.attr('href'));
+            break;
           default:
-          window.location = $link.attr('href');
+            window.location = $link.attr('href');
       }
       e.preventDefault();
   }).
 
-  // Animate jump links.
+  /**
+   * Animate jump links.
+   **/
   on('click', 'a[href^=#]', function(e){
     var id = $(this).attr('href'),
       $target = $(id),
@@ -38,13 +52,17 @@ define([], function(){
     e.preventDefault();
   });
 
-  // Replace hashed email adresses for antispam.
-  // Use: http://www.katpatuka.org/pub/doc/anti-spam.html
+  /**
+   * Replace hashed email adresses for antispam.
+   * Use: http://www.katpatuka.org/pub/doc/anti-spam.html
+   **/
   $('a[data-mailto]').each(function(){
       $(this).text($(this).attr('href').replace('mailto:', ''));
   });
 
-  // svg fallback: replace with png.
+  /**
+   * svg fallback: replace with png.
+   **/
   if (!Modernizr.svg) {
     $('img[src*=svg]').each(function(){
       var src = $(this).attr('src');
@@ -53,7 +71,9 @@ define([], function(){
     });
   }
 
-  // Equal height columns.
+  /**
+   * Equal height elements.
+   */
   (function() {
     $('[data-equal-height]').each(function(){
       var $el = $(this),

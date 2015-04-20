@@ -13,6 +13,18 @@ $twig->addFunction(new Twig_SimpleFunction('dump', function($var){
   var_dump($var);exit;
 }));
 
+// Checks current template.
+$twig->addFunction(new Twig_SimpleFunction('active', function($template, $echo = 'active'){
+  $requri = $_SERVER['REQUEST_URI'];
+  $active = FALSE;
+
+  if ($requri == $template || trim($requri, '/') == $template) {
+    $active = TRUE;
+  }
+  echo ($active ? $echo : '');
+}));
+
+
 // Create parseVimeo function.
 // $twig->addFunction(new Twig_SimpleFunction('embedVimeo', function($url){
 //   //extract the ID

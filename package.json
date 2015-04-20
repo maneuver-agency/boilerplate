@@ -10,19 +10,19 @@
   "author": "Genetic",
   "license": "BSD",
   "devDependencies": {
-    "autoprefixer-core": "^5.1.7",
-    "bower": "*",
-    "browser-sync": "*",
-    "gulp": "*",
-    "gulp-concat": "*",
-    "gulp-imagemin": "*",
-    "gulp-less": "*",
-    "gulp-minify-css": "*",
+    "autoprefixer-core": "^5.1.10",
+    "bower": "^1.4.1",
+    "browser-sync": "^2.6.4",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-less": "^3.0.2",
+    "gulp-minify-css": "^1.0.0",
     "gulp-notify": "*",
-    "gulp-plumber": "*",
-    "gulp-postcss": "^4.0.3",
-    "gulp-rename": "*",
+    "gulp-plumber": "^1.0.0",
+    "gulp-postcss": "^5.1.1",
+    "gulp-rename": "^1.2.2",
     "gulp-svg2png": "*",
-    "gulp-uglify": "*"
+    "gulp-uglify": "^1.2.0"
   }
 }

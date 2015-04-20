@@ -64,7 +64,7 @@ gulp.task('styles', function(){
     }))
     .on('error', onError)
     .pipe(postcss([autoprefixer({
-      browsers: ['last 2 version']
+      browsers: ['last 3 versions']
     })]))
     .pipe(minifycss())
     .pipe(rename('main.css'))
@@ -85,7 +85,7 @@ gulp.task('scripts', ['modules'], function(){
       'scripts/polyfills.js',
       'scripts/application.js',
     ])
-    .pipe(uglify())
+    .pipe(uglify().on('error', function(e) { console.log('\x07',e.message); return this.end(); }))
     .pipe(gulp.dest('dist'))
     .pipe(notify({
       onLast: true,
@@ -120,16 +120,16 @@ gulp.task('static-scripts', function(){
 /* MODULES */
 gulp.task('modules', function(){
 
-  bower.commands.list().on('end', function(results){
-    if (results.dependencies.flexslider !== undefined) {
-      gulp.start('flexslider');
-    }
-  });
-  bower.commands.list().on('end', function(results){
-    if (results.dependencies.fancybox !== undefined) {
-      gulp.start('fancybox');
-    }
-  });
+  // bower.commands.list().on('end', function(results){
+  //   if (results.dependencies.flexslider !== undefined) {
+  //     gulp.start('flexslider');
+  //   }
+  // });
+  // bower.commands.list().on('end', function(results){
+  //   if (results.dependencies.fancybox !== undefined) {
+  //     gulp.start('fancybox');
+  //   }
+  // });
 
   return gulp.src([
       'scripts/modules/*.js',
