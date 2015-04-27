@@ -1,13 +1,13 @@
 {
-  "name": "Prototype",
-  "version": "0.0.0",
-  "description": "Scaffold for website prototyping",
-  "main": "index.html",
+  "name": "maneuver/boilerplate",
+  "version": "0.0.1",
+  "description": "Tiny opiniated framework for quickly prototyping a website",
+  "main": "index.php",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "",
-  "author": "Genetic",
+  "author": "David De Coninck",
   "license": "BSD",
   "devDependencies": {
     "autoprefixer-core": "^5.1.10",

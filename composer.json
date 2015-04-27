@@ -1,5 +1,6 @@
 {
-    "name": "maneuver/prototype",
+    "name": "maneuver/boilerplate",
+    "description": "Tiny opiniated framework for quickly prototyping a website",
     "require": {
         "twig/twig": "1.*",
         "silex/silex": "~1.2",
@@ -10,8 +11,8 @@
     },
     "authors": [
         {
-            "name": "David",
-            "email": "david@genetic.be"
+            "name": "David De Coninck",
+            "email": "david@maneuver.be"
         }
     ]
 }
