@@ -83,7 +83,14 @@ svg, img[src$=".svg"] { max-width: 100%; }
 .flexbox-vertical()     { display:flex; flex-direction:column; }
 .flexbox-horizontal()   { display:flex; flex-direction:row; }
 .flex(@x: 1)            { flex:@x; }
-.middle                 { .flexbox-vertical(); justify-content:center; }
+.middle                 { .flexbox-vertical(); justify-content:center;
+  .no-flexbox &         { display: table;
+    > *                 { display: table-cell; vertical-align: middle; }
+  }
+}
+.middle-center          { .middle; align-items:center;
+  .no-flexbox & > *     { text-align: center; }
+}
 
 /* spacer classes */
 .spacer(@m, @dir) when (@m <= 200) {
