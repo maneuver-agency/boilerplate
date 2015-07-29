@@ -1,5 +1,5 @@
 {
-  "name": "maneuver/boilerplate",
+  "name": "boilerplate",
   "version": "0.0.1",
   "description": "Tiny opiniated framework for quickly prototyping a website",
   "main": "index.php",

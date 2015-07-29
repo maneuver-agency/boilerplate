@@ -24,6 +24,25 @@ $twig->addFunction(new Twig_SimpleFunction('active', function($template, $echo =
   echo ($active ? $echo : '');
 }));
 
+// Create share link.
+$twig->addFilter(new Twig_SimpleFilter('share', function($url, $type, $title = ''){
+  switch($type) {
+    case 'facebook':
+      $link = 'https://www.facebook.com/sharer/sharer.php?u=%1$s';
+      break;
+    case 'twitter':
+      $link = 'https://twitter.com/home?status=%2$s %1$s';
+      break;
+    case 'linkedin':
+      $link = 'https://www.linkedin.com/shareArticle?mini=true&url=%1$s&title=%2$s&summary=&source=';
+      break;
+    case 'googleplus':
+      $link = 'https://plus.google.com/share?url=%1$s';
+      break;
+  }
+  return sprintf($link, urlencode($url), urlencode($title));
+}));
+
 
 // Create parseVimeo function.
 // $twig->addFunction(new Twig_SimpleFunction('embedVimeo', function($url){
