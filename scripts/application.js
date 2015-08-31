@@ -22,13 +22,15 @@ define([], function(){
    */
   function bindEvents(){
     $(window)
-    .on('resize scroll', requestTick)
-    .trigger('resize');
+    .on('resize scroll', requestTick);
 
     $(document)
     .on('click', function(e){
 
     });
+
+    handlers.onResize();
+    handlers.onScroll();
   }
 
   function requestTick(e) {
