@@ -4,6 +4,8 @@
 
 $config = array(
 
+  'root' => '/',
+
   // Set environments.
   'environments' => array(
     'local'       => 'local.mnvr.be',
@@ -20,12 +22,12 @@ $config = array(
     'siteurl' => 'http://' . $_SERVER['HTTP_HOST'],
     'description' => '',
     'canonicalurl' => 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
-    'images' => '/assets/img/',
+    'images' => ':root/assets/img/',
   ),
 
   // Different paths used throughout template files.
   'paths' => (object) array(
-    'theme' => '/'
+    'theme' => ':root'
   ),
 
 );

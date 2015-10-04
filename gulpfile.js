@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
-    less = require('gulp-less'),
+    // less = require('gulp-less'),
+    sass = require('gulp-sass'),
     minifycss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
     notify = require('gulp-notify'),
@@ -16,7 +17,7 @@ var gulp = require('gulp'),
 /* WATCH */
 // Watch regularly updated files.
 gulp.task('watch', function(){
-  gulp.watch('styles/**/*.less', ['styles']);
+  gulp.watch('styles/**/*.scss', ['styles']);
   gulp.watch('scripts/**/*.js', ['scripts']);
   gulp.watch('assets/img/*.svg', ['svg']);
 });
@@ -24,10 +25,10 @@ gulp.task('watch', function(){
 // Watch regularly updated files + use Browser Sync.
 gulp.task('bs-watch', function(){
   browserSync({
-    proxy: "prototype.local.mnvr.be"
+    proxy: "boilerplate.local.mnvr.be"
   });
 
-  gulp.watch('styles/**/*.less', ['styles'])/*.on('change', function(){
+  gulp.watch('styles/**/*.scss', ['styles'])/*.on('change', function(){
     browserSync.reload({stream: true});
   })*/;
   gulp.watch('scripts/**/*.js', ['scripts']).on('change', function(){
@@ -53,27 +54,47 @@ function onError(err) {
 }
 
 /* STYLES */
+// gulp.task('styles', function(){
+//   return gulp.src([
+//       'styles/main.less'
+//     ])
+//     .pipe(plumber({errorHandler: notify.onError("Styles Error: <%= error.message %>")}))
+//     .pipe(less({
+//       paths: ['styles'],
+//       compress: true,
+//     }))
+//     .on('error', onError)
+//     .pipe(postcss([autoprefixer({
+//       browsers: ['last 3 versions']
+//     })]))
+//     .pipe(minifycss())
+//     .pipe(rename('main.css'))
+//     .pipe(gulp.dest('dist'))
+//     .pipe(notify({
+//       onLast: true,
+//       message: 'Styles task completed'
+//     }))
+//     .pipe(browserSync.reload({stream:true}));
+// });
+
 gulp.task('styles', function(){
-  return gulp.src([
-      'styles/main.less'
-    ])
-    .pipe(plumber({errorHandler: notify.onError("Styles Error: <%= error.message %>")}))
-    .pipe(less({
-      paths: ['styles'],
-      compress: true,
-    }))
-    .on('error', onError)
-    .pipe(postcss([autoprefixer({
-      browsers: ['last 3 versions']
-    })]))
-    .pipe(minifycss())
-    .pipe(rename('main.css'))
-    .pipe(gulp.dest('dist'))
-    .pipe(notify({
-      onLast: true,
-      message: 'Styles task completed'
-    }))
-    .pipe(browserSync.reload({stream:true}));
+  gulp.src([
+    'styles/main.scss'
+  ])
+  .pipe(plumber({errorHandler: notify.onError("Sass Error: <%= error.message %>")}))
+  .pipe(sass({outputStyle: 'compressed'}))
+  .on('error', onError)
+  .pipe(postcss([autoprefixer({
+    browsers: ['last 3 versions']
+  })]))
+  .pipe(minifycss())
+  .pipe(rename('main.css'))
+  .pipe(gulp.dest('dist'))
+  .pipe(notify({
+    onLast: true,
+    message: 'Styles task completed'
+  }))
+  .pipe(browserSync.reload({stream:true}));
 });
 
 /* SCRIPTS */
@@ -97,8 +118,8 @@ gulp.task('scripts', ['modules'], function(){
 gulp.task('components', function(){
   return gulp.src([
       'bower_components/picturefill/picturefill.js',
-      'bower_components/bootstrap/js/transition.js',
-      'bower_components/bootstrap/js/collapse.js',
+      // 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js',
+      // 'bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js',
       'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.js',
       // 'bower_components/gmaps/gmaps.js'
     ])

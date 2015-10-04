@@ -11,6 +11,7 @@ use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
 
 include 'config.php';
+parseConfig($config, $config);
 
 define('ENV', determineEnv($config['environments']));
 $config['ENV'] = ENV;
@@ -48,7 +49,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
   'twig.path' => __DIR__ . '/',
   'twig.options' => array(
     'strict_variables' => FALSE,
-    'cache' => ENV == 'local' ? FALSE : __DIR__.'/cache', // don't cache while developing
+    'cache' => ENV == 'production' ? __DIR__.'/cache' : FALSE, // only cache in production
   ),
 ));
 
@@ -97,6 +98,23 @@ $app->run();
 /***************/
 /*** METHODS ***/
 /***************/
+
+function parseConfig($config, &$arr) {
+  if (is_object($arr)) {
+    $arr = get_object_vars($arr);
+  }
+
+  if (is_array($arr) && !empty($arr)) {
+    foreach ($arr as $key => &$value) {
+      if (is_string($value) && strstr($value, ':root')) {
+        $value = str_replace(':root', $config['root'], $value);
+        $value = str_replace('//', '/', $value);
+      } else {
+        parseConfig($config, $value);
+      }
+    }
+  }
+}
 
 function determineEnv($environments) {
   foreach ($environments as $env => $domain) {

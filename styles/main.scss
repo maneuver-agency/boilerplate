@@ -1,0 +1,15 @@
+@import 'variables';
+@import 'mixins';
+@import 'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
+@import 'globals';
+@import 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser';
+// @import 'fonts';
+
+
+// partials
+@import 'partials/page-sections';
+
+.bodytext {
+  font-size: 1.5rem;
+  line-height: 2;
+}

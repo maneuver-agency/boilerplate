@@ -1,7 +1,4 @@
-@block: ~'.page-section';
-
-/* block */
-@{block} {
+.page-section {
   padding:60px 0;
 
   /************/
@@ -15,8 +12,8 @@
 
   &__title {
     font-size: 2rem;
-    .font-bold();
-    .up();
+    font-weight: bold;
+    @include up();
   }
 
   &__content {

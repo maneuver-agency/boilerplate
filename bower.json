@@ -2,8 +2,8 @@
   "name": "Prototype",
   "version": "0.0.0",
   "devDependencies": {
-    "bootstrap": "3",
+    "outdated-browser": "~1.1.0",
     "requirejs": "~2.1.8",
-    "outdated-browser": "~1.1.0"
+    "bootstrap-sass": "~3.3.5"
   }
 }
