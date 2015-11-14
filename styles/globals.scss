@@ -6,7 +6,9 @@ html { font-size:13px; }
 body * { box-sizing: border-box; @include smooth-text(); }
 html, body { height:100%; margin:0; padding:0; }
 body, h1, h2, h3, h4, h5, h6 { line-height: 1; font-size:1rem; }
-.googlemaps img { max-width: none; }
+.googlemaps { max-width: 100%; min-width: 100%;
+  img { max-width: none; }
+}
 .clickable { cursor: pointer; }
 p:first-child { margin-top:0; }
 ::selection { background: $clr-selection; color:#fff; }
@@ -64,6 +66,22 @@ svg, img[src$=".svg"] { max-width: 100%; }
 }
 .middle-center          { @extend .middle; align-items:center;
   .no-flexbox & > *     { text-align: center; }
+}
+
+.sticky {
+  @media (min-width: 767px) { & {
+    &.sticky-on {
+      position: fixed;
+    }
+
+    position: -webkit-sticky;
+    position: sticky;
+    top:0;
+
+    .no-csspositionsticky & {
+      position: block;
+    }
+  }}
 }
 
 

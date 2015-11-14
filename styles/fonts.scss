@@ -1,35 +1,94 @@
+@font-face {
+  font-family: "social-icons";
+  src:url("#{$fontpath}social-icons.eot");
+  src:url("#{$fontpath}social-icons.eot?#iefix") format("embedded-opentype"),
+    url("#{$fontpath}social-icons.woff") format("woff"),
+    url("#{$fontpath}social-icons.ttf") format("truetype"),
+    url("#{$fontpath}social-icons.svg#social-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
 
-// Source.
-.font-source() { font-family: "source-sans-pro", sans-serif; font-style: normal; .font-normal(); }
-.font-source-light() { .font-source(); .font-light(); }
-.font-source-bold() { .font-source(); .font-bold();  }
+}
 
-// Proxima Nova.
-.font-proxima() { font-family: 'proxima-nova', sans-serif; .font-normal(); font-style: normal; }
-.font-proxima-thin() { .font-proxima(); .font-thin(); }
-.font-proxima-light() { .font-proxima(); .font-light(); }
-.font-proxima-semibold() { .font-proxima(); .font-semibold(); }
-.font-proxima-bold() { .font-proxima(); .font-bold(); }
-.font-proxima-extrabold() { .font-proxima(); .font-extrabold(); }
-.font-proxima-black() { .font-proxima(); .font-black(); }
+[class^="social-icon-"]:before,
+[class*=" social-icon-"]:before {
+  font-family: "social-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-// Museo Sans
-.font-museo() { font-family: 'museo-sans', sans-serif; .font-normal(); font-style: normal; }
-.font-museo-thin() { .font-museo(); .font-thin(); }
-.font-museo-semibold() { .font-museo(); .font-semibold(); }
-.font-museo-bold() { .font-museo(); .font-bold(); }
-.font-museo-black() { .font-museo(); .font-black(); }
-
-/* Change depending on the font used ! */
-.font-thin() { font-weight: 100; }
-.font-light() { font-weight: 300; }
-.font-normal() { font-weight: 400; }
-.font-semibold() { font-weight: 600; }
-.font-bold() { font-weight: 700; }
-.font-extrabold() { font-weight: 800; }
-.font-black() { font-weight: 900; }
-
-.fontastic() { font-family: "fontastic" !important; }
-// .font-icon {
-//   &::before { .fontastic(); }
-// }
+.social-icon-facebook-circle:before {
+  content: "a";
+}
+.social-icon-facebook:before {
+  content: "b";
+}
+.social-icon-linkedin-square:before {
+  content: "d";
+}
+.social-icon-google-plus-square:before {
+  content: "e";
+}
+.social-icon-social-twitter:before {
+  content: "f";
+}
+.social-icon-vimeo-square:before {
+  content: "g";
+}
+.social-icon-facebook-square:before {
+  content: "h";
+}
+.social-icon-pinterest:before {
+  content: "i";
+}
+.social-icon-linkedin-outline:before {
+  content: "j";
+}
+.social-icon-twitter-outline:before {
+  content: "k";
+}
+.social-icon-facebook-outline:before {
+  content: "l";
+}
+.social-icon-google-plus-outline:before {
+  content: "m";
+}
+.social-icon-pinterest-outline:before {
+  content: "n";
+}
+.social-icon-snapchat:before {
+  content: "o";
+}
+.social-icon-youtube-square:before {
+  content: "p";
+}
+.social-icon-twitter:before {
+  content: "q";
+}
+.social-icon-twitter-square:before {
+  content: "r";
+}
+.social-icon-twitter-circle:before {
+  content: "t";
+}
+.social-icon-linkedin-circle:before {
+  content: "s";
+}
+.social-icon-pinterest-square:before {
+  content: "c";
+}
+.social-icon-pinterest-circle:before {
+  content: "u";
+}
+.social-icon-instagram-circle:before {
+  content: "v";
+}
+.social-icon-instagram:before {
+  content: "w";
+}

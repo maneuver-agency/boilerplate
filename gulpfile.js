@@ -154,6 +154,9 @@ gulp.task('modules', function(){
 
   return gulp.src([
       'scripts/modules/*.js',
+      'bower_components/gmaps/gmaps.js',
+      'bower_components/requirejs-plugins/src/async.js',
+      'bower_components/Google Maps AMD Loader Plugin/src/googlemaps.js'
     ])
     .pipe(uglify())
     .pipe(gulp.dest('dist/modules'));

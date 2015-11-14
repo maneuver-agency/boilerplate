@@ -9,6 +9,18 @@ define([], function(){
 
     bindEvents();
 
+    /* Create Google Maps */
+    if ($('#gmaps').length) {
+      require(['modules/gmap'], function(gmaps){
+        gmaps.create({
+          // lat: 51.207781,
+          // lng: 4.346320,
+          // scrollwheel: true,
+          // markerIcon: '/assets/img/marker.png'
+        });
+      });
+    }
+
     outdatedBrowser({
       bgColor: '#f25648',
       color: '#ffffff',

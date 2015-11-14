@@ -1,1 +1,1 @@
-require(["polyfills","jquery"],function(i,n){require(["components"],function(i,n){require(["utils","application"],function(i,n){n.init()})})});
+require.config({paths:{googlemaps:"modules/googlemaps",async:"modules/async"}}),require(["polyfills","jquery"],function(e,i){require(["components"],function(e,i){require(["utils","application"],function(e,i){i.init()})})});

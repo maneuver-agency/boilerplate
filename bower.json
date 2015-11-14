@@ -4,6 +4,8 @@
   "devDependencies": {
     "outdated-browser": "~1.1.0",
     "requirejs": "~2.1.8",
-    "bootstrap-sass": "~3.3.5"
+    "bootstrap-sass": "~3.3.5",
+    "gmaps": "~0.4.21",
+    "Google Maps AMD Loader Plugin": "googlemaps-amd#~1.0.1"
   }
 }

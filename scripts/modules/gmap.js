@@ -1,4 +1,4 @@
-define(function(){
+define(['modules/gmaps'], function(GMaps){
 
   var gmap, markers = [];
 
@@ -7,12 +7,13 @@ define(function(){
 
     settings = $.extend({
       id: '#gmaps',
-      lat: 51.159444,
-      lng: 4.181447,
+      lat: 51.166447,
+      lng: 4.155782,
       markers: [],
       addZoomControls: true,
       scrollwheel: false,
-      zoom: 11
+      zoom: 11,
+      markerIcon: '/assets/img/marker.png'
     }, options);
 
     // Add default marker.
@@ -51,7 +52,9 @@ define(function(){
       });
 
       for(i=0, len=settings.markers.length; i<len; i++) {
-        settings.markers[i].icon = '/theme/bertoy14/assets/img/marker.png';
+        if (!settings.markers[i].icon) {
+          settings.markers[i].icon = settings.markerIcon;
+        }
         if (typeof settings.clickMarker == 'function') {
           settings.markers[i].click = settings.clickMarker;
         }
