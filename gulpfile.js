@@ -106,7 +106,12 @@ gulp.task('scripts', ['modules'], function(){
       'scripts/polyfills.js',
       'scripts/application.js',
     ])
-    .pipe(uglify().on('error', function(e) { console.log('\x07',e.message); return this.end(); }))
+    .pipe(uglify().on('error', function(e) {
+      console.log('\x07Message: ',e.message);
+      console.log('\x07LineNumber: ',e.lineNumber);
+      console.log('\x07Filename: ',e.fileName);
+      return this.end();
+    }))
     .pipe(gulp.dest('dist'))
     .pipe(notify({
       onLast: true,
