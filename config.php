@@ -5,6 +5,7 @@
 $config = array(
 
   'root' => '/',
+  'debug' => TRUE,
 
   // Set environments.
   'environments' => array(
@@ -22,12 +23,8 @@ $config = array(
     'siteurl' => 'http://' . $_SERVER['HTTP_HOST'],
     'description' => '',
     'canonicalurl' => 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+    'link' => ':root/',
     'images' => ':root/assets/img/',
-  ),
-
-  // Different paths used throughout template files.
-  'paths' => (object) array(
-    'theme' => ':root'
   ),
 
 );

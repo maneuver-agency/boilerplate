@@ -16,12 +16,17 @@ parseConfig($config, $config);
 define('ENV', determineEnv($config['environments']));
 $config['ENV'] = ENV;
 
+$config['body_classes'] = [];
+
+
+/*************/
 /* BUILD APP */
+/*************/
 
 $app = new Silex\Application();
 
-// Set debug when testing local.
-if (ENV == 'local') {
+// Enable debugging when testing local.
+if (ENV == 'local' && $config['debug']) {
   $app['debug'] = TRUE;
 }
 
@@ -76,7 +81,11 @@ $app->error(function (\Exception $e, $code) use ($app, $config) {
    return $app['twig']->render('/templates/'.$file, $config);
 });
 
-// **ROUTE**
+
+/****************/
+/* SETUP ROUTES */
+/****************/
+
 // General template + homepage.
 $app->get('/{template}', function(Silex\Application $app, $template) use ($config) {
 
@@ -86,14 +95,22 @@ $app->get('/{template}', function(Silex\Application $app, $template) use ($confi
     header("HTTP/1.0 404 Not Found");
   }
 
-  $config['is_front'] = $template == 'index';
+  if ($template == 'index') {
+    $config['is_front'] = TRUE;
+    $config['body_classes'][] = 'front';
+  }
 
   return $app['twig']->render('/templates/'.$file, $config);
 })
 ->value('template', 'index');
 
-// Kickstart.
+
+/*************/
+/* KICKSTART */
+/*************/
+
 $app->run();
+
 
 /***************/
 /*** METHODS ***/
@@ -109,6 +126,7 @@ function parseConfig($config, &$arr) {
       if (is_string($value) && strstr($value, ':root')) {
         $value = str_replace(':root', $config['root'], $value);
         $value = str_replace('//', '/', $value);
+        $value = rtrim($value, '/');
       } else {
         parseConfig($config, $value);
       }
