@@ -21,6 +21,7 @@
 @mixin flexbox-vertical     { display:flex; flex-direction:column; }
 @mixin flexbox-horizontal   { display:flex; flex-direction:row; }
 @mixin flex($x: 1)          { flex:$x; }
+.flexrow                    { @extend flexbox-horizontal; flex-wrap:wrap; }
 
 
 /* spacer classes */

@@ -10,10 +10,10 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="description" content="{{ theme.description }}">
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <link rel="alternate" href="{{ theme.siteurl }}" hreflang="{{ lang }}" />
+    <link rel="alternate" href="{{ site.url }}" hreflang="{{ lang }}" />
     <link rel="shortcut icon" href="{{ theme.link }}/assets/favicon.ico">
 
     <!-- ios -->
@@ -26,27 +26,20 @@
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/icon_256x256.png" />
 
     <!-- windows 8 -->
-    <meta name="application-name" content="{{ theme.sitename }}"/>
+    <meta name="application-name" content="{{ site.name }}"/>
     <meta name="msapplication-TileColor" content="#aa936d"/>
     <meta name="msapplication-TileImage" content="/assets/metro-tile-icon.png"/>
 
-    {% set ogdesc = theme.description %}
-    {% set ogtitle = theme.sitename %}
+
     {% set ogimage = theme.link ~ '/assets/facebook.jpg' %}
 
-    {# {% if record.contenttype.slug == 'projects' %}
-      {% set ogdesc = record.body %}
-      {% set ogtitle = record.title %}
-      {% set ogimage = '/' ~ record.image %}
-    {% endif %} #}
-
     <!-- facebook -->
-    <meta property="og:site_name" content="{{ theme.sitename }}" />
-    <meta property="og:title" content="{{ ogtitle }}" />
+    <meta property="og:site_name" content="{{ site.name }}" />
+    <meta property="og:title" content="{{ site.title }}" />
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content="{{ theme.siteurl ~ ogimage }}" />
-    <meta property="og:url" content="{{ theme.canonicalurl }}" />
-    <meta property="og:description" content="{{ ogdesc }}">
+    <meta property="og:image" content="{{ theme.link ~ '/assets/facebook.jpg' }}" />
+    <meta property="og:url" content="{{ site.url }}" />
+    <meta property="og:description" content="{{ site.description }}">
     <meta property="fb:admins" content="666015894">
 
     <link rel="stylesheet" href="{{ theme.link }}/dist/main.css">
@@ -56,6 +49,8 @@
       //   google: { families: [ 'Source+Sans+Pro:700,500,400,300:latin' ] }
       // };
     </script>
+
+    {{ wp_head }}
   </head>
 
   <body class="{% block body_class %}{{ body_classes|join(' ') }}{% endblock %}">
@@ -121,5 +116,7 @@
     <!--[if lt IE 9]>
       <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
     <![endif]-->
+
+    {{ wp_footer }}
   </body>
 </html>

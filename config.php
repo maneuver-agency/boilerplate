@@ -2,31 +2,36 @@
 
 /*** CONFIG ****/
 
-$config = array(
+$config = [
 
   'root' => '/',
   'debug' => TRUE,
 
   // Set environments.
-  'environments' => array(
+  'environments' => [
     'local'       => 'local.mnvr.be',
     'staging'     => 'mnvr.be',
-    'production'  => 'prototype.be',
-  ),
+    'production'  => 'boilerplate.be',
+  ],
 
-  'languages' => array('en', 'nl'),
-  'default_language' => 'en',
+  'languages' => ['nl'],
+  'default_language' => 'nl',
 
-  // Set theme variables.
-  'theme' => (object) array(
-    'sitename' => 'prototype',
-    'siteurl' => 'http://' . $_SERVER['HTTP_HOST'],
+  'site' => (object)[
+    'charset' => 'UTF-8',
     'description' => '',
-    'canonicalurl' => 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
-    'link' => ':root/',
-    'images' => ':root/assets/img/',
-  ),
+    'name' => 'Boilerplate',
+    'url' => $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+  ],
 
-);
+  'theme' => (object)[
+    'link' => '',
+    'path' => __DIR__,
+  ],
+
+  'wp_head' => '',
+  'wp_footer' => '',
+
+];
 
 /**************/
