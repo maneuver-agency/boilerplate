@@ -32,7 +32,7 @@ define([], function(){
   /**
    * Animate jump links.
    **/
-  on('click', 'a[href^=#]', function(e){
+  on('click', 'a[href^="#"]', function(e){
     var id = $(this).attr('href');
     window.animateTo(id);
     e.preventDefault();
@@ -170,4 +170,3 @@ define([], function(){
       return this.charAt(0).toUpperCase() + this.slice(1);
   };
 });
-

@@ -1,18 +1,18 @@
-var gulp = require('gulp'),
-    // less = require('gulp-less'),
-    sass = require('gulp-sass'),
-    minifycss = require('gulp-minify-css'),
-    uglify = require('gulp-uglify'),
-    notify = require('gulp-notify'),
-    rename = require('gulp-rename'),
-    concat = require('gulp-concat'),
-    plumber = require('gulp-plumber'),
-    imagemin = require('gulp-imagemin'),
-    svg2png = require('gulp-svg2png'),
-    browserSync = require('browser-sync'),
-    postcss = require('gulp-postcss'),
-    autoprefixer = require('autoprefixer-core'),
-    bower = require('bower');
+var gulp = require('gulp')
+    ,sass = require('gulp-sass')
+    ,minifycss = require('gulp-minify-css')
+    ,uglify = require('gulp-uglify')
+    ,notify = require('gulp-notify')
+    ,rename = require('gulp-rename')
+    ,concat = require('gulp-concat')
+    ,plumber = require('gulp-plumber')
+    ,imagemin = require('gulp-imagemin')
+    ,svg2png = require('gulp-svg2png')
+    ,browserSync = require('browser-sync')
+    ,sourcemaps = require('gulp-sourcemaps')
+    ,autoprefixer = require('gulp-autoprefixer')
+    // ,bower = require('bower')
+    ;
 
 /* WATCH */
 // Watch regularly updated files.
@@ -54,40 +54,19 @@ function onError(err) {
 }
 
 /* STYLES */
-// gulp.task('styles', function(){
-//   return gulp.src([
-//       'styles/main.less'
-//     ])
-//     .pipe(plumber({errorHandler: notify.onError("Styles Error: <%= error.message %>")}))
-//     .pipe(less({
-//       paths: ['styles'],
-//       compress: true,
-//     }))
-//     .on('error', onError)
-//     .pipe(postcss([autoprefixer({
-//       browsers: ['last 3 versions']
-//     })]))
-//     .pipe(minifycss())
-//     .pipe(rename('main.css'))
-//     .pipe(gulp.dest('dist'))
-//     .pipe(notify({
-//       onLast: true,
-//       message: 'Styles task completed'
-//     }))
-//     .pipe(browserSync.reload({stream:true}));
-// });
-
 gulp.task('styles', function(){
   gulp.src([
     'styles/main.scss'
   ])
   .pipe(plumber({errorHandler: notify.onError("Sass Error: <%= error.message %>")}))
+  .pipe(sourcemaps.init())
   .pipe(sass({outputStyle: 'compressed'}))
   .on('error', onError)
-  .pipe(postcss([autoprefixer({
+  .pipe(autoprefixer({
     browsers: ['last 3 versions']
-  })]))
+  }))
   .pipe(minifycss())
+  .pipe(sourcemaps.write())
   .pipe(rename('main.css'))
   .pipe(gulp.dest('dist'))
   .pipe(notify({
