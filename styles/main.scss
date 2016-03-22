@@ -1,15 +1,15 @@
+
+// setup
 @import 'variables';
 @import 'mixins';
-@import 'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
-@import 'globals';
 @import 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser';
-// @import 'fonts';
-
 
 // partials
-@import 'partials/page-sections';
+@import 'partials/bootstrap';
+@import 'partials/fonts';
+@import 'partials/utils';
+@import 'partials/layout';
 
-.bodytext {
-  font-size: 1.5rem;
-  line-height: 2;
-}
+// components
+@import 'components/page-sections';
+@import 'components/bodytext';

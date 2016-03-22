@@ -1,0 +1,21 @@
+.site-wrap { height:100%; min-height:100%; height:auto; margin-bottom: -$footerheight - $footermargin;
+  @media (max-width: $screen-phone) { & { margin-bottom: 0; } }
+}
+.site-header { }
+.site-push { height: $footerheight + $footermargin; position: relative; z-index: 1;
+  @media (max-width: $screen-phone) { & { display: none; } }
+}
+.site-footer { height: $footerheight; margin-top:$footermargin; position: relative; z-index: 2; background-color: $clr-dark;
+  > .container-fluid { height:100%; padding-top:20px;  }
+  @media (max-width: $screen-phone) {
+    & { height:auto;
+      & > .container-fluid { height:auto; padding-bottom: 20px; }
+    }
+  }
+}
+
+#mnvr { position:absolute; bottom:0; right:0;
+  .inner { display:block; width:13px; height:6px; margin:auto; background:url('#{$imgpath}mnvr-dark.png') no-repeat 0 0;  opacity:.3; transition:all 250ms ease-in-out;
+    &:hover { width:63px; opacity:.3; }
+  }
+}
