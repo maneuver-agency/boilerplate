@@ -1,17 +1,11 @@
 ## Instructions
 
-1. Make sure node, npm, composer and bower are installed on your system.
-2. Run the following commands:
+1. Make sure node, npm, composer and bower are installed globally on your system.
+2. Run the following command:
     ```
-    npm install
+    npm start
     ```
-    ```
-    composer install
-    ```
-    ```
-    bower install
-    ```
-3. If gulp is not yet installed globally run 'sudo npm install -g gulp'.
+3. Make sure gulp is installed globally.
 4. Kickstart the project with the command:
     ```
     gulp
@@ -28,22 +22,25 @@
     ```
     gulp components modules
     ```
-7. Change some variables in config.php if needed.
-8. Happy coding!
+7. Happy coding!
 
 
 ## Styles
 
-  * bootstrap.less
+  * partials/bootstrap.scss
     Imports bootstrap files. Excluding the ones we don't need.
-  * fonts.less
+  * partials/layout.scss
+    Main page structure. Almost always the same for every project.
+  * partials/fonts.scss
     All fonts related styles.
-  * main.less
+  * partials/utils.scss
+    Random utility classes.
+  * main.scss
     Main stylesheet.
-  * mixins.less
-    Handy mixins and classes.
-  * vars.less
-    All used variables.
+  * mixins.scss
+    Handy mixins.
+  * variables.scss
+    All used variables. Any new vars? Put them here.
 
 ## Scripts
 
@@ -55,6 +52,8 @@
     What's in a name?
   * utils.js
     Some handy dandy stuff. Set and forget.
+  * modules/*
+    Seperate scripts to load when required.
 
 
 ## Folder Structure
@@ -62,17 +61,11 @@
 /assets
 Images, fonts and other assets.
 
-/bower_components
-All bower components. Automatically created by bower when running 'bower install'.
-
 /cache
 Used by Twig if configured.
 
 /dist
 Contains all files needed to be delivered to the browser. Automatically created by gulp.
-
-/node_modules
-All node mobules. Automatically created by npm when running 'npm install'.
 
 /scripts
 Uncompressed javascript files. Gulp will create an uglified version into the /dist folder. (see gulpfile.js)
@@ -82,6 +75,3 @@ LESS files. Gulp will process these into compressed CSS files into the /dist fol
 
 /templates
 Contains all content pages as html (twig) files.
-
-/vendor
-Containes composer packages. Automatically created when running 'composer install'.
