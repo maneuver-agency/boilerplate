@@ -6,7 +6,7 @@
     npm start
     ```
 3. Make sure gulp is installed globally.
-4. Kickstart the project with the command:
+4. Kickstart all automation with the command:
     ```
     gulp
     ```
