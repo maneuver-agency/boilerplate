@@ -1,28 +1,33 @@
 {
-    "name": "boilerplate",
-    "version": "0.0.1",
-    "description": "Tiny opiniated framework for quickly prototyping a website",
-    "main": "index.php",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "composer install && npm install && bower install"
-    },
-    "repository": "",
-    "author": "David De Coninck",
-    "license": "BSD",
-    "devDependencies": {
-        "browser-sync": "^2.11.1",
-        "gulp": "^3.9.1",
-        "gulp-autoprefixer": "^3.1.0",
-        "gulp-concat": "^2.5.2",
-        "gulp-imagemin": "^2.2.1",
-        "gulp-less": "^3.0.2",
-        "gulp-minify-css": "^1.2.4",
-        "gulp-plumber": "^1.1.0",
-        "gulp-rename": "^1.2.2",
-        "gulp-sass": "^2.2.0",
-        "gulp-sourcemaps": "^1.6.0",
-        "gulp-svg2png": "^1.0.0",
-        "gulp-uglify": "^1.5.3"
-    }
+  "name": "boilerplate",
+  "version": "0.0.1",
+  "description": "Tiny opiniated framework for quickly prototyping a website",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "composer install && npm install && bower install",
+    "watch": "watchify scripts/main.js -o dist/bundle.js -v",
+    "build": "browserify scripts/main.js -o dist/bundle.js"
+  },
+  "repository": "",
+  "author": "David De Coninck",
+  "license": "BSD",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "debowerify": "^1.4.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-less": "^3.0.2",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-svg2png": "^1.0.0",
+    "gulp-uglify": "^1.5.3",
+    "jquery": "^2.2.3",
+    "outdated-browser-rework": "^1.0.0"
+  }
 }

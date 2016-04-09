@@ -59,30 +59,24 @@ function onError(err) {
 /* STYLES */
 gulp.task('styles', function() {
     gulp.src([
-            'styles/main.scss'
-        ])
-        .pipe(plumber({
-            errorHandler: notify.onError("Sass Error: <%= error.message %>")
-        }))
-        .pipe(sourcemaps.init())
-        .pipe(sass({
-            outputStyle: 'compressed'
-        }))
-        .on('error', onError)
-        .pipe(autoprefixer({
-            browsers: ['last 3 versions']
-        }))
-        .pipe(minifycss())
-        .pipe(sourcemaps.write())
-        .pipe(rename('main.css'))
-        .pipe(gulp.dest('dist'))
-        .pipe(notify({
-            onLast: true,
-            message: 'Styles task completed'
-        }))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+        'styles/main.scss'
+    ])
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+        outputStyle: 'compressed'
+    }))
+    .on('error', onError)
+    .pipe(autoprefixer({
+        browsers: ['last 3 versions']
+    }))
+    .pipe(minifycss())
+    .pipe(sourcemaps.write())
+    .pipe(rename('main.css'))
+    .pipe(gulp.dest('dist'))
+    .pipe(browserSync.reload({
+        stream: true
+    }));
 });
 
 /* SCRIPTS */

@@ -2,7 +2,7 @@
 // setup
 @import 'variables';
 @import 'mixins';
-@import 'bower_components/outdated-browser/outdatedbrowser/outdatedbrowser';
+@import 'node_modules/outdated-browser-rework/outdated-browser-rework.scss';
 
 // partials
 @import 'partials/bootstrap';
