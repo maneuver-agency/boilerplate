@@ -1,1 +1,0 @@
-require.config({paths:{googlemaps:"modules/googlemaps",async:"modules/async",webfont:"http://ajax.googleapis.com/ajax/libs/webfont/1/webfont"}}),require(["polyfills","jquery","webfont"],function(o,e){require(["components"],function(o,e){require(["utils","application"],function(o,e){e.init()})})});
