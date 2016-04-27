@@ -1,10 +1,18 @@
 var $ = require('jquery');
 require('./polyfills.js');
 require('./utils.js');
-// require('./application.js');
 
-var handlers;
-bindEvents();
+if (!window.jQuery) window.jQuery = window.$ = $;
+require('../bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js');
+require('../bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
+
+var ticking, handlers;
+
+function initialize(){
+  ticking = false;
+
+  bindEvents();
+}
 
 /*
  * Main method for binding some events to the document or window.
@@ -63,18 +71,5 @@ outdatedBrowserRework({
 	}
 });
 
-/*require.config({
-  paths: {
-    "googlemaps": "modules/googlemaps",
-    "async": "modules/async",
-    "webfont": "http://ajax.googleapis.com/ajax/libs/webfont/1/webfont"
-  },
-});
-
-require(['polyfills', 'jquery', 'webfont'], function(pol, $){
-  require(['components'], function(pol, com){
-    require(['utils', 'application'], function(util, app){
-      app.init();
-    });
-  });
-});*/
+/* KICKSTART */
+initialize();
