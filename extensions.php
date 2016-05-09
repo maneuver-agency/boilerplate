@@ -1,18 +1,18 @@
 <?php
 
 // Create custom escaper.
-function clean($env, $string, $charset){
+function mnvr_clean($env, $string, $charset){
   $string = strtolower(str_replace(' ', '-', $string));
   return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
 };
-function phone($env, $string, $charset){
+function mnvr_phone($env, $string, $charset){
   $string = str_replace('(0)', '', $string);
   $string = str_replace(' ', '', $string);
   $string = preg_replace('/[^0-9\-]/', '', $string);
   return $string;
 };
-$twig->getExtension('core')->setEscaper('clean', 'clean');
-$twig->getExtension('core')->setEscaper('phone', 'phone');
+$twig->getExtension('core')->setEscaper('clean', 'mnvr_clean');
+$twig->getExtension('core')->setEscaper('phone', 'mnvr_phone');
 
 // Create dump function.
 $twig->addFunction(new Twig_SimpleFunction('dump', function($var){
