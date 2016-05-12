@@ -33,10 +33,11 @@ svg, img[src$=".svg"] { max-width: 100%; }
 
 .vertical-spacer        { height:60px; }
 
-.flexrow                { @include flexbox-horizontal; flex-wrap:wrap; }
-.valign                 { @include flexbox-horizontal; align-items: center; }
+.flexrow                { @include flexbox-horizontal; flex-wrap: wrap; }
+.valign                 { @include flexbox-vertical; justify-content: center; }
 .halign                 { @include flexbox-horizontal; justify-content: center; }
-.calign                 { @extend .valign; @extend .halign; }
+.cvalign                { @extend .valign; align-items: center; }
+.chalign                { @extend .halign; align-items: center; }
 
 .sticky {
   @media (min-width: 767px) { & {

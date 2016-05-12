@@ -18,8 +18,9 @@
 }
 
 /* flexbox shortcuts */
-@mixin flexbox-vertical     { display:flex; flex-direction:column; }
-@mixin flexbox-horizontal   { display:flex; flex-direction:row; }
+@mixin flexbox              { display: flex; }
+@mixin flexbox-vertical     { @include flexbox; flex-direction:column; }
+@mixin flexbox-horizontal   { @include flexbox; flex-direction:row; }
 
 
 /* spacer classes */
