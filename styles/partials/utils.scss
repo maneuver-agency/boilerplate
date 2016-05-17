@@ -17,6 +17,7 @@ p:first-child { margin-top:0; }
 textarea { resize:none; }
 svg, img[src$=".svg"] { max-width: 100%; }
 [data-sr] { visibility: hidden; }
+*:active, *:focus { outline:none; box-shadow: none; }
 
 
 /***********/
@@ -33,6 +34,8 @@ svg, img[src$=".svg"] { max-width: 100%; }
 
 .vertical-spacer        { height:60px; }
 
+:not(html).flexbox      { @include flexbox-horizontal; }
+.flexwrap               { flex-wrap: wrap; }
 .flexrow                { @include flexbox-horizontal; flex-wrap: wrap; }
 .valign                 { @include flexbox-vertical; justify-content: center; }
 .halign                 { @include flexbox-horizontal; justify-content: center; }

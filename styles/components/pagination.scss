@@ -1,0 +1,16 @@
+// Main styling comes from bootstrap.
+
+.pagination-wrap {
+  @include flexbox-horizontal;
+  justify-content: center;
+}
+.pagination {
+  > li {
+    > a, > span {
+      font-size: .8rem;
+      border-radius: 0 !important;
+      border-top: 0;
+      border-bottom: 0;
+    }
+  }
+}

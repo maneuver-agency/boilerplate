@@ -62,6 +62,10 @@ function onError(err) {
 
 /* STYLES */
 gulp.task('styles', function(){
+  gulp.src('styles/editor.scss')
+    .pipe(sass({outputStyle: 'compressed'}))
+    .pipe(gulp.dest('dist'));
+
   gulp.src([
     'styles/main.scss'
   ])

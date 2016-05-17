@@ -48,6 +48,11 @@ $twig->addFunction(new Twig_SimpleFunction('active', function($template, $echo =
 
 // Create share link.
 $twig->addFilter(new Twig_SimpleFilter('share', function($url, $type, $title = ''){
+  if (!is_string($url) && isset($url->ID)) {
+    $post = $url;
+    $url = $post->link;
+    $title = $title ?: $post->title;
+  }
   switch($type) {
     case 'facebook':
       $link = 'https://www.facebook.com/sharer/sharer.php?u=%1$s';
