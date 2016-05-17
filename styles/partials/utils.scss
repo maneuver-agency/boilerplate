@@ -64,7 +64,7 @@ svg, img[src$=".svg"] { max-width: 100%; }
 /***********************/
 
 .jumbotron, .navbar { margin-bottom: 0; }
-.navbar-toggle { border-color:$clr-iron;
+.navbar-toggle { border: none;
   .icon-bar { background-color: $clr-iron; }
 }
 
@@ -74,12 +74,16 @@ svg, img[src$=".svg"] { max-width: 100%; }
 /*****************/
 
 .clr-white      { color:#fff; }
-.clr-primary    { color:$clr-primary; }
-.clr-secondary  { color:$clr-secondary; }
+.clr-primary    { color:$brand-primary; }
+.clr-secondary  { color:$brand-secondary; }
+.clr-dark       { color:$clr-dark; }
+.clr-iron       { color:$clr-iron; }
 
-.bg-primary     { background-color:$clr-primary; }
-.bg-secondary   { background-color:$clr-secondary; }
+.bg-primary     { background-color:$brand-primary; }
+.bg-secondary   { background-color:$brand-secondary; }
 .bg-silver      { background-color:$clr-silver; }
+.bg-dark        { background-color:$clr-dark; }
+.bg-iron        { background-color:$clr-iron; }
 
 /*********************/
 /* BUTTONS OVERRIDES */
