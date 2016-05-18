@@ -70,6 +70,18 @@ $twig->addFilter(new Twig_SimpleFilter('share', function($url, $type, $title = '
   return sprintf($link, urlencode($url), urlencode($title));
 }));
 
+$twig->addFunction(new Twig_SimpleFunction('lipsum', function($wordcount = 15){
+  $content = file_get_contents('http://loripsum.net/api');
+  $content = strip_tags($content);
+  $words = str_word_count($content, 1);
+  $output = [];
+  do {
+    $output = array_merge($output, array_slice($words, 0, $wordcount));
+  } while (count($output) < $wordcount);
+
+  echo implode(" ", $output);
+}));
+
 
 // Create parseVimeo function.
 // $twig->addFunction(new Twig_SimpleFunction('embedVimeo', function($url){
