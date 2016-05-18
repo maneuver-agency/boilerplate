@@ -84,19 +84,3 @@ svg, img[src$=".svg"] { max-width: 100%; }
 .bg-silver      { background-color:$clr-silver; }
 .bg-dark        { background-color:$clr-dark; }
 .bg-iron        { background-color:$clr-iron; }
-
-/*********************/
-/* BUTTONS OVERRIDES */
-/*********************/
-
-// .btn { padding-left:40px; padding-right:40px; border-width: 2px; .font-franklin-medium();
-//   transition:background-color 150ms @easeOutCubic, color 150ms @easeOutCubic, border-color 150ms @easeOutCubic;
-// }
-// .btn-primary {
-//   .button-variant(@clr-primary, transparent, @clr-primary);
-//   &:hover, &:active, &:focus { background-color:@clr-primary; color:#fff; border-color:@clr-primary; }
-// }
-// .btn-white {
-//   .button-variant(#fff; transparent; #fff);
-//   &:hover, &:active, &:focus { background-color:@clr-secondary; border-color:@clr-secondary; }
-// }

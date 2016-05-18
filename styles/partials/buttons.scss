@@ -1,0 +1,27 @@
+
+.btn-secondary {
+  @include button-variant(#fff, $brand-secondary, darken($brand-secondary, 4%));
+}
+
+.btn-ghost {
+  &.btn-default {
+    @include button-variant($btn-default-color, transparent, $btn-default-border);
+    &:hover {
+      @include button-variant($btn-default-color, #eee, $btn-default-border);
+    }
+  }
+  &.btn-primary {
+    @include button-variant($brand-primary, transparent, $brand-primary);
+    &:hover {
+      color: #fff;
+      background-color: $brand-primary;
+    }
+  }
+  &.btn-secondary {
+    @include button-variant($brand-secondary, transparent, $brand-secondary);
+    &:hover {
+      color: #fff;
+      background-color: $brand-secondary;
+    }
+  }
+}
