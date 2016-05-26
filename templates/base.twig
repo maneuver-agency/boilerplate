@@ -12,10 +12,21 @@
     <link rel="alternate" href="{{ site.url }}" hreflang="{{ lang }}" />
     <link rel="shortcut icon" href="{{ theme.link }}/assets/favicon.ico">
 
-    <!-- ios -->
+    {# iOS #}
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
+
+    {# OpenGraph #}
+    <meta name="og:site"          content="{{ site.name }}">
+    <meta name="og:url"           content="">
+    <meta name="og:image"         content="">
+    <meta name="og:description"   content="">
+    <meta name="og:type"          content="website">
+
+    {# Twitter #}
+    <meta name="twitter:card"     content="summary_large_image">
+    <meta name="twitter:site"     content="{# @handle #}">
 
     <link rel="stylesheet" href="{{ theme.link }}/dist/main.css">
     <script src="{{ theme.link }}/dist/modernizr.js"></script>
