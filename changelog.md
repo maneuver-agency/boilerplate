@@ -13,6 +13,7 @@
 - Add xxs grid classes.
 - Introduce navbar-links to get rid of paddings on links.
 - Add basic site-header styling.
+- Add default mobile nav styling.
 
 **JS**
 - Remove static Modernizr file and make use of npm browsernizr.
