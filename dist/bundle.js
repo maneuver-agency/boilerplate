@@ -13814,7 +13814,7 @@ module.exports={
     module.exports = UAParser;
 })(this);
 
-},{}],"/Users/David/Copy/Projects/Genetic/Boilerplate/scripts/main.js":[function(require,module,exports){
+},{}],"/Users/David/Copy/Projects/Genetic/Boilerplate/src/scripts/main.js":[function(require,module,exports){
 var $ = require('jquery');
 
 // Modernizr tests.
@@ -13826,7 +13826,7 @@ require('./polyfills.js');
 require('./utils.js');
 
 if (!window.jQuery) window.jQuery = window.$ = $;
-require('../bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js');
+require('../../bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js');
 // require('../bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
 
 var ticking, handlers;
@@ -13910,8 +13910,8 @@ outdatedBrowserRework({
 /* KICKSTART */
 initialize();
 
-},{"../bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js":"/Users/David/Copy/Projects/Genetic/Boilerplate/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js","./modules/gmap.js":"/Users/David/Copy/Projects/Genetic/Boilerplate/scripts/modules/gmap.js","./polyfills.js":"/Users/David/Copy/Projects/Genetic/Boilerplate/scripts/polyfills.js","./utils.js":"/Users/David/Copy/Projects/Genetic/Boilerplate/scripts/utils.js","browsernizr":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/browsernizr/index.js","browsernizr/test/touchevents":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/browsernizr/test/touchevents.js","jquery":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/jquery/dist/jquery.js","outdated-browser-rework":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/outdated-browser-rework/index.js"}],"/Users/David/Copy/Projects/Genetic/Boilerplate/scripts/modules/gmap.js":[function(require,module,exports){
-var GMaps = require('../../bower_components/gmaps/gmaps.js');
+},{"../../bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js":"/Users/David/Copy/Projects/Genetic/Boilerplate/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js","./modules/gmap.js":"/Users/David/Copy/Projects/Genetic/Boilerplate/src/scripts/modules/gmap.js","./polyfills.js":"/Users/David/Copy/Projects/Genetic/Boilerplate/src/scripts/polyfills.js","./utils.js":"/Users/David/Copy/Projects/Genetic/Boilerplate/src/scripts/utils.js","browsernizr":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/browsernizr/index.js","browsernizr/test/touchevents":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/browsernizr/test/touchevents.js","jquery":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/jquery/dist/jquery.js","outdated-browser-rework":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/outdated-browser-rework/index.js"}],"/Users/David/Copy/Projects/Genetic/Boilerplate/src/scripts/modules/gmap.js":[function(require,module,exports){
+var GMaps = require('../../../bower_components/gmaps/gmaps.js');
 var $ = require('jquery');
 
 var gmap, markers = [];
@@ -14066,7 +14066,7 @@ module.exports = {
   getAllMarkers: getAllMarkers
 };
 
-},{"../../bower_components/gmaps/gmaps.js":"/Users/David/Copy/Projects/Genetic/Boilerplate/bower_components/gmaps/gmaps.js","jquery":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/jquery/dist/jquery.js"}],"/Users/David/Copy/Projects/Genetic/Boilerplate/scripts/polyfills.js":[function(require,module,exports){
+},{"../../../bower_components/gmaps/gmaps.js":"/Users/David/Copy/Projects/Genetic/Boilerplate/bower_components/gmaps/gmaps.js","jquery":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/jquery/dist/jquery.js"}],"/Users/David/Copy/Projects/Genetic/Boilerplate/src/scripts/polyfills.js":[function(require,module,exports){
 
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
@@ -14180,7 +14180,7 @@ window.matchMedia = window.matchMedia || (function( doc, undefined ) {
     }
 }());
 
-},{}],"/Users/David/Copy/Projects/Genetic/Boilerplate/scripts/utils.js":[function(require,module,exports){
+},{}],"/Users/David/Copy/Projects/Genetic/Boilerplate/src/scripts/utils.js":[function(require,module,exports){
 var $ = require('jquery');
 
 /**
@@ -14349,7 +14349,7 @@ $('a[data-mailto]').each(function(){
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-},{"jquery":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/jquery/dist/jquery.js"}]},{},["/Users/David/Copy/Projects/Genetic/Boilerplate/scripts/main.js"])
+},{"jquery":"/Users/David/Copy/Projects/Genetic/Boilerplate/node_modules/jquery/dist/jquery.js"}]},{},["/Users/David/Copy/Projects/Genetic/Boilerplate/src/scripts/main.js"])
 
 
 //# sourceMappingURL=bundle.js.map

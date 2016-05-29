@@ -50,7 +50,7 @@ gulp.task('bs-watch', ['watchify'], function(){
 
 /* DEFAULT */
 // The whole shabang.
-gulp.task('default', ['styles', 'scripts', 'build', 'svg', 'imagemin'], function(){
+gulp.task('default', ['styles', 'scripts', 'imagemin'], function(){
 
 });
 
@@ -62,12 +62,12 @@ function onError(err) {
 
 /* STYLES */
 gulp.task('styles', function(){
-  gulp.src('styles/editor.scss')
+  gulp.src('src/styles/editor.scss')
     .pipe(sass({outputStyle: 'compressed'}))
     .pipe(gulp.dest('dist'));
 
   gulp.src([
-    'styles/main.scss'
+    'src/styles/main.scss'
   ])
   .pipe(plumber({errorHandler: gutil.log.bind(gutil, 'Sass Error')}))
   .pipe(sourcemaps.init())
@@ -94,7 +94,7 @@ gulp.task('scripts', ['build'], function(){
 
 /* BROWSERIFY */
 var bundler = browserify({
-  entries: ['scripts/main.js'],
+  entries: ['src/scripts/main.js'],
   // transform: [reactify],
   // extensions: ['.jsx'],
   debug: !argv.production,

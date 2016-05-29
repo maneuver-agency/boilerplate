@@ -12,6 +12,7 @@
 - Remove layout.scss and reorganize its contents in other files.
 - Introduce macros.
 - New improved version of modules/filter.js.
+- Create /src folder for, well, the source files... Duh.
 - Add changelog!
 
 ---

@@ -1,4 +1,4 @@
-var GMaps = require('../../bower_components/gmaps/gmaps.js');
+var GMaps = require('../../../bower_components/gmaps/gmaps.js');
 var $ = require('jquery');
 
 var gmap, markers = [];
