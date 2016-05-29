@@ -31,14 +31,3 @@
 // }
 // .spacer(10, top);
 // .spacer(10, bottom);
-
-
-/* svg background fallback */
-/* TODO: convert LESS to SASS */
-// .svgbg(@src, @w, @h, @fallback: '') { background:url(@src) no-repeat 0 0; width:@w; height:@h; display: inline-block; background-size:@w @h;
-//   .no-svg & { background:url(@fallback); }
-// }
-// .svgbg(@src, @w, @h, @fallback: '') when(@fallback = '') {
-//   @fallback: ~`"@{src}".replace('.svg', '.png')`;
-//   .no-svg & { background:url(@fallback); }
-// }

@@ -53,17 +53,6 @@ svg, img[src$=".svg"], iframe, object, video { max-width: 100%; }
   }
 }
 
-
-/***********************/
-/* BOOTSTRAP OVERRIDES */
-/***********************/
-
-.jumbotron, .navbar { margin-bottom: 0; }
-.navbar-toggle { border: none;
-  .icon-bar { background-color: $clr-iron; }
-}
-
-
 /*****************/
 /* STYLE CLASSES */
 /*****************/
@@ -79,3 +68,27 @@ svg, img[src$=".svg"], iframe, object, video { max-width: 100%; }
 .bg-silver      { background-color:$clr-silver; }
 .bg-dark        { background-color:$clr-dark; }
 .bg-iron        { background-color:$clr-iron; }
+
+
+/*****************/
+/* STICKY FOOTER */
+/*****************/
+
+#site-wrap {
+  min-height: 100%;
+  @include flexbox-vertical;
+}
+#site-content {
+  flex-grow: 1;
+}
+
+
+/******************/
+/* MANEUVER BADGE */
+/******************/
+
+#mnvr { position:absolute; bottom:12px; right:12px;
+  .inner { display:block; width:13px; height:6px; margin:auto; background:url('#{$imgpath}mnvr-dark.png') no-repeat 0 0;  opacity:.3; transition:all 250ms ease-in-out;
+    &:hover { width:63px; opacity:.3; }
+  }
+}

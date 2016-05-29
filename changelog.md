@@ -4,10 +4,12 @@
 
 ## 1.0.0 - 29/05/2016
 
-- Remove png fallbacks for svg.
+- New sticky footer using flexbox.
+- Remove png fallbacks for svg. It was only just for the likes of IE8.
 - Remove static Modernizr file and make use of npm browsernizr.
 - Remove font icons and use svg sprites.
 - Do not rely on Modernizr to check for sticky support. Always use javascript.
+- Remove layout.scss and reorganize its contents in other files.
 - Introduce macros.
 - Add changelog!
 

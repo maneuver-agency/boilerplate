@@ -48,3 +48,13 @@
 // Utility classes
 @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/utilities";
 @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+
+
+/***********************/
+/* BOOTSTRAP OVERRIDES */
+/***********************/
+
+.jumbotron, .navbar { margin-bottom: 0; }
+.navbar-toggle { border: none;
+  .icon-bar { background-color: $clr-iron; }
+}

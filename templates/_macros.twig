@@ -2,7 +2,7 @@
  # SVG SOCIAL-ICON
  #}
 {% macro socialicon(ctx, name) %}
-  <svg class="social-icon-{{ name }} svg-iconnpm "><use xlink:href="{{ ctx.theme.link }}/assets/social-icons.svg#icon-{{ name }}"></use></svg>
+  <svg class="social-icon-{{ name }} svg-icon"><use xlink:href="{{ ctx.theme.link }}/assets/social-icons.svg#icon-{{ name }}"></use></svg>
 {% endmacro %}
 
 {% macro socials(ctx) %}

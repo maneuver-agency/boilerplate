@@ -72,30 +72,29 @@
         </div>
       </header>
 
-      <div class="site-content">
+      <div id="site-content" class="site-content">
 
         {% block content %}
 
         {% endblock %}
 
       </div>
-      <div class="site-push"></div>
-    </main>
 
-    <footer id="site-footer" class="site-footer" role="contentinfo">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-4 col-sm-offset-8">
-            <div class="pull-right">
-              {{ macros.socials(_context) }}
+      <footer id="site-footer" class="site-footer" role="contentinfo">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4 col-sm-offset-8">
+              <div class="pull-right">
+                {{ macros.socials(_context) }}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div id="mnvr">
-        <a class="inner" href="http://www.maneuver.be" target="_blank" title="site by maneuver"></a>
-      </div>
-    </footer>
+        <div id="mnvr">
+          <a class="inner" href="http://www.maneuver.be" target="_blank" title="site by maneuver"></a>
+        </div>
+      </footer>
+    </main>
 
     <div id="outdated">
       <h6>Your browser is out-of-date!</h6>

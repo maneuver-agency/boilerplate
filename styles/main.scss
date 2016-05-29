@@ -2,17 +2,17 @@
 // setup
 @import 'variables';
 @import 'mixins';
+@import 'bootstrap';
 @import 'node_modules/outdated-browser-rework/outdated-browser-rework.scss';
 
 // partials
-@import 'partials/bootstrap';
 @import 'partials/fonts';
 @import 'partials/utils';
-@import 'partials/layout';
 @import 'partials/buttons';
 @import 'partials/titles';
 
 // components
+@import 'components/site-footer';
 @import 'components/page-section';
 @import 'components/bodytext';
 @import 'components/site-socials';
