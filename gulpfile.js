@@ -24,7 +24,7 @@ var outputDir = 'dist';
 /* WATCH */
 // Watch regularly updated files.
 gulp.task('watch', ['watchify'], function(){
-  gulp.watch('styles/**/*.scss', ['styles']);
+  gulp.watch('src/styles/**/*.scss', ['styles']);
   // gulp.watch('scripts/**/*.js', ['scripts']);
   gulp.watch('assets/img/*.svg', ['svg']);
 });
@@ -35,7 +35,7 @@ gulp.task('bs-watch', ['watchify'], function(){
     proxy: "boilerplate.local.mnvr.be"
   });
 
-  gulp.watch('styles/**/*.scss', ['styles'])/*.on('change', function(){
+  gulp.watch('src/styles/**/*.scss', ['styles'])/*.on('change', function(){
     browserSync.reload({stream: true});
   })*/;
   // gulp.watch('scripts/**/*.js', ['watchify']).on('change', function(){

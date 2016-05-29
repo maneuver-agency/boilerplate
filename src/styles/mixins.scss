@@ -22,12 +22,45 @@
 @mixin flexbox-vertical     { @include flexbox; flex-direction:column; }
 @mixin flexbox-horizontal   { @include flexbox; flex-direction:row; }
 
+/***********/
+/* SPACERS */
+/***********/
+/*
+ * Use:
+ * .spacer-sm-40   => 40px spacing on small screens.
+ * .spacer-md-3vh  => 3vh spacing on medium screens.
+ */
 
-/* spacer classes */
-/* TODO: convert LESS to SASS */
-// .spacer(@m, @dir) when (@m <= 200) {
-//   .spacer--@{dir}@{m} { margin-@{dir}:~"@{m}px"; }
-//   .spacer(@m+10, @dir);
-// }
-// .spacer(10, top);
-// .spacer(10, bottom);
+@mixin spacer($h, $bp, $unit:'px') {
+  $suffix: $h;
+  @if $unit != 'px' {
+    $suffix: #{$h}#{$unit};
+  }
+  .spacer-#{$bp}-#{$suffix} { height: #{$h}#{$unit}; }
+}
+
+@mixin make-spacers($step:20, $max:200, $bp:'xs', $unit:'px') {
+  $i: 0;
+  @while $i <= $max {
+    @include spacer($i, $bp, $unit);
+    $i: $i + $step;
+  }
+}
+
+@include make-spacers(20, 200, 'xs');
+@include make-spacers(1, 20, 'xs', 'vh');
+
+@media (min-width: $screen-sm-min) {
+  @include make-spacers(20, 200, 'sm');
+  @include make-spacers(1, 20, 'sm', 'vh');
+}
+
+@media (min-width: $screen-md-min) {
+  @include make-spacers(20, 200, 'md');
+  @include make-spacers(1, 20, 'md', 'vh');
+}
+
+@media (min-width: $screen-lg-min) {
+  @include make-spacers(20, 200, 'lg');
+  @include make-spacers(1, 20, 'lg', 'vh');
+}
