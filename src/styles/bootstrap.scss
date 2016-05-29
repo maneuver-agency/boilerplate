@@ -17,7 +17,7 @@
 @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
 
 // Components
-// @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
 // @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
 // @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
 // @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
@@ -61,4 +61,21 @@
 .jumbotron, .navbar { margin-bottom: 0; }
 .navbar-toggle { border: none;
   .icon-bar { background-color: $clr-iron; }
+}
+.navbar-nav {
+  &.navbar-links {
+    padding: 10px 0;
+    @media (min-width: $screen-sm-min) {
+      padding:15px 0;
+    }
+
+    >li {
+      margin-left: 15px;
+      margin-right: 15px;
+
+      >a {
+        padding:0;
+      }
+    }
+  }
 }

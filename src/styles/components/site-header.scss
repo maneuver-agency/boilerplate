@@ -1,0 +1,7 @@
+.site-header {
+  background-color: #fff;
+}
+
+.site-header.navbar-fixed-top + .site-content {
+  margin-top: $headerheight;
+}

@@ -10,9 +10,10 @@ require('./utils.js');
 
 if (!window.jQuery) window.jQuery = window.$ = $;
 require('../../bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js');
-// require('../bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
+require('../../bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
 
-var ticking, handlers;
+var ticking, handlers,
+    $siteheader = $('#site-header');
 
 function initialize(){
   ticking = false;
@@ -71,6 +72,8 @@ handlers = {
 
   onScroll: function() {
     // do stuff here
+
+    $siteheader.toggleClass('shrink', window.scrollY > 100);
 
     ticking = false;
   }
