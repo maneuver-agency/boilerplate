@@ -1,0 +1,14 @@
+.main-menu {
+
+
+  @media (max-width: $grid-float-breakpoint) {
+    .nav {
+      @include flexbox-vertical;
+      align-items: center;
+
+      >li>a {
+        padding: 10px 16px;
+      }
+    }
+  }
+}

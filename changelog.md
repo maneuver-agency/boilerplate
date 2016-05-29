@@ -11,7 +11,8 @@
 - Remove layout.scss and reorganize its contents in other files.
 - Add mixin for responsive spacers.
 - Add xxs grid classes.
-- Introduce navbar-links to get rid of paddings on links
+- Introduce navbar-links to get rid of paddings on links.
+- Add basic site-header styling.
 
 **JS**
 - Remove static Modernizr file and make use of npm browsernizr.

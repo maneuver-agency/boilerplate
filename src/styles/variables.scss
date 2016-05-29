@@ -29,11 +29,10 @@ $fontpath:        '/assets/fonts/';
 
 /*** LAYOUT ***/
 
-$headerheight:    51px;
+$headerheight:    91px;
 
-
-/*** RESPONSIVE ***/
-$screen-phone:    '767px';
+// Determines when the mobile menu kicks in.
+$grid-float-breakpoint: 480px;
 
 
 /*** EASING ***/
