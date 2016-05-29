@@ -17,6 +17,7 @@ define('ENV', determineEnv($config['environments']));
 $config['ENV'] = ENV;
 
 $config['body_classes'] = [];
+$config['lang'] = 'en';
 
 
 /*************/
@@ -74,7 +75,7 @@ $app->error(function (\Exception $e, $code) use ($app, $config) {
       // $message = 'The requested page could not be found.';
       break;
     default:
-      $file = '500.twig';
+      throw $e;
       // $message = 'We are sorry, but something went terribly wrong.';
   }
 

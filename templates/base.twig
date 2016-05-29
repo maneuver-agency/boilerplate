@@ -1,4 +1,4 @@
-{% set lang = 'en' %}
+{% import '/templates/_macros.twig' as macros %}
 
 <!DOCTYPE html>
 <html lang="{{ lang }}" class="no-js">
@@ -50,9 +50,9 @@
       ga('send', 'pageview'); */
     </script>
 
-    <main class="site-wrap" role="main">
+    <main id="site-wrap" class="site-wrap" role="main">
 
-      <header class="site-header navbar navbar-static-top" role="banner">
+      <header id="site-header" class="site-header navbar navbar-static-top" role="banner">
         <div class="container">
           <div id="site-logo" class="navbar-header">
             <a href="/" title="home" class="navbar-brand">{{ site.name }}</a>
@@ -83,11 +83,18 @@
       <div class="site-push"></div>
     </main>
 
-    <footer class="site-footer" role="contentinfo">
+    <footer id="site-footer" class="site-footer" role="contentinfo">
       <div class="container">
-        <div id="mnvr">
-          <a class="inner" href="http://www.maneuver.be" target="_blank" title="site by maneuver"></a>
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-8">
+            <div class="pull-right">
+              {{ macros.socials(_context) }}
+            </div>
+          </div>
         </div>
+      </div>
+      <div id="mnvr">
+        <a class="inner" href="http://www.maneuver.be" target="_blank" title="site by maneuver"></a>
       </div>
     </footer>
 

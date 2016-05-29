@@ -16,6 +16,7 @@ p:first-child { margin-top:0; }
 .placeholder .form-label { display: none; }
 textarea { resize:none; }
 svg, img[src$=".svg"], iframe, object, video { max-width: 100%; }
+.svg-icon { max-width: 100%; max-height: 100%; fill: currentColor; display: inline-block; }
 [data-sr] { visibility: hidden; }
 *:active, *:focus { outline:none; box-shadow: none; }
 
@@ -45,7 +46,7 @@ svg, img[src$=".svg"], iframe, object, video { max-width: 100%; }
 .chalign                { @extend .halign; align-items: center; }
 
 .sticky {
-  @media (min-width: 767px) { & {
+  @media (min-width: 767px) {
     &.sticky-on {
       position: fixed;
     }
@@ -53,11 +54,7 @@ svg, img[src$=".svg"], iframe, object, video { max-width: 100%; }
     position: -webkit-sticky;
     position: sticky;
     top:0;
-
-    .no-csspositionsticky & {
-      position: block;
-    }
-  }}
+  }
 }
 
 

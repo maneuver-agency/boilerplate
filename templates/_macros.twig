@@ -1,0 +1,19 @@
+{##
+ # SVG SOCIAL-ICON
+ #}
+{% macro socialicon(ctx, name) %}
+  <svg class="social-icon-{{ name }} svg-icon"><use xlink:href="{{ ctx.theme.link }}/assets/social-icons.svg#icon-{{ name }}"></use></svg>
+{% endmacro %}
+
+{% macro socials(ctx) %}
+  {% import _self as this %}
+  <div class="site-socials">
+    {% for type in ['facebook','twitter','linkedin','instagram','youtube','vimeo'] %}
+      {% if ctx.options[type] %}
+        <a class="site-socials__item" href="{{ ctx.options[type] }}">
+          {{ this.socialicon(ctx, type) }}
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endmacro %}

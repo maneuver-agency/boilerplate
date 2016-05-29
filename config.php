@@ -32,6 +32,15 @@ $config = [
   'wp_head' => '',
   'wp_footer' => '',
 
+  'options' => [
+    'facebook' => 'http://www.facebook.com',
+    'twitter' => 'http://www.twitter.com',
+    'linkedin' => 'http://www.linkedin.com',
+    'youtube' => 'http://www.youtube.com',
+    'vimeo' => 'http://www.vimeo.com',
+    'instagram' => 'http://www.instagram.com',
+  ],
+
 ];
 
 /**************/
