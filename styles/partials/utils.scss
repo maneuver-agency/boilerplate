@@ -50,10 +50,6 @@ svg, img[src$=".svg"], iframe, object, video { max-width: 100%; }
     &.sticky-on {
       position: fixed;
     }
-
-    position: -webkit-sticky;
-    position: sticky;
-    top:0;
   }
 }
 

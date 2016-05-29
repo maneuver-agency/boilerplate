@@ -1,10 +1,16 @@
 var $ = require('jquery');
+
+// Modernizr tests.
+// See: https://github.com/jnordberg/browsernizr
+require('browsernizr/test/touchevents');
+require('browsernizr');
+
 require('./polyfills.js');
 require('./utils.js');
 
 if (!window.jQuery) window.jQuery = window.$ = $;
 require('../bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js');
-require('../bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
+// require('../bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
 
 var ticking, handlers;
 

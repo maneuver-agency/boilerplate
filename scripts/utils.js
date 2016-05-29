@@ -65,17 +65,6 @@ $('a[data-mailto]').each(function(){
 });
 
 /**
- * svg fallback: replace with png.
- **/
-if (!Modernizr.svg) {
-  $('img[src*=svg]').each(function(){
-    var src = $(this).attr('src');
-    src = src.replace('.svg', '.png');
-    $(this).attr('src', src);
-  });
-}
-
-/**
  * Equal height elements.
  */
 (function() {
@@ -100,7 +89,7 @@ if (!Modernizr.svg) {
 // Sticky scroll elements
 (function(){
   var $stickies = $('.sticky'), $footer, $wrap;
-  if (!Modernizr.csspositionsticky && 'getComputedStyle' in window) {
+  if ('getComputedStyle' in window) {
     $footer = $('#site-footer');
     $wrap = $('#site-wrap');
 
@@ -109,6 +98,7 @@ if (!Modernizr.svg) {
         var $this = $(this),
             top = $this.data('top'),
             bot = $this.data('bottom'),
+            left = $this.data('left'),
             footeroverlap = 0,
             style;
 
@@ -119,6 +109,10 @@ if (!Modernizr.svg) {
 
         $this.toggleClass('sticky-on', window.scrollY >= top && $wrap.height() - $this.height() - top > window.innerHeight);
         $this.toggleClass('sticky-stop', window.scrollY >= bot);
+
+        if ($(this).hasClass('sticky-on') && $(this).data('left') && window.matchMedia('(min-width: 767px)').matches) {
+          $this.css('left', $(this).data('left'));
+        }
 
         if ($footer.length) {
           footeroverlap = Math.max(0, ($this.height() + 40) - ($footer.position().top - window.scrollY));
@@ -142,22 +136,25 @@ if (!Modernizr.svg) {
   }
 
   function recalculate(el){
-    var $this = $(el),
-        style = window.getComputedStyle(el),
-        top = style.getPropertyValue('top'),
+    var $this = $(el), style, top,
         $parent = $this.parent();
 
+    $this.removeClass('sticky-on');
+
+    style = window.getComputedStyle(el),
+    top = style.getPropertyValue('top'),
     top = top == 'auto' ? 0 : top;
 
     $parent.height('auto');
 
-    if (window.matchMedia('(min-width: 767px)').matches) {
-      $parent.height($parent.parent().height());
-    }
-    $this.width($parent.width());
+    // if (window.matchMedia('(min-width: 767px)').matches) {
+      // $parent.height($parent.parent().height());
+    // }
+    $this.css('width', $parent.width());
     $this.data({
       'top': $this.offset().top - parseInt(top, 10),
-      'bottom': $this.offset().top + $this.parent().innerHeight() - $this.outerHeight() - parseInt(top, 10)
+      'bottom': $this.offset().top + $this.parent().innerHeight() - $this.outerHeight() - parseInt(top, 10),
+      'left': $this.offset().left
     });
   }
 })();

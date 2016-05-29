@@ -84,12 +84,12 @@ gulp.task('styles', function(){
 });
 
 /* SCRIPTS */
-gulp.task('scripts', function(){
-  return gulp.src([
-    'scripts/modernizr.js',
-  ])
-  .pipe(uglify())
-  .pipe(gulp.dest(outputDir));
+gulp.task('scripts', ['build'], function(){
+  // return gulp.src([
+  //
+  // ])
+  // .pipe(uglify())
+  // .pipe(gulp.dest(outputDir));
 });
 
 /* BROWSERIFY */
@@ -133,13 +133,6 @@ gulp.task('watchify', function() {
   .bundle() // Create the initial bundle when starting the task
   .pipe(source('bundle.js'))
   .pipe(gulp.dest(outputDir));
-});
-
-/* SVG 2 PNG */
-gulp.task('svg', function(){
-  return gulp.src('assets/img/*.svg')
-    .pipe(svg2png())
-    .pipe(gulp.dest('assets/img'));
 });
 
 /* IMAGEMIN */
