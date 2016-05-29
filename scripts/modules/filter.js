@@ -3,9 +3,9 @@ module.exports = Filter;
 
 var events = [];
 
-function Filter(isotope, grouping) {
+function Filter(isotope, allowed_per_group) {
   this.isotope = isotope;
-  this.grouping = grouping || false;
+  this.allowed_per_group = allowed_per_group || false; // false = unlimited
   this.keys = getStore();
 
   this.doFiltering();
@@ -16,7 +16,7 @@ function getStore(){
   if (s) {
     return JSON.parse(s);
   }
-  return [];
+  return {};
 }
 
 function setStore(data) {
@@ -26,82 +26,63 @@ function setStore(data) {
 Filter.prototype = {
   constructor: Filter,
 
-  doFiltering: function(group){
-    var string;
+  doFiltering: function() {
+    var combinations,
+        combi_selectors = [],
+        main_selector = '';
 
-    // Check if we have any keys.
-    // this.keys can be an Array or an Object,
-    // that's why we use the Object prototype to check its length.
-    if (Object.keys(this.keys).length) {
-      if (this.grouping) {
-        string = '';
-        for (var prop in this.keys) {
-          if (this.keys.hasOwnProperty(prop)) {
-            string += '.' + this.keys[prop].join('.');
-          }
-        }
-      } else {
-        string = '.' + this.keys.join('.');
-      }
-    } else {
-      string = '*';
+    // Create all combinations.
+    combinations = this.cartesian(Object.values(this.keys));
+    for (var i in combinations) {
+      combi_selectors.push('.' + combinations[i].join('.'));
     }
-    this.isotope.arrange({ filter: string});
+    main_selector = combi_selectors.join(',');
+
+    this.isotope.arrange({ filter: main_selector});
     trigger(this, 'update');
   },
 
-  update: function(key, group){
-    var i,
-        string,
-        group = group || false,
-        groupedKeys,
-        allowed_per_group = 1;
+  update: function(key, group) {
+    var i;
+
+    group = group || 'main';
+
+    // Make sure the group is present in our list.
+    if (!(group in this.keys)) {
+      this.keys[group] = [];
+    }
 
     if (key == '*') {
-      this.keys = [];
+      // Reset the group.
+      delete this.keys[group];
     } else {
-      groupedKeys = this.keys;
-      if (this.grouping && group) {
-        // Organize keys into groups.
-
-        if (this.keys.length !== undefined && this.keys.length === 0) {
-          // Make it an object in order to be able to use it as
-          // an associative array.
-          this.keys = {};
-        }
-        // Check of current group is already present.
-        if (!this.keys.hasOwnProperty(group)) {
-          this.keys[group] = [];
-        }
-        groupedKeys = this.keys[group];
-      }
-      i = groupedKeys.indexOf(key);
-      if (i >= 0) {
-        // Key exists, remove it.
-        groupedKeys.splice(i, 1);
-      } else if (key) {
-        // Key does not exist, add it.
-        groupedKeys.push(key);
-      }
-    }
-
-    if (this.grouping && group) {
-      if (groupedKeys.length) {
-        while (groupedKeys.length > allowed_per_group) {
-          // Remove keys at the beginning until allowed length.
-          groupedKeys.shift();
-        }
-        // Add it back to the list of other groups.
-        this.keys[group] = groupedKeys;
+      // Check if key is present within our group.
+      i = this.keys[group].indexOf(key);
+      if (i == -1) {
+        // No? Add it.
+        this.keys[group].push(key);
       } else {
+        // Yes? Remove it.
+        this.keys[group].splice(i, 1);
+      }
+      // If we exceed the maximum length, remove the first in the list.
+      if (this.allowed_per_group && this.keys[group].length > this.allowed_per_group) {
+        this.keys[group].shift();
+      }
+
+      if (this.keys[group].length === 0) {
         delete this.keys[group];
       }
-    } else {
-      this.keys = groupedKeys;
     }
+
+    // console.table(this.keys);
 
     this.doFiltering();
     setStore(this.keys);
+  },
+
+  reset: function(group) {
+    this.update('*', group);
   },
 
   on: function(eventname, callback) {
@@ -111,6 +92,25 @@ Filter.prototype = {
       // Redo filtering so the new update event is fired immediatly.
       this.doFiltering();
     }
+  },
+
+  // http://stackoverflow.com/questions/15298912/javascript-generating-combinations-from-n-arrays-with-m-elements?answertab=active#tab-top
+  cartesian: function(arg) {
+    var r = [], max = arg.length-1;
+    function helper(arr, i) {
+      for (var j=0, l=arg[i].length; j<l; j++) {
+        var a = arr.slice(0); // clone arr
+        a.push(arg[i][j]);
+        if (i==max)
+          r.push(a);
+        else
+          helper(a, i+1);
+      }
+    }
+    if (arg.length) {
+      helper([], 0);
+    }
+    return r;
   }
 }
 

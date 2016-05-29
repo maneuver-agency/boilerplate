@@ -11,6 +11,7 @@
 - Do not rely on Modernizr to check for sticky support. Always use javascript.
 - Remove layout.scss and reorganize its contents in other files.
 - Introduce macros.
+- New improved version of modules/filter.js.
 - Add changelog!
 
 ---
