@@ -10,6 +10,8 @@
 - Remove font icons and use svg sprites.
 - Do not rely on Modernizr to check for sticky support. Always use javascript.
 - Remove layout.scss and reorganize its contents in other files.
+- Add mixin for responsive spacers.
+- Add xxs grid classes.
 - Introduce macros.
 - New improved version of modules/filter.js.
 - Create /src folder for, well, the source files... Duh.

@@ -49,6 +49,10 @@
 @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/utilities";
 @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
 
+/* Create extra grid classes for the smallest screens. */
+@media (max-width: 479px) {
+  @include make-grid(xxs);
+}
 
 /***********************/
 /* BOOTSTRAP OVERRIDES */
