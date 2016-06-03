@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "composer install && npm install && bower install",
     "watch": "watchify scripts/main.js -o dist/bundle.js -v",
-    "build": "browserify scripts/main.js -o dist/bundle.js"
+    "build": "browserify scripts/main.js -o dist/bundle.js",
+    "deploy": "node node_modules/maneuver-deploy-site/index.js <connectionstring>",
+    "stage": "node node_modules/maneuver-deploy-site/index.js -staging <foldername>"
   },
   "repository": "",
   "author": "David De Coninck",
@@ -31,6 +33,7 @@
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
     "jquery": "^2.2.3",
+    "maneuver-deploy-site": "git+ssh://git@bitbucket.org/maneuver/deploy-site.git",
     "outdated-browser-rework": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",

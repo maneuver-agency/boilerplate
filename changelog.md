@@ -2,6 +2,11 @@
 
 ---
 
+## 1.0.1 - 03/06/2016
+
+**Other**
+- Add maneuver-deploy-site package and npm scripts
+
 ## 1.0.0 - 29/05/2016
 
 **CSS & HTML**
