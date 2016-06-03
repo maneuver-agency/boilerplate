@@ -31,6 +31,13 @@
   .st-swatch--dark {
     color: #444;
   }
+  .st-comp-name {
+    text-transform: uppercase;
+    font-size:1.1rem;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
 </style>
 
 <div class="container">
@@ -126,17 +133,27 @@
     </p>
   </div>
 
+  {# ****************** #}
+  {# *** COMPONENTS *** #}
+  {# ****************** #}
+
   <div class="page-section">
     <div class="st-head">Components</div>
 
     <div class="row">
-      <div class="col-sm-6">
-        <article class="teaser-item">
+      <div class="col-sm-3">
+        <div class="st-comp-name">teaser-item</div>
+      </div>
+      <div class="col-sm-4">
+        <article class="teaser-item rhythm-mb2">
           <div class="teaser-item__image">
-            <img src="https://placem.at/places?w=400&h=180&txt=0&random=1" class="img-responsive" alt="" />
+            <img src="https://placem.at/places?w=600&h=260&txt=0&random=1" class="img-responsive" alt="" />
           </div>
           <div class="teaser-item__title item-title">Teaser title</div>
-          <div class="teaser-item__excerpt">{{ lipsum(20) }}</div>
+          <div class="teaser-item__excerpt bodytext bodytext--small">{{ lipsum(20) }}</div>
+          <div class="teaser-item__actions">
+            <a href="#" class="btn btn-default">Read More</a>
+          </div>
         </article>
       </div>
     </div>

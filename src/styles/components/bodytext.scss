@@ -35,4 +35,11 @@
   .alignright { float: right; }
   .alignleft { float: left; }
   .aligncenter { display: block; margin-left: auto; margin-right: auto; }
+
+
+  /* MODIFIERS */
+  &--small {
+    line-height: 1.2;
+    font-size: 1rem;
+  }
 }
