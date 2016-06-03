@@ -4,6 +4,9 @@
 
 ## 1.0.1 - 03/06/2016
 
+**CSS & HTML**
+- Add rhythm helper classes.
+
 **Other**
 - Add maneuver-deploy-site package and npm scripts
 
