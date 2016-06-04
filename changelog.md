@@ -11,6 +11,7 @@
 - Add 'hero' component.
 - Add 'profile' component.
 - Add 'feature' component.
+- Add 'logo-ribbon' component.
 
 **Other**
 - Add maneuver-deploy-site package and npm scripts.

@@ -1,0 +1,23 @@
+.logo-ribbon {
+  @include flexbox-horizontal;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+
+  &:before {
+    flex-basis: 0; /* safari bugfix */
+  }
+
+  &__item {
+    @include flexbox-horizontal;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 20%;
+    margin-bottom: 50px;
+    padding: 0 2vw;
+
+    img {
+      max-height: 75px;
+      max-width: 140px;
+    }
+  }
+}

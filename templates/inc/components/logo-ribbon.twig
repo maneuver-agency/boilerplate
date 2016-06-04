@@ -1,0 +1,9 @@
+{% set slider = false %}
+
+<div class="logo-ribbon {{ slider ? 'logo-slider slick-flexbox' }}">
+  {% for logo in 0..10 %}
+    <div class="logo-ribbon__item">
+      <img src="{{ theme.link }}/assets/tmp/rapha.png" class="img-responsive" alt="" />
+    </div>
+  {% endfor %}
+</div>
