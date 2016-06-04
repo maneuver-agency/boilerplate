@@ -64,9 +64,17 @@
           </div>
           <nav id="main-menu" class="main-menu navbar-collapse collapse" role="navigation">
             <ul class="nav navbar-nav navbar-right navbar-links">
-              <li><a href="/about" class="{{ active('about') }}">about</a></li>
-              <li><a href="/products" class="{{ active('products') }}">products</a></li>
-              <li><a href="/contact" class="{{ active('contact') }}">contact</a></li>
+              <li><a href="/about" class="menu-link {{ active('about') }}">product 1</a></li>
+              <li><a href="/about" class="menu-link {{ active('about') }}">product 2</a></li>
+              <li><a href="/about" class="menu-link {{ active('about') }}">product 3</a></li>
+              <li class="nav-more-item">
+                <a class="nav-more-link">more</a>
+                <ul class="nav-more-list sub-menu">
+                  <li><a href="/about" class="menu-link {{ active('about') }}">about</a></li>
+                  <li><a href="/products" class="menu-link {{ active('products') }}">extra</a></li>
+                  <li><a href="/contact" class="menu-link {{ active('contact') }}">contact</a></li>
+                </ul>
+              </li>
             </ul>
           </nav>
         </div>

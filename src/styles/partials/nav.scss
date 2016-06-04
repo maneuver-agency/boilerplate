@@ -1,13 +1,105 @@
 .main-menu {
 
+  // Basic styling.
+  .nav {
+    .menu-link {
+      line-height: 20px;
+      display: block;
+      position: relative;
 
+      &:hover {
+        background-color: $clr-silver;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .sub-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    left:0;
+    top:100%;
+  }
+
+  // On mobile screens:
+  // Center everyting on the page.
   @media (max-width: $grid-float-breakpoint) {
     .nav {
       @include flexbox-vertical;
       align-items: center;
+      text-align: center;
 
-      >li>a {
+      >li>a, .menu-link {
         padding: 10px 16px;
+        min-width: 40vw;
+      }
+    }
+  }
+
+  // On larger screens:
+  // Reset to the default navbar.
+  @media (min-width: $grid-float-breakpoint) {
+
+    .sub-menu {
+      position: absolute;
+      padding:10px;
+      background-color: $clr-silver;
+      opacity: 0;
+      pointer-events: none;
+      max-height: 0;
+    }
+
+    li:hover, li:active, li:focus {
+      > .sub-menu {
+        opacity: 1;
+        pointer-events: all;
+        max-height: 500px;
+      }
+    }
+  }
+}
+
+
+html body .site-wrap .nav-more {
+// We add 'body .site-wrap' just to override bootstrap's retarded specifity
+// without having to use !important.
+
+  &-link {
+    display: none;
+  }
+  &-list {
+    left: auto !important;
+    right:0;
+  }
+
+  @media (min-width: $grid-float-breakpoint) and (max-width: ($nav-more-breakpoint - 1)) {
+    &-link {
+      display: block;
+    }
+    &-list {
+      text-align: right;
+    }
+  }
+
+  @media (min-width: max($nav-more-breakpoint, $grid-float-breakpoint)) {
+    &-item {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    &-list {
+      @include clearfix;
+      position: static;
+      display: block;
+      opacity: 1;
+      max-height: none;
+      background-color: transparent;
+      padding: 0;
+
+      li {
+        float:left;
+        margin-left: 15px;
+        margin-right: 15px;
       }
     }
   }

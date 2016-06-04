@@ -29,12 +29,14 @@ $fontpath:        '/assets/fonts/';
 
 /*** LAYOUT ***/
 
-$headerheight:    91px;
+$headerheight:              91px;
 
-$screen-xxs-max: 479px;
+$screen-xxs-max:            479px;
+
+$nav-more-breakpoint:       660px;
 
 // Determines when the mobile menu kicks in.
-$grid-float-breakpoint: 480px;
+$grid-float-breakpoint:     479px;
 
 
 /*** EASING ***/

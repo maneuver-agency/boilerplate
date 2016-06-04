@@ -6,8 +6,9 @@
 
 **CSS & HTML**
 - Add rhythm helper classes.
-- Add hero component.
 - Add spacer-xxs and set max-width media queries for all spacers.
+- Add new responsive navigation technique with the nav-more functionality.
+- Add 'hero' component.
 - Add 'profile' component.
 - Add 'feature' component.
 
