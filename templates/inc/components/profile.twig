@@ -1,0 +1,31 @@
+{% set microdata = microdata|default(true) %}
+
+<div class="profile" {% if microdata %} itemscope itemtype="http://schema.org/Person {% endif %}">
+  <div class="row">
+    <div class="col-xxs-12 col-xs-3 col-sm-4">
+      <div class="profile__image">
+        <img src="https://placem.at/people?w=300&h=300&txt=0" alt="" class="img-responsive img-circle" {% if microdata %} itemprop="image" {% endif %} />
+      </div>
+    </div>
+    <div class="col-xxs-12 col-xs-9 col-sm-8">
+      <div class="spacer-xxs-10vw"></div>
+      <div class="profile__info rhythm-mb2">
+        <div class="profile__name item-title" {% if microdata %} itemprop="name" {% endif %}>John Doe</div>
+        <div class="profile__jobtitle" {% if microdata %} itemprop="jobTitle" {% endif %}>Executive Officer</div>
+        <div class="profile__bio" {% if microdata %} itemprop="description" {% endif %}>{{ lipsum(20) }}</div>
+        <div class="profile__links">
+          <div class="profile__links__item">
+            <a href="#" target="_blank" {% if microdata %} itemprop="url" {% endif %}>
+              {{ macros.socialicon(_context, 'globe') }}
+            </a>
+          </div>
+          <div class="profile__links__item">
+            <a href="#" target="_blank" {% if microdata %} itemprop="url" {% endif %}>
+              {{ macros.socialicon(_context, 'facebook') }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

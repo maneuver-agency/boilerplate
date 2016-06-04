@@ -6,9 +6,14 @@
 
 **CSS & HTML**
 - Add rhythm helper classes.
+- Add hero component.
+- Add spacer-xxs and set max-width media queries for all spacers.
+- Add 'profile' component.
+- Add 'feature' component.
 
 **Other**
-- Add maneuver-deploy-site package and npm scripts
+- Add maneuver-deploy-site package and npm scripts.
+- Re-organized scss files to a more senseful structure.
 
 ## 1.0.0 - 29/05/2016
 

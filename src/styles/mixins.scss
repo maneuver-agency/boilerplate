@@ -17,14 +17,19 @@
   border-left-width: $l;
 }
 
-/* flexbox shortcuts */
+/***********/
+/* FLEXBOX */
+/***********/
+
 @mixin flexbox              { display: flex; }
 @mixin flexbox-vertical     { @include flexbox; flex-direction:column; }
 @mixin flexbox-horizontal   { @include flexbox; flex-direction:row; }
 
+
 /***********/
 /* SPACERS */
 /***********/
+
 /*
  * Use:
  * .spacer-sm-40   => 40px spacing on small screens.
@@ -47,20 +52,83 @@
   }
 }
 
-@include make-spacers(20, 200, 'xs');
-@include make-spacers(1, 20, 'xs', 'vh');
-
-@media (min-width: $screen-sm-min) {
-  @include make-spacers(20, 200, 'sm');
-  @include make-spacers(1, 20, 'sm', 'vh');
+@media (max-width: $screen-xxs-max) {
+  @include make-spacers(20, 200, 'xxs');
+  @include make-spacers(1, 20, 'xxs', 'vh');
+  @include make-spacers(1, 20, 'xxs', 'vw');
 }
 
-@media (min-width: $screen-md-min) {
+@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+  @include make-spacers(20, 200, 'xs');
+  @include make-spacers(1, 20, 'xs', 'vh');
+  @include make-spacers(1, 20, 'xs', 'vw');
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  @include make-spacers(20, 200, 'sm');
+  @include make-spacers(1, 20, 'sm', 'vh');
+  @include make-spacers(1, 20, 'sm', 'vw');
+}
+
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
   @include make-spacers(20, 200, 'md');
   @include make-spacers(1, 20, 'md', 'vh');
+  @include make-spacers(1, 20, 'md', 'vw');
 }
 
 @media (min-width: $screen-lg-min) {
   @include make-spacers(20, 200, 'lg');
   @include make-spacers(1, 20, 'lg', 'vh');
+  @include make-spacers(1, 20, 'lg', 'vw');
+}
+
+/**********/
+/* RHYTHM */
+/**********/
+
+/**
+ * Helper classes to create and maintain the vertical rhythm of the page.
+ *
+ * Use either as a single class on an element:
+ * <div class="mb2"></div>
+ * or
+ * <h3 class="pt5"></div>
+ *
+ * Or use the 'rhythm-' class to set vertical spacing inside a entire block.
+ * <div class="rhythm-mb3"></div>
+ *
+ **/
+
+
+
+& { // create scope.
+
+  $rhythm: .5em;
+  $min: 1;
+  $max: 10;
+
+  /*** PADDING ***/
+
+  @for $i from $min through $max {
+    .pt#{$i} { padding-top: $rhythm * $i; }
+    .rhythm-pt#{$i} > * { margin-top: $rhythm * $i; }
+  }
+
+  @for $i from $min through $max {
+    .pb#{$i} { padding-bottom: $rhythm * $i; }
+    .rhythm-pb#{$i} > * { margin-bottom: $rhythm * $i; }
+  }
+
+  /*** MARGIN ***/
+
+  @for $i from $min through $max {
+    .mt#{$i} { margin-top: $rhythm * $i; }
+    .rhythm-mt#{$i} > * { margin-top: $rhythm * $i; }
+  }
+
+  @for $i from $min through $max {
+    .mb#{$i} { margin-bottom: $rhythm * $i; }
+    .rhythm-mb#{$i} > * { margin-bottom: $rhythm * $i; }
+  }
+
 }

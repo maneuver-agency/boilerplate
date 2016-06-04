@@ -140,23 +140,27 @@
   <div class="page-section">
     <div class="st-head">Components</div>
 
-    <div class="row">
-      <div class="col-sm-3 hide">
-        <div class="st-comp-name">hero</div>
+    <div class="row mb10">
+      <div class="col-xs-12">
+        {% include 'templates/inc/components/hero.twig' %}
+      </div>
+    </div>
+
+    <div class="row mb10">
+      <div class="col-sm-4">
+        {% include 'templates/inc/components/teaser.twig' %}
       </div>
       <div class="col-sm-4">
-        {% include 'templates/inc/hero.twig' %}
+        {% include 'templates/inc/components/feature.twig' %}
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="st-comp-name">teaser-item</div>
+    <div class="row mb10">
+      <div class="col-xs-10 col-sm-6">
+        {% include 'templates/inc/components/profile.twig' %}
+      </div>
     </div>
-    <div class="col-sm-4">
-      {% include 'templates/inc/teaser-item.twig' %}
-    </div>
+
   </div>
 
 </div>

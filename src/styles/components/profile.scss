@@ -1,0 +1,37 @@
+.profile {
+
+  &__image {
+    @extend .center-block;
+    max-width: 50vw;
+
+    @media (min-width: $screen-xs-min) {
+      max-width: none;
+    }
+  }
+
+  &__info {
+
+  }
+
+  &__name {
+
+  }
+
+  &__jobtitle {
+
+  }
+
+  &__bio {
+
+  }
+
+  &__links {
+
+    &__item {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      margin-right: .5em;
+    }
+  }
+}
