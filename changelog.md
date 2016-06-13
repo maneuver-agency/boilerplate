@@ -2,6 +2,16 @@
 
 ---
 
+## 1.0.3 - 13/06/2016
+
+**CSS & HTML**
+- Add .vgutters class.
+- Add .col-xs-spacing class.
+- Only apply .flexrow starting from screen-sm.
+
+**Other**
+- Complete rewrite of gulpfile.js.
+
 ## 1.0.2 - 04/06/2016
 
 **CSS & HTML**

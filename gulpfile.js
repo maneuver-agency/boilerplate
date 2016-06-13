@@ -1,148 +1,127 @@
-var argv = require('yargs').argv
-    ,gulp = require('gulp')
+var gulp = require('gulp')
     ,gutil = require('gulp-util')
-    ,gulpif = require('gulp-if')
-    ,sass = require('gulp-sass')
-    ,minifycss = require('gulp-minify-css')
-    ,uglify = require('gulp-uglify')
-    ,rename = require('gulp-rename')
-    ,concat = require('gulp-concat')
-    ,plumber = require('gulp-plumber')
-    ,imagemin = require('gulp-imagemin')
-    ,svg2png = require('gulp-svg2png')
-    ,browserSync = require('browser-sync')
     ,sourcemaps = require('gulp-sourcemaps')
+    ,sass = require('gulp-sass')
+    ,gulpif = require('gulp-if')
+    ,plumber = require('gulp-plumber')
+    ,uglify = require('gulp-uglify')
     ,autoprefixer = require('gulp-autoprefixer')
+    ,rename = require('gulp-rename')
     ,browserify = require('browserify')
-    ,watchify = require('watchify')
     ,source = require('vinyl-source-stream')
     ,buffer = require('vinyl-buffer')
+    ,browserSync = require('browser-sync')
     ;
 
-var outputDir = 'dist';
+/************/
+/* SETTINGS */
+/************/
 
+var devUrl = 'boilerplate.local.mnvr.be';
+var productionEnv = 'prod';
+var outputDir = 'dist';
+var imgDir = 'assets/img';
+var isProd = function(){ return gutil.env.env == productionEnv };
+var filename = function(name) { return isProd() ? name.split('.').spliced(-1, 0, 'min').join('.') : name; }
+
+/*****************/
+/* DEFAULT TASKS */
+/*****************/
+
+gulp.task('default', ['css', 'js', 'img'], function(){});
+gulp.task('css', ['editor', 'styles']);
+gulp.task('js', ['browserify']);
+gulp.task('img', ['imagemin']);
+
+/*********/
 /* WATCH */
-// Watch regularly updated files.
-gulp.task('watch', ['watchify'], function(){
-  gulp.watch('src/styles/**/*.scss', ['styles']);
-  // gulp.watch('scripts/**/*.js', ['scripts']);
-  gulp.watch('assets/img/*.svg', ['svg']);
+/*********/
+
+gulp.task('watch', [], function(){
+  gulp.watch('src/styles/**/*', ['css']);
+  gulp.watch('src/scripts/**/*', ['js']);
+  gulp.watch(imgDir + '/**/*', ['img']);
 });
 
-// Watch regularly updated files + use Browser Sync.
-gulp.task('bs-watch', ['watchify'], function(){
-  browserSync({
-    proxy: "boilerplate.local.mnvr.be"
+gulp.task('bs-watch', ['watch'], function(){
+  browserSync.init({
+    proxy: devUrl
   });
 
-  gulp.watch('src/styles/**/*.scss', ['styles'])/*.on('change', function(){
-    browserSync.reload({stream: true});
-  })*/;
-  // gulp.watch('scripts/**/*.js', ['watchify']).on('change', function(){
-  //   browserSync.reload({once: true});
-  // });
   gulp.watch('templates/**/*.twig').on('change', function(){
     browserSync.reload({once: true});
   });
-
-  gulp.watch('assets/img/*.svg', ['svg']);
 });
 
-/* DEFAULT */
-// The whole shabang.
-gulp.task('default', ['styles', 'scripts', 'imagemin'], function(){
+/*******/
+/* CSS */
+/*******/
 
-});
-
-// Error handler to prevent gulp watch from breaking.
-function onError(err) {
-  console.log(err.toString());
-  this.emit('end');
-}
-
-/* STYLES */
-gulp.task('styles', function(){
+gulp.task('editor', function(){
   gulp.src('src/styles/editor.scss')
     .pipe(sass({outputStyle: 'compressed'}))
     .pipe(gulp.dest('dist'));
+});
 
+gulp.task('styles', function(){
   gulp.src([
     'src/styles/main.scss'
   ])
-  .pipe(plumber({errorHandler: gutil.log.bind(gutil, 'Sass Error')}))
-  .pipe(sourcemaps.init())
+  .pipe(plumber(function(error) {
+    gutil.log(gutil.colors.red(error.message));
+    this.emit('end');
+  }))
+  .pipe(gulpif(!isProd(), sourcemaps.init()))
   .pipe(sass({outputStyle: 'compressed'}))
-  .on('error', onError)
   .pipe(autoprefixer({
     browsers: ['last 3 versions']
   }))
-  .pipe(minifycss())
-  .pipe(sourcemaps.write())
-  .pipe(rename('main.css'))
+  .pipe(gulpif(!isProd(), sourcemaps.write()))
+  .pipe(rename(filename('main.css')))
   .pipe(gulp.dest(outputDir))
   .pipe(browserSync.reload({stream:true}));
 });
 
-/* SCRIPTS */
-gulp.task('scripts', ['build'], function(){
-  // return gulp.src([
-  //
-  // ])
-  // .pipe(uglify())
-  // .pipe(gulp.dest(outputDir));
+/******/
+/* JS */
+/******/
+
+gulp.task('browserify', function(){
+  return browserify({ entries: ['src/scripts/main.js'] })
+    .bundle()
+    .pipe(source(filename('bundle.js')))
+    .pipe(buffer())
+    .pipe(gulpif(!isProd(), sourcemaps.init({loadMaps:true})))
+    .pipe(gulpif(!isProd(), sourcemaps.write('./')))
+    .pipe(gulpif(isProd(), uglify()))
+    .pipe(gulp.dest(outputDir))
+    .pipe(browserSync.reload({stream:true}));
 });
 
-/* BROWSERIFY */
-var bundler = browserify({
-  entries: ['src/scripts/main.js'],
-  // transform: [reactify],
-  // extensions: ['.jsx'],
-  debug: !argv.production,
-  cache: {},
-  packageCache: {},
-  fullPaths: true // for watchify
-});
+/*******/
+/* IMG */
+/*******/
 
-gulp.task('build', function(){
-  // https://coderwall.com/p/zpquzq/gulpfile-for-projects-with-less-browserify-and-react
-  return bundler
-  .bundle()
-  .pipe(source('bundle.js'))
-  .pipe(buffer())
-  .pipe(gulpif(!argv.production, sourcemaps.init({loadMaps: true}))) // loads map from browserify file
-  .pipe(gulpif(!argv.production, sourcemaps.write('./'))) // writes .map file
-  .pipe(gulpif(argv.production, uglify()))
-  .pipe(gulp.dest(outputDir));
-});
-
-gulp.task('watchify', function() {
-  var watcher = watchify(bundler);
-  return watcher
-  .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-  .on('update', function () {
-      watcher.bundle()
-      .pipe(source('bundle.js'))
-      .pipe(buffer())
-      .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
-      .pipe(sourcemaps.write('./')) // writes .map file
-      .pipe(gulp.dest(outputDir))
-      .pipe(browserSync.reload({stream:true}));
-
-      gutil.log("Updated JavaScript sources");
-  })
-  .bundle() // Create the initial bundle when starting the task
-  .pipe(source('bundle.js'))
-  .pipe(gulp.dest(outputDir));
-});
-
-/* IMAGEMIN */
 gulp.task('imagemin', function(){
   return gulp.src([
-    'assets/img/*.png',
-    'assets/img/*.jpg',
-    'assets/img/*.jpeg',
-    'assets/img/*.gif'
+    imgDir + '/*.png',
+    imgDir + '/*.jpg',
+    imgDir + '/*.jpeg',
+    imgDir + '/*.gif'
     ])
     .pipe(imagemin())
-    .pipe(gulp.dest('assets/img'));
+    .pipe(gulp.dest(imgDir));
 });
+
+/***********/
+/* HELPERS */
+/***********/
+
+// This does the same exact thing as .splice(); but, it returns the original
+// array reference rather than the collection of items that were deleted.
+Array.prototype.spliced = function() {
+  // Returns the array of values deleted from array.
+  Array.prototype.splice.apply( this, arguments );
+  // Return current (mutated) array reference.
+  return( this );
+};
