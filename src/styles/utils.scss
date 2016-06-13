@@ -33,18 +33,25 @@ a:not([href]) { cursor: default; }
 .text-right             { text-align: right; }
 .text-justify           { text-align: justify; text-align-last: center; }
 .clear                  { clear:both; }
-
-.vertical-spacer        { height:60px; }
+.vgutters               { > * { margin-bottom: $grid-gutter-width; } }
 
 :not(html).flexbox      { @include flexbox-horizontal; }
 .flexwrap               { flex-wrap: wrap; }
-.flexrow                { @include flexbox-horizontal; flex-wrap: wrap;
-                          &:before { flex-basis:0; /* Safari bugfix */ }
-                        }
+.flexrow                {
+  @media (min-width: $screen-sm-min) {
+    @include flexbox-horizontal; flex-wrap: wrap;
+    > * { @include flexbox-vertical; }
+    &:before { flex-basis:0; /* Safari bugfix */ }
+  }
+}
 .valign                 { @include flexbox-vertical; justify-content: center; }
 .halign                 { @include flexbox-horizontal; justify-content: center; }
 .cvalign                { @extend .valign; align-items: center; }
 .chalign                { @extend .halign; align-items: center; }
+
+@media (max-width: $screen-xs-max) {
+  .col-xs-spacing         { margin-bottom: 15vw; }
+}
 
 .sticky {
   @media (min-width: 767px) {
