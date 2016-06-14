@@ -89,8 +89,12 @@ gulp.task('styles', function(){
 gulp.task('browserify', function(){
   return browserify({ entries: ['src/scripts/main.js'] })
     .bundle()
+    .on('error', function(error) {
+      gutil.log(gutil.colors.red(error.message));
+      this.emit('end');
+    })
     .pipe(source(filename('bundle.js')))
-    .pipe(buffer())
+    .pipe(buffer()) // Create a stream so we can pipe.
     .pipe(gulpif(!isProd(), sourcemaps.init({loadMaps:true})))
     .pipe(gulpif(!isProd(), sourcemaps.write('./')))
     .pipe(gulpif(isProd(), uglify()))
