@@ -27,7 +27,7 @@
     <meta name="twitter:card"     content="summary_large_image">
     <meta name="twitter:site"     content="{# @handle #}">
 
-    <link rel="stylesheet" href="{{ theme.link }}/dist/main.css">
+    <link rel="stylesheet" href="{{ theme.link }}/dist/{{ ENV == 'production' ? 'main.min.css' : 'main.css' }}">
     <script type="text/javascript">
       // WebFontConfig = {
       //   google: { families: [ 'Source+Sans+Pro:700,500,400,300:latin' ] }
@@ -117,7 +117,7 @@
       MNVR.forms = {{ mnvr_forms|default({})|json_encode }};
     </script>
 
-    <script src="{{ theme.link }}/dist/bundle.js"></script>
+    <script src="{{ theme.link }}/dist/{{ ENV == 'production' ? 'bundle.min.js' : 'bundle.js' }}"></script>
     <!--[if lt IE 9]>
       <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
     <![endif]-->
