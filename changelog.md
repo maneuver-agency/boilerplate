@@ -2,6 +2,11 @@
 
 ---
 
+## 1.0.4 - ???
+
+**Other**
+- Add error handling to browserify gulp task.
+
 ## 1.0.3 - 13/06/2016
 
 **CSS & HTML**

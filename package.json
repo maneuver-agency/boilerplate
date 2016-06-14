@@ -20,7 +20,6 @@
     "browsernizr": "^2.1.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
-    "gulp-concat": "^2.5.2",
     "gulp-if": "^2.0.0",
     "gulp-imagemin": "^2.2.1",
     "gulp-less": "^3.0.2",
@@ -36,7 +35,6 @@
     "maneuver-deploy-site": "git+ssh://git@bitbucket.org/maneuver/deploy-site.git",
     "outdated-browser-rework": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.7.0"
+    "vinyl-source-stream": "^1.1.0"
   }
 }
