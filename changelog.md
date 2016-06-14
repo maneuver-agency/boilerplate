@@ -6,6 +6,7 @@
 
 **Other**
 - Add error handling to browserify gulp task.
+- Add npm build script for production.
 
 ## 1.0.3 - 13/06/2016
 
