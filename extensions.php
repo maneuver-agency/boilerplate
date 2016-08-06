@@ -87,8 +87,14 @@ $twig->addFilter(new Twig_SimpleFilter('share', function($url, $type, $title = '
 }));
 
 $twig->addFunction(new Twig_SimpleFunction('lipsum', function($wordcount = 15){
-  $content = file_get_contents('http://loripsum.net/api');
-  $content = strip_tags($content);
+  $content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Qui ita affectus, beatum esse numquam probabis; Quod non faceret, si in voluptate summum bonum poneret. Est enim effectrix multarum et magnarum voluptatum. Qua ex cognitione facilior facta est investigatio rerum occultissimarum. Duo Reges: constructio interrete.
+  Nihil enim hoc differt. Quamquam te quidem video minime esse deterritum. Dat enim intervalla et relaxat. Istam voluptatem perpetuam quis potest praestare sapienti? Sed erat aequius Triarium aliquid de dissensione nostra iudicare. Tertium autem omnibus aut maximis rebus iis, quae secundum naturam sint, fruentem vivere. Miserum hominem! Si dolor summum malum est, dici aliter non potest.
+  Quid ergo attinet gloriose loqui, nisi constanter loquare? Pugnant Stoici cum Peripateticis. Non est igitur voluptas bonum. Non enim quaero quid verum, sed quid cuique dicendum sit. Teneo, inquit, finem illi videri nihil dolere. Primum quid tu dicis breve? Me igitur ipsum ames oportet, non mea, si veri amici futuri sumus. Quando enim Socrates, qui parens philosophiae iure dici potest, quicquam tale fecit? At quanta conantur! Mundum hunc omnem oppidum esse nostrum! Incendi igitur eos, qui audiunt, vides. Quamquam ab iis philosophiam et omnes ingenuas disciplinas habemus; Respondent extrema primis, media utrisque, omnia omnibus. Virtutis, magnitudinis animi, patientiae, fortitudinis fomentis dolor mitigari solet.
+  In eo enim positum est id, quod dicimus esse expetendum. Miserum hominem! Si dolor summum malum est, dici aliter non potest. Suo genere perveniant ad extremum; His enim rebus detractis negat se reperire in asotorum vita quod reprehendat. Ergo ita: non posse honeste vivi, nisi honeste vivatur?';
+
+  // Make it a little different between calls.
+  $wordcount = $wordcount + rand(0, 6) - rand(1, 10);
+
   $words = str_word_count($content, 1);
   $output = [];
   do {

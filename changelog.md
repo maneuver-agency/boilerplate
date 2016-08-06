@@ -10,6 +10,7 @@
 
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.
+- Rewrite lipsum filter to not use fsockopen.
 
 **Other**
 - Add error handling to browserify gulp task.
