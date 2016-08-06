@@ -4,6 +4,9 @@
 
 ## 1.0.4 - ???
 
+**CSS & HTML**
+- Improvements to rhythm classes.
+
 **Other**
 - Add error handling to browserify gulp task.
 - Add npm build script for production.
