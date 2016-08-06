@@ -6,6 +6,7 @@
 
 **CSS & HTML**
 - Improvements to rhythm classes.
+- Add .clr-primary and .clr-secondary classes to editor.scss for WP.
 
 **Other**
 - Add error handling to browserify gulp task.
