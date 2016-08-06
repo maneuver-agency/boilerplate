@@ -10,6 +10,7 @@
 
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.
+- Add link_to_gmaps twig filter.
 - Rewrite lipsum filter to not use fsockopen.
 
 **Other**

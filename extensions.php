@@ -86,6 +86,18 @@ $twig->addFilter(new Twig_SimpleFilter('share', function($url, $type, $title = '
   return sprintf($link, urlencode($url), urlencode($title));
 }));
 
+
+$twig->addFilter(new Twig_SimpleFilter('link_to_gmaps', function($location, $type = 'place', $zoom = 8){
+  $addr = $location['address'];
+  $lat = $location['lat'];
+  $lng = $location['lng'];
+
+  // Use 'dir' as type for directions.
+  $type = $type == 'dir' ? 'dir/Current+Location' : $type;
+
+  return "http://maps.google.com/maps/{$type}/{$addr}/@{$lat},{$lng},{$zoom}z";
+}));
+
 $twig->addFunction(new Twig_SimpleFunction('lipsum', function($wordcount = 15){
   $content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Qui ita affectus, beatum esse numquam probabis; Quod non faceret, si in voluptate summum bonum poneret. Est enim effectrix multarum et magnarum voluptatum. Qua ex cognitione facilior facta est investigatio rerum occultissimarum. Duo Reges: constructio interrete.
   Nihil enim hoc differt. Quamquam te quidem video minime esse deterritum. Dat enim intervalla et relaxat. Istam voluptatem perpetuam quis potest praestare sapienti? Sed erat aequius Triarium aliquid de dissensione nostra iudicare. Tertium autem omnibus aut maximis rebus iis, quae secundum naturam sint, fruentem vivere. Miserum hominem! Si dolor summum malum est, dici aliter non potest.
