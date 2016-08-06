@@ -8,6 +8,9 @@
 - Improvements to rhythm classes.
 - Add .clr-primary and .clr-secondary classes to editor.scss for WP.
 
+**PHP**
+- Add try_link twig filter to make links of phone numbers and emailadresses.
+
 **Other**
 - Add error handling to browserify gulp task.
 - Add npm build script for production.

@@ -35,6 +35,22 @@ $twig->addFilter(new Twig_SimpleFilter('suffix', function($string, $suffix){
   }
 }));
 
+$twig->addFilter(new Twig_SimpleFilter('try_link', function($string){
+  if(filter_var($string, FILTER_VALIDATE_EMAIL)) {
+    $link = 'mailto:'.$string;
+  } elseif (filter_var($string, FILTER_VALIDATE_URL)) {
+    $link = $string;
+  } elseif (strpos($string, 'www.') === 0) {
+    $link = 'http://'.$string;
+  }
+
+  if (!empty($link)) {
+    $string = sprintf('<a href="%s" target="_blank">%s</a>', $link, $string);
+  }
+
+  return $string;
+}));
+
 // Checks current template.
 $twig->addFunction(new Twig_SimpleFunction('active', function($template, $echo = 'active'){
   $requri = $_SERVER['REQUEST_URI'];
