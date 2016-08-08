@@ -1,6 +1,18 @@
 .hero {
-  height: 45vw;
-  max-height: 55vh;
+  min-height: 450px;
+  max-height: 700px;
+
+  // NOTE: Do not give the hero a fixed height.
+  // Except when it has no children.
+  &:empty {
+    height: 45vh;
+  }
+
+  // @media (min-width: $grid-float-breakpoint) {
+  //   height: 45vw;
+  //   max-height: 55vh;
+  // }
+
   position: relative;
 
   @include flexbox-vertical;

@@ -8,6 +8,7 @@
 - Improvements to rhythm classes.
 - Add .clr-primary and .clr-secondary classes to editor.scss for WP.
 - Delete alternate language link tag.
+- Add hero component css improvements.
 
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.
