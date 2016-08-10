@@ -9,6 +9,7 @@
 - Add .clr-primary and .clr-secondary classes to editor.scss for WP.
 - Delete alternate language link tag.
 - Add hero component css improvements.
+- Remove box-shadow from active buttons.
 
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.
