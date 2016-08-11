@@ -115,7 +115,7 @@
     {# Expose to javascript. #}
     <script type="text/javascript">
       var MNVR = MNVR || {};
-      MNVR.templateDir = "{{ theme.path }}";
+      MNVR.templateDir = "{{ theme.link }}";
       MNVR.forms = {{ mnvr_forms|default({})|json_encode }};
     </script>
 

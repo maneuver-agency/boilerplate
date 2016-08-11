@@ -32,6 +32,9 @@
 - Add npm build script for production.
 - Add npm-debug to gitignore.
 - Add wp_title config entry + use that to render the meta title.
+- Add 'styles' and 'scripts' blocks to base.twig.
+- Bugfix: javascript variable templateDir was an absolute path instead of an URL.
+- Delete facebook.jpg in assets folder.
 
 ## 1.0.3 - 13/06/2016
 
