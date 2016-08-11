@@ -10,7 +10,7 @@
   <div class="site-socials">
     {% for type in ['facebook','twitter','linkedin','instagram','youtube','vimeo'] %}
       {% if ctx.options[type] %}
-        <a class="site-socials__item" href="{{ ctx.options[type] }}">
+        <a class="site-socials__item" href="{{ ctx.options[type] }}" target="_blank">
           {{ this.socialicon(ctx, type) }}
         </a>
       {% endif %}
