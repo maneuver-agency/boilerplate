@@ -19,6 +19,7 @@
 - Improve Ninja Form module to not remove field attributes if they exist.
 - Improve Load More module to allow multiple instances on 1 page.
 - Improve Filter module to work without isotope.
+- Improve Gmap module to use a decent class export.
 - Add Object.values polyfill.
 
 **PHP**

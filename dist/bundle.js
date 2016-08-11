@@ -14029,6 +14029,7 @@ module.exports={
 
 },{}],24:[function(require,module,exports){
 var $ = require('jquery');
+var GoogleMap = require('./modules/gmap.js');
 
 // Modernizr tests.
 // See: https://github.com/jnordberg/browsernizr
@@ -14052,13 +14053,12 @@ function initialize(){
 
   /* Create Google Maps */
   if ($('#gmaps').length) {
-    var gmaps = require('./modules/gmap.js');
-    gmaps.create({
+    new GoogleMap({
       lat: 51.221351,
       lng: 4.285173,
       scrollwheel: true,
       // zoom: 14,
-      markerIcon: MNVR.templateDir + '/assets/img/marker-derefter.png',
+      markerIcon: MNVR.templateDir + '/assets/img/marker.png',
       styles: [ { "featureType": "all", "elementType": "all", "stylers": [ { "visibility": "simplified" } ] }, { "featureType": "administrative", "elementType": "all", "stylers": [ { "visibility": "on" } ] }, { "featureType": "administrative", "elementType": "labels.text.fill", "stylers": [ { "color": "#444444" } ] }, { "featureType": "administrative.country", "elementType": "geometry.stroke", "stylers": [ { "weight": "1.2" } ] }, { "featureType": "administrative.province", "elementType": "all", "stylers": [ { "visibility": "on" } ] }, { "featureType": "administrative.province", "elementType": "geometry.stroke", "stylers": [ { "weight": "1" }, { "visibility": "off" } ] }, { "featureType": "administrative.neighborhood", "elementType": "all", "stylers": [ { "visibility": "off" } ] }, { "featureType": "landscape", "elementType": "all", "stylers": [ { "color": "#f2f2f2" } ] }, { "featureType": "poi", "elementType": "all", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi.business", "elementType": "all", "stylers": [ { "visibility": "off" } ] }, { "featureType": "poi.park", "elementType": "all", "stylers": [ { "visibility": "on" } ] }, { "featureType": "road", "elementType": "all", "stylers": [ { "saturation": -100 }, { "lightness": 45 }, { "visibility": "on" } ] }, { "featureType": "road.highway", "elementType": "all", "stylers": [ { "visibility": "simplified" } ] }, { "featureType": "road.arterial", "elementType": "labels.icon", "stylers": [ { "visibility": "off" } ] }, { "featureType": "transit", "elementType": "all", "stylers": [ { "visibility": "on" } ] }, { "featureType": "transit.station", "elementType": "all", "stylers": [ { "visibility": "on" } ] }, { "featureType": "water", "elementType": "all", "stylers": [ { "color": "#b4d2dc" } ] } ]
     });
   }
@@ -14130,157 +14130,134 @@ initialize();
 var GMaps = require('../../../bower_components/gmaps/gmaps.js');
 var $ = require('jquery');
 
-var gmap, markers = [];
+module.exports = GoogleMap;
 
-function build(options) {
-  var $zoomcontrols, i, len, settings;
+function GoogleMap(options) {
+  // Default options.
+  this.settings = $.extend({
+    // Custom options.
+    addDefaultMarker: true,
 
-  settings = $.extend({
-    id: '#gmaps',
+    // Gmaps options.
+    div: '#gmaps',
     lat: 51.166447,
     lng: 4.155782,
     markers: [],
     addZoomControls: true,
     scrollwheel: false,
     zoom: 11,
-    markerIcon: '/assets/img/marker.png'
+    panControl: false,
+    scaleControl: false,
+    zoomControlOpt: {style: 'SMALL'},
+    zoomControl: false,
+    overviewMapControl: false,
+    streetViewControl: false,
+    mapTypeControl: false,
   }, options);
 
-  // Add default marker.
-  if (settings.markers !== false && settings.markers.length === 0) {
-    settings.markers.push({lat: settings.lat, lng: settings.lng});
+  this.markers = [];
+  this.map = this.create();
+
+  if (this.settings.addDefaultMarker) {
+    this.addMarker({lat: this.settings.lat, lng: this.settings.lng});
   }
+  this.addMarkers(this.settings.markers);
+}
 
-  if (typeof GMaps !== 'undefined' && $(settings.id).length) {
+GoogleMap.prototype = {
+  constructor: GoogleMap,
 
-    gmap = new GMaps({
-      div: settings.id,
-      lat: settings.lat,
-      lng: settings.lng,
-      zoom: settings.zoom,
-      panControl: false,
-      scaleControl: false,
-      zoomControlOpt: {style: 'SMALL'},
-      zoomControl: false,
-      overviewMapControl: false,
-      streetViewControl: false,
-      mapTypeControl: false,
-      scrollwheel: settings.scrollwheel,
-      dragend: settings.dragend || function(){},
-      radius_changed: settings.change || function(){},
-      center_changed: settings.change || function(){},
-      zoom_changed: settings.change || function(){},
-      // mouseup: settings.mouseup || function(){ console.log("mpouseup"); },
-      styles: settings.styles
-    });
-
-    for(i=0, len=settings.markers.length; i<len; i++) {
-      if (!settings.markers[i].icon) {
-        settings.markers[i].icon = settings.markerIcon;
-      }
-      if (typeof settings.clickMarker == 'function') {
-        settings.markers[i].click = settings.clickMarker;
-      }
-      markers.push(gmap.addMarker(settings.markers[i]));
+  create: function(options) {
+    if (typeof GMaps !== 'undefined' && $(this.settings.div).length) {
+      return new GMaps($.extend(true, {}, this.settings)); // Create deep clone of settings.
     }
+  },
 
-    if (settings.addZoomControls) {
-      $zoomcontrols = $('<div />', {class: 'zoom-controls'}).appendTo('#gmaps');
-      $('<div />', {class: 'zoom-in'}).html('<i class="icon-plus"></i>').appendTo($zoomcontrols);
-      $('<div />', {class: 'zoom-out'}).html('<i class="icon-minus"></i>').appendTo($zoomcontrols);
+  addMarkers: function(items) {
+    if (items.length) {
+      for (var i = 0, len = items.length; i < len; i++) {
+        this.addMarker(items[i]);
+      }
+    }
+  },
 
-      $('#gmaps')
-      .on('click', '.zoom-in', function(e){
-        gmap.zoomIn();
-      })
-      .on('click', '.zoom-out', function(e){
-        gmap.zoomOut();
+  addMarker: function(object) {
+    if (!object.icon) {
+      object.icon = this.settings.markerIcon;
+    }
+    this.markers.push(object);
+
+    if (this.map) {
+      this.map.addMarker(object);
+    }
+  },
+
+  gotoAddress: function(address) {
+    if (this.map && address) {
+      GMaps.geocode({
+        address: address,
+        callback: function(results, status) {
+          if (status == 'OK') {
+            var latlng = results[0].geometry.location;
+            this.map.setCenter(latlng.lat(), latlng.lng());
+            this.map.setZoom(11);
+          }
+        }
       });
     }
+  },
 
-  }
-}
-
-function findLocation(drawRoute){
-  if (gmap) {
-    GMaps.geolocate({
-      success: function(position) {
-        if (drawRoute) {
-          gmap.drawRoute({
-            origin: [position.coords.latitude, position.coords.longitude],
-            destination: [marker.lat, marker.lng],
-            travelMode: 'driving',
-            strokeColor: '#131540',
-            strokeOpacity: 0.6,
-            strokeWeight: 6
-          });
-          fitZoom();
-        } else {
-          gmap.setCenter(position.coords.latitude, position.coords.longitude);
-          gmap.setZoom(11);
+  locate: function(drawRoute){
+    var self = this;
+    if (this.map) {
+      GMaps.geolocate({
+        success: function(position) {
+          if (drawRoute) {
+            self.map.drawRoute({
+              origin: [position.coords.latitude, position.coords.longitude],
+              destination: [marker.lat, marker.lng],
+              travelMode: 'driving',
+              strokeColor: '#131540',
+              strokeOpacity: 0.6,
+              strokeWeight: 6
+            });
+            fitZoom();
+          } else {
+            self.map.setCenter(position.coords.latitude, position.coords.longitude);
+            self.map.setZoom(11);
+          }
+        },
+        error: function(error) {
+          // self.fitZoom();
+        },
+        not_supported: function(){
+          // self.fitZoom();
         }
-      },
-      error: function(error) {
-        // fitZoom();
-      },
-      not_supported: function(){
-        // fitZoom();
-      }
-    });
-  }
-}
+      });
+    }
+  },
 
-function gotoAddress(address) {
-  if (gmap && address) {
-    GMaps.geocode({
-      address: address,
-      callback: function(results, status) {
-        if (status == 'OK') {
-          var latlng = results[0].geometry.location;
-          gmap.setCenter(latlng.lat(), latlng.lng());
-          gmap.setZoom(11);
+  fitZoom: function(){
+    if (this.map) {
+      this.map.fitZoom();
+    }
+  },
+
+  getVisibleMarkers: function() {
+    if (this.map && this.markers.length) {
+      var bounds = this.map.map.getBounds(),
+          list = [];
+
+      this.markers.forEach(function(marker){
+        if (bounds.contains(marker.position)) {
+          list.push(marker);
         }
-      }
-    });
+      });
+
+      return list;
+    }
   }
 }
-
-function fitZoom(){
-  if (gmap) {
-    gmap.fitZoom();
-  }
-}
-
-function getVisibleMarkers() {
-  if (gmap && markers.length) {
-    var bounds = gmap.map.getBounds(),
-        list = [];
-
-    [].map.call(markers, function(marker){
-      if (bounds.contains(marker.position)) {
-        list.push(marker);
-      }
-    });
-
-    return list;
-  }
-}
-
-function getAllMarkers() {
-  return markers;
-}
-
-module.exports = {
-  getMap: function(){ return gmap.map; },
-
-  create: build,
-  locate: findLocation,
-  fit: fitZoom,
-  goTo: gotoAddress,
-
-  getVisibleMarkers: getVisibleMarkers,
-  getAllMarkers: getAllMarkers
-};
 
 },{"../../../bower_components/gmaps/gmaps.js":3,"jquery":20}],26:[function(require,module,exports){
 
