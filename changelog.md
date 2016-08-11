@@ -21,6 +21,7 @@
 - Improve Filter module to work without isotope.
 - Improve Gmap module to use a decent class export.
 - Add Object.values polyfill.
+- Add Gmap lat and lng as data attributes.
 
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.

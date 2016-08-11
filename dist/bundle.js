@@ -14129,16 +14129,23 @@ var $ = require('jquery');
 
 module.exports = GoogleMap;
 
-function GoogleMap(options) {
+function GoogleMap(id, options) {
+  if (!options) {
+    options = id;
+    id = '#gmaps';
+  }
+
+  var $id = $(id);
+
   // Default options.
   this.settings = $.extend({
     // Custom options.
     addDefaultMarker: true,
 
     // Gmaps options.
-    div: '#gmaps',
-    lat: 51.166447,
-    lng: 4.155782,
+    div: id,
+    lat: $id.data('lat') || 51.166447,
+    lng: $id.data('lng') || 4.155782,
     markers: [],
     addZoomControls: true,
     scrollwheel: false,
