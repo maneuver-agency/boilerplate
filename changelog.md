@@ -16,6 +16,7 @@
 **JS**
 - Improve Ninja Form module to not remove field attributes if they exist.
 - Improve Load More module to allow multiple instances on 1 page.
+- Improve Filter module to work without isotope.
 
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.

@@ -3,9 +3,13 @@ module.exports = Filter;
 
 var events = [];
 
-function Filter(isotope, allowed_per_group) {
+function Filter(isotope, options) {
   this.isotope = isotope;
-  this.allowed_per_group = allowed_per_group || false; // false = unlimited
+  this.options = $.extend({
+    allowed_per_group: false,     // make groups of filtering.
+    exclusive: true,              // only allow 1 active filter.
+    active_class: 'active',       // used as class for active filter item.
+  }, options);
   this.keys = getStore();
 
   this.doFiltering();
@@ -38,7 +42,15 @@ Filter.prototype = {
     }
     main_selector = combi_selectors.join(',');
 
-    this.isotope.arrange({ filter: main_selector});
+    if ('arrange' in this.isotope && typeof this.isotope.arrange == 'function') {
+      this.isotope.arrange({ filter: main_selector});
+    } else {
+      if (main_selector) {
+        $(this.isotope).hide().filter(main_selector).show();
+      } else {
+        $(this.isotope).show();
+      }
+    }
     trigger(this, 'update');
   },
 
@@ -48,7 +60,8 @@ Filter.prototype = {
     group = group || 'main';
 
     // Make sure the group is present in our list.
-    if (!(group in this.keys)) {
+    // If this is an exclusive filtering; discard all present filters.
+    if (!(group in this.keys) || this.options.exclusive) {
       this.keys[group] = [];
     }
 
@@ -66,7 +79,7 @@ Filter.prototype = {
         this.keys[group].splice(i, 1);
       }
       // If we exceed the maximum length, remove the first in the list.
-      if (this.allowed_per_group && this.keys[group].length > this.allowed_per_group) {
+      if (this.options.allowed_per_group && this.keys[group].length > this.options.allowed_per_group) {
         this.keys[group].shift();
       }
 
@@ -79,6 +92,30 @@ Filter.prototype = {
 
     this.doFiltering();
     setStore(this.keys);
+  },
+
+  setNav: function($nav) {
+    var self = this;
+
+    $nav.on('click', function(){
+      var group = $(this).data('filter-group');
+      self.update($(this).data('filter'), group);
+    });
+
+    self.on('update', function(keys){
+      $nav.removeClass(self.options.active_class);
+
+      if (Object.values(keys).length === 0) {
+        $nav.filter('[data-filter="*"]').addClass(self.options.active_class);
+      } else {
+        for (var group in keys) {
+          for (var i in keys[group]) {
+            var key = keys[group][i];
+            $nav.filter('[data-filter="'+ key +'"]').addClass(self.options.active_class);
+          }
+        }
+      }
+    });
   },
 
   reset: function(group) {
