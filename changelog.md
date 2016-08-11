@@ -19,6 +19,7 @@
 - Improve Ninja Form module to not remove field attributes if they exist.
 - Improve Load More module to allow multiple instances on 1 page.
 - Improve Filter module to work without isotope.
+- Add Object.values polyfill.
 
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.
@@ -28,6 +29,7 @@
 **Other**
 - Add error handling to browserify gulp task.
 - Add npm build script for production.
+- Add npm-debug to gitignore.
 
 ## 1.0.3 - 13/06/2016
 
