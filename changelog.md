@@ -27,6 +27,7 @@
 - Add try_link twig filter to make links of phone numbers and emailadresses.
 - Add link_to_gmaps twig filter.
 - Rewrite lipsum filter to not use fsockopen.
+- Add menus twig filter to mimic Wordpress menu functionality.
 
 **Other**
 - Add error handling to browserify gulp task.

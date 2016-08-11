@@ -23,6 +23,45 @@ $twig->addFunction(new Twig_SimpleFunction('dump', function($var){
   var_dump($var);exit;
 }));
 
+$twig->addFunction(new Twig_SimpleFunction('menus', function(){
+  return [
+    'header' => [
+      'items' => [
+        [
+          'title' => 'product1',
+          'link' => '/product1',
+          'class' => ''
+        ],
+        [
+          'title' => 'product2',
+          'link' => '/product2',
+          'class' => ''
+        ],
+        [
+          'title' => 'product3',
+          'link' => '/product3',
+          'class' => ''
+        ],
+        [
+          'title' => 'about',
+          'link' => '/about',
+          'class' => 'nav-more-item'
+        ],
+        [
+          'title' => 'extra',
+          'link' => '/extra',
+          'class' => ''
+        ],
+        [
+          'title' => 'contact',
+          'link' => '/contact',
+          'class' => ''
+        ],
+      ]
+    ]
+  ];
+}));
+
 $twig->addFilter(new Twig_SimpleFilter('prefix', function($string, $prefix){
   if (!empty($string)) {
     return $prefix . $string;

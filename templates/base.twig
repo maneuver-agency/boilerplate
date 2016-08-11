@@ -64,19 +64,23 @@
               <span class="icon-bar"></span>
             </button>
           </div>
+
           <nav id="main-menu" class="main-menu navbar-collapse collapse" role="navigation">
             <ul class="nav navbar-nav navbar-right navbar-links">
-              <li><a href="/about" class="menu-link {{ active('about') }}">product 1</a></li>
-              <li><a href="/about" class="menu-link {{ active('about') }}">product 2</a></li>
-              <li><a href="/about" class="menu-link {{ active('about') }}">product 3</a></li>
-              <li class="nav-more-item">
-                <a class="nav-more-link">more</a>
-                <ul class="nav-more-list sub-menu">
-                  <li><a href="/about" class="menu-link {{ active('about') }}">about</a></li>
-                  <li><a href="/products" class="menu-link {{ active('products') }}">extra</a></li>
-                  <li><a href="/contact" class="menu-link {{ active('contact') }}">contact</a></li>
-                </ul>
-              </li>
+              {% set hasmore = false %}
+              {% for item in menus().header.items %}
+                {% if 'nav-more-item' in item.class %}
+                  <li class="nav-more-item">
+                    <a class="nav-more-link">more</a>
+                    <ul class="nav-more-list sub-menu">
+                  {% set hasmore = true %}
+                {% endif %}
+                <li><a href="{{ item.link }}" class="menu-link {{ item.class }}">{{ item.title }}</a></li>
+                {% if loop.last and hasmore %}
+                    </ul>
+                  </li>
+                {% endif %}
+              {% endfor %}
             </ul>
           </nav>
         </div>
