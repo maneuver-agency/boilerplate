@@ -53,7 +53,9 @@ NinjaForm.prototype.parseIn = function(targetForm) {
     if ($sourceEl.length) {
       $.each($sourceEl.get(0).attributes, function(){
         if (this.name !== 'class') {
-          $t.attr(this.name, this.value);
+          if (!$t.get(0).hasAttribute(this.name)) {
+            $t.attr(this.name, this.value);
+          }
         }
       });
 
@@ -87,7 +89,7 @@ NinjaForm.prototype.parseIn = function(targetForm) {
   // Check for no-display.
   if ($sourceForm.hasClass('ninja-forms-no-display')) {
     // The form has been submitted and is set to dissapear after.
-    $targetForm.hide();
+    $targetForm.contents().hide();
     $('[data-hide-with-form="'+ self.form_id +'"]').hide();
   }
 
