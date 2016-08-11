@@ -1,3 +1,25 @@
+/**
+ * Load More script.
+ *
+ * @author Maneuver
+ *
+ * Used to load in more items of a specific post_type.
+ *
+ * USAGE:
+ *
+ * var postLoader = new LoadMore();
+ * postLoader.setup({
+ *   mode: 'manual',
+ *   loader: '#loadmore-loader',
+ *   button: '#load-more-button',
+ *   hideButton: true,
+ *   posttype: 'post',
+ *   setHistory: false,
+ *   container: '#pots-container'
+ * });
+ * postLoader.on('update', function(html){ // do something with html });
+ */
+
 var $ = require('jquery');
 
 module.exports = LoadMore;

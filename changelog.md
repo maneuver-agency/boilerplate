@@ -22,6 +22,7 @@
 - Improve Gmap module to use a decent class export.
 - Add Object.values polyfill.
 - Add Gmap lat and lng as data attributes.
+- Add docs to own scripts.
 
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.

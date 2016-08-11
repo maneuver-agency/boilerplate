@@ -1,3 +1,29 @@
+/**
+ * Ninja Form script.
+ *
+ * @author Maneuver
+ *
+ * Use this to parse the output of a Wordpress Ninja Form field into a
+ * custom written HTML form.
+ *
+ * USAGE:
+ *
+ * var frmContact = new NinjaForm(form_id);
+ * frmContact.parseIn('#id_of_target_form');
+ *
+ * Make sure the Ninja Form is outputted in twig like so:
+ * <div class="hide">
+ *  {{ fn('ninja_forms_display_form', form_id) }}
+ * </div>
+ *
+ * And every field in your custom form must have a data attribute
+ * with the corresponding field ID:
+ *
+ * <input data-field="field_id" class="form-control">
+ *
+ */
+
+
 var $ = require('jquery');
 
 /**

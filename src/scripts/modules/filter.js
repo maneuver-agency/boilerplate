@@ -1,3 +1,18 @@
+/**
+ * Filter script.
+ *
+ * @author Maneuver
+ *
+ * Used to filter a list of posts. Supports grouping.
+ *
+ * USAGE:
+ *
+ * var posts_filter = new Filter($('.post'));
+ * posts_filter.setNav($('#posts_filter').find('button'));
+ * posts_filter.on('update', function(keys){ // do something with keys. });
+ *
+ */
+
 
 module.exports = Filter;
 
