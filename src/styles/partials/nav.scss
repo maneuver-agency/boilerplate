@@ -24,7 +24,7 @@
 
   // On mobile screens:
   // Center everyting on the page.
-  @media (max-width: $grid-float-breakpoint) {
+  @media (max-width: $mobile-switch) {
     .nav {
       @include flexbox-vertical;
       align-items: center;
@@ -39,7 +39,7 @@
 
   // On larger screens:
   // Reset to the default navbar.
-  @media (min-width: $grid-float-breakpoint) {
+  @media (min-width: $mobile-switch) {
 
     .sub-menu {
       position: absolute;
@@ -73,7 +73,7 @@ html body .site-wrap .nav-more {
     right:0;
   }
 
-  @media (min-width: $grid-float-breakpoint) and (max-width: ($nav-more-breakpoint - 1)) {
+  @media (min-width: $mobile-switch) and (max-width: ($nav-more-breakpoint - 1)) {
     &-link {
       display: block;
     }
@@ -82,7 +82,7 @@ html body .site-wrap .nav-more {
     }
   }
 
-  @media (min-width: max($nav-more-breakpoint, $grid-float-breakpoint)) {
+  @media (min-width: max($nav-more-breakpoint, $mobile-switch)) {
     &-item {
       margin-left: 0;
       margin-right: 0;

@@ -36,7 +36,8 @@ $screen-xxs-max:            479px;
 $nav-more-breakpoint:       660px;
 
 // Determines when the mobile menu kicks in.
-$grid-float-breakpoint:     479px;
+$mobile-switch:             479px;
+$grid-float-breakpoint:     $mobile-switch;
 
 
 /*** EASING ***/
