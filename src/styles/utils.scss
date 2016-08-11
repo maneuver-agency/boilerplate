@@ -48,6 +48,7 @@ a:not([href]) { cursor: default; }
 .halign                 { @include flexbox-horizontal; justify-content: center; }
 .cvalign                { @extend .valign; align-items: center; }
 .chalign                { @extend .halign; align-items: center; }
+.center-cols            { justify-content: space-between; }
 
 @media (max-width: $screen-xs-max) {
   .col-xs-spacing         { margin-bottom: 15vw; }

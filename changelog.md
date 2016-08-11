@@ -11,7 +11,7 @@
 - Add hero component css improvements.
 - Remove box-shadow from active buttons.
 - Add hero and intro sections.
-- Hero style improvements.
+- Add .center-cols class to center cols of a row horizontally.
 
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.
