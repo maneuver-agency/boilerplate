@@ -35,6 +35,7 @@
 - Add 'styles' and 'scripts' blocks to base.twig.
 - Bugfix: javascript variable templateDir was an absolute path instead of an URL.
 - Delete facebook.jpg in assets folder.
+- Add more WP options to config file.
 
 ## 1.0.3 - 13/06/2016
 
