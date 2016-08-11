@@ -31,6 +31,7 @@
 - Add error handling to browserify gulp task.
 - Add npm build script for production.
 - Add npm-debug to gitignore.
+- Add wp_title config entry + use that to render the meta title.
 
 ## 1.0.3 - 13/06/2016
 

@@ -29,8 +29,9 @@ $config = [
     'path' => __DIR__,
   ],
 
-  'wp_head' => '',
-  'wp_footer' => '',
+  'wp_head' => null,
+  'wp_footer' => null,
+  'wp_title' => 'Boilerplate',
 
   'options' => [
     'facebook' => 'http://www.facebook.com',
