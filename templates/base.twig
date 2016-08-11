@@ -27,6 +27,9 @@
     <meta name="twitter:site"     content="{# @handle #}">
 
     <link rel="stylesheet" href="{{ theme.link }}/dist/{{ ENV == 'production' ? 'main.min.css' : 'main.css' }}">
+    {# Implement in template file to add stylesheets. #}
+    {% block styles %}{% endblock %}
+
     <script type="text/javascript">
       // WebFontConfig = {
       //   google: { families: [ 'Source+Sans+Pro:700,500,400,300:latin' ] }
@@ -115,6 +118,9 @@
       MNVR.templateDir = "{{ theme.path }}";
       MNVR.forms = {{ mnvr_forms|default({})|json_encode }};
     </script>
+
+    {# Implement in template file to add scripts. #}
+    {% block scripts %}{% endblock %}
 
     <script src="{{ theme.link }}/dist/{{ ENV == 'production' ? 'bundle.min.js' : 'bundle.js' }}"></script>
     <!--[if lt IE 9]>
