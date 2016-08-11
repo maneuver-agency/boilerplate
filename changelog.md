@@ -13,6 +13,10 @@
 - Add hero and intro sections.
 - Add .center-cols class to center cols of a row horizontally.
 
+**JS**
+- Improve Ninja Form module to not remove field attributes if they exist.
+- Improve Load More module to allow multiple instances on 1 page.
+
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.
 - Add link_to_gmaps twig filter.

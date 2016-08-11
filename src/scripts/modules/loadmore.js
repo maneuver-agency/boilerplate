@@ -1,22 +1,32 @@
 var $ = require('jquery');
 
-module.exports = {
+module.exports = LoadMore;
+
+function LoadMore() {
 
   /**
    * Choose between 'manual' or 'auto'.
    **/
-  mode: 'auto',
+  this.mode = 'auto';
 
-  loading: false,
-  events: [],
+  this.storageKey = 'load-more';
 
-  $loader: $(),
-  $button: $(),
+  this.loading = false;
+  this.events = [];
 
-  settings: {
+  this.$loader = $();
+  this.$button = $();
+  this.$container = $();
+
+  this.settings = {
     hideButton: false,
-    posttype: 'post' // @TODO: make it work with different lists on 1 page?
-  },
+    posttype: 'post',
+    setHistory: true
+  };
+}
+
+LoadMore.prototype = {
+  constructor: LoadMore,
 
   setup: function(options){
     if (options.mode) {
@@ -28,12 +38,20 @@ module.exports = {
     if (options.button) {
       this.$button = $(options.button);
     }
+    if (options.container) {
+      this.$container = $(options.container);
+    }
 
     delete options.mode;
     delete options.loader;
     delete options.button;
+    delete options.container;
 
     $.extend(this.settings, options);
+
+    // Make the storage key unique to this instance.
+    // This is important when there are multiple instances on 1 page.
+    this.storageKey += window.location.pathname + this.settings.posttype;
 
     this.$loader.hide();
 
@@ -45,12 +63,18 @@ module.exports = {
         this.setupInfinite();
         break;
     }
+
+    // If the user has already loaded in more items.
+    // Make sure we load them in again on a new pageload.
+    if (this.getCurrentPage() > 1) {
+      this.fetch(true);
+    }
   },
 
   setupManual: function() {
     var self = this;
 
-    this.$button.show();
+    this.$button.toggle(this.hasItemsLeft());
 
     this.$button.on('click', function(){
       if (self.loading === false) {
@@ -72,18 +96,21 @@ module.exports = {
   },
 
   getCurrentPage: function() {
-    if (window.location.pathname) {
+    if (this.settings.setHistory && window.location.pathname) {
       var regex = new RegExp('/page/([^&]*)');
       var matches = window.location.pathname.match(regex);
       if (matches) {
         return parseInt(matches[1], 10);
       }
+    } else {
+      var page = this.getStorage('page');
+      if (page) return page;
     }
     return 1;
   },
 
   setPage: function(page) {
-    if ('history' in window) {
+    if (this.settings.setHistory && 'history' in window) {
       var title = document.title;
       var regex = new RegExp('Page ([^&]*)');
       if (title.search(regex) != -1) {
@@ -91,26 +118,43 @@ module.exports = {
       } else {
         title = title + ' - Page ' + page;
       }
-      window.history.pushState({}, title, '/page/'+page);
+      window.history.pushState({}, title, 'page/'+page);
 
       // Browsers still ignore the title parameter in pushState.
       document.title = title;
+    } else {
+      this.setStorage('page', page);
     }
   },
 
-  fetch: function(){
+  setStorage: function(key, value) {
+    if ('localStorage' in window) {
+      window.localStorage.setItem(this.storageKey + '[' + key + ']', value);
+    }
+  },
+
+  getStorage: function(key) {
+    if ('localStorage' in window) {
+      return window.localStorage.getItem(this.storageKey + '[' + key + ']');
+    }
+  },
+
+  hasItemsLeft: function() {
+    var page = this.getCurrentPage();
+    return mnvr_loadmore.count[this.settings.posttype]
+      && mnvr_loadmore.posts_per_page * page < mnvr_loadmore.count[this.settings.posttype].publish;
+  },
+
+  fetch: function(init){
     var self = this;
 
-    var page = this.getCurrentPage();
-
-    if (mnvr_loadmore.count[this.settings.posttype]
-      && mnvr_loadmore.posts_per_page * page >= mnvr_loadmore.count[this.settings.posttype].publish)
-    {
+    if (!init && !this.hasItemsLeft()){
       // There are no more posts to load. Abandon ship!
       return;
     }
 
-    page++;
+    var page = this.getCurrentPage();
+    if (!init) page++;
 
     var data = {
       nonce: mnvr_loadmore.nonce,
@@ -118,13 +162,16 @@ module.exports = {
       page: page
     };
 
+    if (init) {
+      data.posts_per_page = page * mnvr_loadmore.posts_per_page;
+    }
+
     self.loading = true;
     self.$button.prop('disabled', true).toggle(!self.settings.hideButton && self.mode == 'manual');
     self.$loader.show();
 
     $.post(mnvr_loadmore.url, data, function(res){
-      self.trigger('update', res.data);
-      self.setPage(page);
+      self.onUpdate(res.data, page);
 
     }).fail(function(){
       console.error('load more ajax call failed');
@@ -132,9 +179,16 @@ module.exports = {
     }).always(function(){
       self.loading = false;
       self.$loader.hide();
-      self.$button.prop('disabled', false).toggle(self.mode == 'manual');
-
+      self.$button.prop('disabled', false).toggle(self.mode == 'manual' && self.hasItemsLeft());
     });
+  },
+
+  onUpdate: function(data, page) {
+    this.$container.append(data);
+
+    this.trigger('update', data);
+    this.setPage(page);
+
   },
 
   trigger: function(eventname, args) {
