@@ -12,6 +12,8 @@
 - Remove box-shadow from active buttons.
 - Add hero and intro sections.
 - Add .center-cols class to center cols of a row horizontally.
+- Rename $grid-float-breakpoint to $mobile-switch for clarity.
+- Add target blank to site-socials links.
 
 **JS**
 - Improve Ninja Form module to not remove field attributes if they exist.
