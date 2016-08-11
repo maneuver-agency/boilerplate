@@ -2,7 +2,7 @@
 
 ---
 
-## 1.0.4 - ???
+## 1.0.4 - 11/08/2016
 
 **CSS & HTML**
 - Improvements to rhythm classes.
