@@ -10,6 +10,8 @@
 - Delete alternate language link tag.
 - Add hero component css improvements.
 - Remove box-shadow from active buttons.
+- Add hero and intro sections.
+- Hero style improvements.
 
 **PHP**
 - Add try_link twig filter to make links of phone numbers and emailadresses.

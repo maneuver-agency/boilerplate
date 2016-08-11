@@ -1,6 +1,8 @@
 .hero {
-  min-height: 450px;
+  min-height: 350px;
   max-height: 700px;
+  background-position: center center;
+  background-size: cover;
 
   // NOTE: Do not give the hero a fixed height.
   // Except when it has no children.

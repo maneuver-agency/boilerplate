@@ -2,22 +2,7 @@
 
 {% block content %}
 
-<div class="site-jumbotron jumbotron">
-  <h1>Awesome catchy one-liner</h1>
-</div>
-
-<section class="page-section ">
-  <div class="container">
-    <header class="page-section__header">
-      <h1 class="page-section__title">Page section title</h1>
-    </header>
-    <div class="page-section__content">
-      <div class="bodytext">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi vitae reiciendis optio eligendi et iure praesentium ut, explicabo minus voluptates rerum enim delectus, omnis voluptatem? Eos rerum nobis reprehenderit provident!</p>
-      </div>
-    </div>
-  </div>
-</section>
-
+{% include 'templates/inc/sections/hero.twig' %}
+{% include 'templates/inc/sections/intro.twig' %}
 
 {% endblock %}
