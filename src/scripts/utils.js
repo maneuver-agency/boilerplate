@@ -33,7 +33,9 @@ on('click', '.clickable', function(e){
  **/
 on('click', 'a[href^="#"]', function(e){
   var id = $(this).attr('href');
-  window.animateTo(id);
+  if (id != '#') {
+    window.animateTo(id);
+  }
   e.preventDefault();
 });
 

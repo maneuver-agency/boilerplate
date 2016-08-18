@@ -2,6 +2,11 @@
 
 ---
 
+## 1.0.5 - ?
+
+**JS**
+- Fixed a bug where clicking a link with only a '#' as href caused an JS error.
+
 ## 1.0.4 - 11/08/2016
 
 **CSS & HTML**
