@@ -1,16 +1,13 @@
 {% extends '/templates/base.twig' %}
 
-
 {% block body_class %}{{ parent() }} contact{% endblock %}
-{% block scripts %}<script src="http://maps.googleapis.com/maps/api/js?key="></script>{% endblock %}
 
 {% block content %}
 
 <div class="container">
 
-  <div id="gmaps" class="googlemaps" style="height:500px" data-lat="{{ options.location.lat }}" data-lng="{{ options.location.lng }}">
-
-  </div>
+  <div id="map" class="map" style="height:500px" data-lat="{{ options.location.lat }}" data-lng="{{ options.location.lng }}"></div>
+  {#<div id="gmaps2" class="googlemaps" style="height:500px" data-lat="{{ options.location.lat }}" data-lng="{{ options.location.lng }}"></div>#}
 </div>
 
 

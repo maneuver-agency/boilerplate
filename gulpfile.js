@@ -12,6 +12,7 @@ var gulp = require('gulp')
     ,source = require('vinyl-source-stream')
     ,buffer = require('vinyl-buffer')
     ,browserSync = require('browser-sync')
+    ,importCss = require('gulp-import-css')
     ;
 
 /************/
@@ -74,6 +75,7 @@ gulp.task('styles', function(){
   }))
   .pipe(gulpif(!isProd(), sourcemaps.init()))
   .pipe(sass({outputStyle: 'compressed'}))
+  .pipe(importCss())
   .pipe(autoprefixer({
     browsers: ['last 3 versions']
   }))
