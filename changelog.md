@@ -13,6 +13,7 @@
 
 **Other**
 - Fixed error in the styletiles where 'hero.twig' could not be found.
+- Add flexrows to styletiles for better layout.
 
 ## 1.0.4 - 11/08/2016
 
