@@ -6,6 +6,7 @@
 
 **CSS & HTML**
 - Add a macro and styling to output a sharing button.
+- Add option to sharing button macro to output a small version.
 - Add the 'current-nav-item'-class to the active menu-item.
 
 **JS**

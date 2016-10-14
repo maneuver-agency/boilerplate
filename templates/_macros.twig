@@ -42,9 +42,9 @@
  # Use:
  # macros.share_button(_context, 'facebook', 'http://google.be')
 #}
-{% macro share_button(ctx, name, url) %}
+{% macro share_button(ctx, name, url, small) %}
   {% import _self as this %}
-  <a href="{{ url|share(name) }}" class="btn btn-default btn-share clr-{{ name }}">
+  <a href="{{ url|share(name) }}" class="btn btn-default btn-share clr-{{ name }} {{ small ? 'btn-share--small' }}">
     <span class="btn-share__icon">{{ _self.socialicon(ctx, name) }}</span>
     <span class="btn-share__label">Share</span>
   </a>
