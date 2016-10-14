@@ -34,7 +34,12 @@
  * Use:
  * .spacer-sm-40   => 40px spacing on small screens.
  * .spacer-md-3vh  => 3vh spacing on medium screens.
+ * .spacer-all-60  => 60px on all screens.
  */
+
+$steps-px: 20;
+$steps-vh: 1;
+$steps-vw: 1;
 
 @mixin spacer($h, $bp, $unit:'px') {
   $suffix: $h;
@@ -44,7 +49,7 @@
   .spacer-#{$bp}-#{$suffix} { height: #{$h}#{$unit}; }
 }
 
-@mixin make-spacers($step:20, $max:200, $bp:'xs', $unit:'px') {
+@mixin make-spacers($step:$steps-px, $max:200, $bp:'xs', $unit:'px') {
   $i: 0;
   @while $i <= $max {
     @include spacer($i, $bp, $unit);
@@ -52,34 +57,38 @@
   }
 }
 
+@include make-spacers($steps-px, 200, 'all');
+@include make-spacers($steps-vh, 20, 'all', 'vh');
+@include make-spacers($steps-vw, 20, 'all', 'vw');
+
 @media (max-width: $screen-xxs-max) {
-  @include make-spacers(20, 200, 'xxs');
-  @include make-spacers(1, 20, 'xxs', 'vh');
-  @include make-spacers(1, 20, 'xxs', 'vw');
+  @include make-spacers($steps-px, 200, 'xxs');
+  @include make-spacers($steps-vh, 20, 'xxs', 'vh');
+  @include make-spacers($steps-vw, 20, 'xxs', 'vw');
 }
 
 @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
-  @include make-spacers(20, 200, 'xs');
-  @include make-spacers(1, 20, 'xs', 'vh');
-  @include make-spacers(1, 20, 'xs', 'vw');
+  @include make-spacers($steps-px, 200, 'xs');
+  @include make-spacers($steps-vh, 20, 'xs', 'vh');
+  @include make-spacers($steps-vw, 20, 'xs', 'vw');
 }
 
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-  @include make-spacers(20, 200, 'sm');
-  @include make-spacers(1, 20, 'sm', 'vh');
-  @include make-spacers(1, 20, 'sm', 'vw');
+  @include make-spacers($steps-px, 200, 'sm');
+  @include make-spacers($steps-vh, 20, 'sm', 'vh');
+  @include make-spacers($steps-vw, 20, 'sm', 'vw');
 }
 
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-  @include make-spacers(20, 200, 'md');
-  @include make-spacers(1, 20, 'md', 'vh');
-  @include make-spacers(1, 20, 'md', 'vw');
+  @include make-spacers($steps-px, 200, 'md');
+  @include make-spacers($steps-vh, 20, 'md', 'vh');
+  @include make-spacers($steps-vw, 20, 'md', 'vw');
 }
 
 @media (min-width: $screen-lg-min) {
-  @include make-spacers(20, 200, 'lg');
-  @include make-spacers(1, 20, 'lg', 'vh');
-  @include make-spacers(1, 20, 'lg', 'vw');
+  @include make-spacers($steps-px, 200, 'lg');
+  @include make-spacers($steps-vh, 20, 'lg', 'vh');
+  @include make-spacers($steps-vw, 20, 'lg', 'vw');
 }
 
 /**********/

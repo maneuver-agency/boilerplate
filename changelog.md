@@ -8,6 +8,7 @@
 - Add a macro and styling to output a sharing button.
 - Add option to sharing button macro to output a small version.
 - Add the 'current-nav-item'-class to the active menu-item.
+- Add a spacer class that'll be used on all screen sizes.
 
 **JS**
 - Fixed a bug where clicking a link with only a '#' as href caused an JS error.
