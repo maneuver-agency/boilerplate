@@ -1,19 +1,6 @@
 require('leaflet');
 
-var accessToken;
-var currentProvider = 'mapbox';
-
 module.exports = {
-
-  use: function(provider) {
-    if (['googlemaps', 'mapbox'].indexOf(provider) != -1) {
-      currentProvider = provider;
-    }
-  },
-
-  setKey: function(key) {
-    accessToken = key;
-  },
 
   create: function(id, options) {
     options = options || {};
@@ -28,15 +15,6 @@ module.exports = {
       }
 
       createMap(id, options);
-
-      // switch (currentProvider) {
-      //   case 'mapbox':
-      //     createMapbox(id, options);
-      //     break;
-      //   case 'googlemaps':
-      //     createGooglemaps(id, options);
-      //     break;
-      // }
 
     }
   }
@@ -73,7 +51,3 @@ function createMap(element, options) {
   // map.getSize();
   // map.invalidateSize();
 }
-
-// function createGooglemaps(element, options) {
-//   console.debug('Google maps is not implemented yet');
-// }

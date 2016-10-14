@@ -24691,6 +24691,10 @@ function initialize(){
     // urltemplate: 'https://api.mapbox.com/styles/v1/maneuver/ciua24ers00322iodnbymkbuv/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg',
     icon: '/assets/img/marker.svg'
   });
+  Maps.create('map2', {
+    urltemplate: 'https://api.mapbox.com/styles/v1/maneuver/ciua24ers00322iodnbymkbuv/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg',
+    // icon: '/assets/img/marker.svg'
+  });
 
   /* Create Google Maps */
   // if ($('#gmaps').length) {
@@ -24767,20 +24771,7 @@ initialize();
 },{"../../bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js":1,"../../bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js":2,"./modules/maps.js":25,"./polyfills.js":26,"./utils.js":27,"browsernizr":3,"browsernizr/test/touchevents":18,"jquery":19,"outdated-browser-rework":21}],25:[function(require,module,exports){
 require('leaflet');
 
-var accessToken;
-var currentProvider = 'mapbox';
-
 module.exports = {
-
-  use: function(provider) {
-    if (['googlemaps', 'mapbox'].indexOf(provider) != -1) {
-      currentProvider = provider;
-    }
-  },
-
-  setKey: function(key) {
-    accessToken = key;
-  },
 
   create: function(id, options) {
     options = options || {};
@@ -24795,15 +24786,6 @@ module.exports = {
       }
 
       createMap(id, options);
-
-      // switch (currentProvider) {
-      //   case 'mapbox':
-      //     createMapbox(id, options);
-      //     break;
-      //   case 'googlemaps':
-      //     createGooglemaps(id, options);
-      //     break;
-      // }
 
     }
   }
@@ -24840,10 +24822,6 @@ function createMap(element, options) {
   // map.getSize();
   // map.invalidateSize();
 }
-
-// function createGooglemaps(element, options) {
-//   console.debug('Google maps is not implemented yet');
-// }
 
 },{"leaflet":20}],26:[function(require,module,exports){
 

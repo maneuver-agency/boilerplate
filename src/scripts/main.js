@@ -27,6 +27,10 @@ function initialize(){
     // urltemplate: 'https://api.mapbox.com/styles/v1/maneuver/ciua24ers00322iodnbymkbuv/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg',
     icon: '/assets/img/marker.svg'
   });
+  Maps.create('map2', {
+    urltemplate: 'https://api.mapbox.com/styles/v1/maneuver/ciua24ers00322iodnbymkbuv/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg',
+    // icon: '/assets/img/marker.svg'
+  });
 
   /* Create Google Maps */
   // if ($('#gmaps').length) {
