@@ -24,7 +24,7 @@ $twig->addFunction(new Twig_SimpleFunction('dump', function($var){
 }));
 
 $twig->addFunction(new Twig_SimpleFunction('menus', function(){
-  return [
+  $links = [
     'header' => [
       'items' => [
         [
@@ -60,6 +60,15 @@ $twig->addFunction(new Twig_SimpleFunction('menus', function(){
       ]
     ]
   ];
+
+  // Find active item.
+  foreach ($links['header']['items'] as &$item) {
+    if ($item['link'] == $_SERVER['REQUEST_URI']) {
+      $item['class'] .= 'current-nav-item';
+    }
+  }
+
+  return $links;
 }));
 
 $twig->addFilter(new Twig_SimpleFilter('prefix', function($string, $prefix){

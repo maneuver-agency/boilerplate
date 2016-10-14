@@ -6,6 +6,7 @@
 
 **CSS & HTML**
 - Add a macro and styling to output a sharing button.
+- Add the 'current-nav-item'-class to the active menu-item.
 
 **JS**
 - Fixed a bug where clicking a link with only a '#' as href caused an JS error.
