@@ -31,3 +31,28 @@
     }
   }
 }
+
+.btn-share {
+  display: inline-flex;
+
+  &__icon {
+    width: 18px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  &__label {
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .share--small & {
+    padding: 6px;
+    .btn-social__icon {
+      margin-right: 0;
+    }
+    .btn-social__label {
+      display: none;
+    }
+  }
+}

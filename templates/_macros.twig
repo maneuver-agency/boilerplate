@@ -1,10 +1,25 @@
+
 {##
  # SVG SOCIAL-ICON
+ # Outputs an icon of a social network. See social-icons.svg
+ # for all available icons.
+ #
+ # Use:
+ # macros.socialicon(_context, 'facebook')
  #}
 {% macro socialicon(ctx, name) %}
   <svg class="social-icon-{{ name }} svg-icon"><use xlink:href="{{ ctx.theme.link }}/assets/social-icons.svg#icon-{{ name }}"></use></svg>
 {% endmacro %}
 
+{# ########################################################################## #}
+
+{##
+ # SOCIAL LINKS
+ # Outputs the icons for all social links defined in the CMS configuration.
+ #
+ # Use:
+ # macros.socials(_context)
+#}
 {% macro socials(ctx) %}
   {% import _self as this %}
   <div class="site-socials">
@@ -17,3 +32,22 @@
     {% endfor %}
   </div>
 {% endmacro %}
+
+{# ########################################################################## #}
+
+{##
+ # SHARE BUTTON
+ # Outputs a button to share the current page on the selected social network.
+ #
+ # Use:
+ # macros.share_button(_context, 'facebook', 'http://google.be')
+#}
+{% macro share_button(ctx, name, url) %}
+  {% import _self as this %}
+  <a href="{{ url|share(name) }}" class="btn btn-default btn-share clr-{{ name }}">
+    <span class="btn-share__icon">{{ _self.socialicon(ctx, name) }}</span>
+    <span class="btn-share__label">Share</span>
+  </a>
+{% endmacro %}
+
+{# ########################################################################## #}

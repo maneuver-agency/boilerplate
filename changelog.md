@@ -4,6 +4,9 @@
 
 ## 1.0.5 - ?
 
+**CSS & HTML**
+- Add a macro and styling to output a sharing button.
+
 **JS**
 - Fixed a bug where clicking a link with only a '#' as href caused an JS error.
 
