@@ -18,6 +18,14 @@ svg, img[src$=".svg"], iframe, object, video { max-width: 100%; }
 *:active, *:focus { outline:none; box-shadow: none; }
 a:not([href]) { cursor: default; }
 
+// Define our own focus outline for buttons and links.
+a:focus, button:focus, input[type="submit"]:focus,
+.btn:focus, .btn.focus, .btn:active:focus,
+.btn:active.focus, .btn.active:focus, .btn.active.focus {
+  outline: 1px dotted $brand-primary;
+  outline-offset: 1px;
+}
+
 
 /***********/
 /* HELPERS */
