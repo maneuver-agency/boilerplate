@@ -11,6 +11,9 @@
 **JS**
 - Fixed a bug where clicking a link with only a '#' as href caused an JS error.
 
+**Other**
+- Fixed error in the styletiles where 'hero.twig' could not be found.
+
 ## 1.0.4 - 11/08/2016
 
 **CSS & HTML**
