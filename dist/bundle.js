@@ -24786,23 +24786,26 @@ module.exports = {
     options = options || {};
 
     let el = document.querySelector('#'+id);
-    if (!options.lat && el.dataset.lat) {
-      options.lat = el.dataset.lat;
-    }
-    if (!options.lng && el.dataset.lng) {
-      options.lng = el.dataset.lng;
-    }
+    if (el) {
+      if (!options.lat && el.dataset.lat) {
+        options.lat = el.dataset.lat;
+      }
+      if (!options.lng && el.dataset.lng) {
+        options.lng = el.dataset.lng;
+      }
 
-    createMap(id, options);
+      createMap(id, options);
 
-    // switch (currentProvider) {
-    //   case 'mapbox':
-    //     createMapbox(id, options);
-    //     break;
-    //   case 'googlemaps':
-    //     createGooglemaps(id, options);
-    //     break;
-    // }
+      // switch (currentProvider) {
+      //   case 'mapbox':
+      //     createMapbox(id, options);
+      //     break;
+      //   case 'googlemaps':
+      //     createGooglemaps(id, options);
+      //     break;
+      // }
+
+    }
   }
 
 }

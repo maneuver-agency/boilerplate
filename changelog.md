@@ -12,6 +12,7 @@
 
 **JS**
 - Fixed a bug where clicking a link with only a '#' as href caused an JS error.
+- Switch to leaflet.js for creating maps.
 
 **Other**
 - Fixed error in the styletiles where 'hero.twig' could not be found.
