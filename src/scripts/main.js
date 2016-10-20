@@ -14,9 +14,9 @@ require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/transiti
 require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
 jQuery.noConflict(true);
 
-var Maps = require('./modules/maps.js');
+const Maps = require('./modules/maps.js');
 
-var ticking, handlers,
+let ticking, handlers,
     $siteheader = $('#site-header');
 
 function initialize(){
@@ -51,7 +51,7 @@ function bindEvents(){
   .on('resize scroll', requestTick);
 
   $(document)
-  .on('click', function(e){
+  .on('click', (e) => {
 
   });
 
@@ -60,7 +60,7 @@ function bindEvents(){
 }
 
 function requestTick(e) {
-  var func = 'on' + e.type.capitalize();
+  const func = 'on' + e.type.capitalize();
   // console.log(func.apply());
   if (!ticking && func in handlers) {
     window.requestAnimationFrame(handlers[func]);
@@ -91,7 +91,7 @@ handlers = {
 
 
 // @TODO: put in seperate file.
-var outdatedBrowserRework = require("outdated-browser-rework");
+let outdatedBrowserRework = require("outdated-browser-rework");
 outdatedBrowserRework({
 	browserSupport: {
 		'Chrome': 37, // Includes Chrome for mobile devices

@@ -24635,6 +24635,8 @@ module.exports={
 })(this);
 
 },{}],24:[function(require,module,exports){
+'use strict';
+
 var $ = require('jquery');
 // var GoogleMap = require('./modules/gmap.js');
 
@@ -24653,10 +24655,11 @@ jQuery.noConflict(true);
 
 var Maps = require('./modules/maps.js');
 
-var ticking, handlers,
+var ticking = void 0,
+    handlers = void 0,
     $siteheader = $('#site-header');
 
-function initialize(){
+function initialize() {
   ticking = false;
 
   bindEvents();
@@ -24666,8 +24669,7 @@ function initialize(){
     icon: '/assets/img/marker.svg'
   });
   Maps.create('map2', {
-    urltemplate: 'https://api.mapbox.com/styles/v1/maneuver/ciua24ers00322iodnbymkbuv/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg',
-    // icon: '/assets/img/marker.svg'
+    urltemplate: 'https://api.mapbox.com/styles/v1/maneuver/ciua24ers00322iodnbymkbuv/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg'
   });
 
   /* Create Google Maps */
@@ -24683,14 +24685,10 @@ function initialize(){
 /*
  * Main method for binding some events to the document or window.
  */
-function bindEvents(){
-  $(window)
-  .on('resize scroll', requestTick);
+function bindEvents() {
+  $(window).on('resize scroll', requestTick);
 
-  $(document)
-  .on('click', function(e){
-
-  });
+  $(document).on('click', function (e) {});
 
   handlers.onResize();
   handlers.onScroll();
@@ -24710,13 +24708,13 @@ function requestTick(e) {
  */
 handlers = {
 
-  onResize: function() {
+  onResize: function onResize() {
     // do stuff here
 
     ticking = false;
   },
 
-  onScroll: function() {
+  onScroll: function onScroll() {
     // do stuff here
 
     $siteheader.toggleClass('shrink', window.scrollY > 100);
@@ -24726,31 +24724,32 @@ handlers = {
 
 };
 
-
 // @TODO: put in seperate file.
 var outdatedBrowserRework = require("outdated-browser-rework");
 outdatedBrowserRework({
-	browserSupport: {
-		'Chrome': 37, // Includes Chrome for mobile devices
-		'IE': 10,
-		'Safari': 7,
-		'Mobile Safari': 7,
-		'Firefox': 32
-	}
+  browserSupport: {
+    'Chrome': 37, // Includes Chrome for mobile devices
+    'IE': 10,
+    'Safari': 7,
+    'Mobile Safari': 7,
+    'Firefox': 32
+  }
 });
 
 /* KICKSTART */
 initialize();
 
 },{"../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/collapse.js":1,"../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/transition.js":2,"./modules/maps.js":25,"./polyfills.js":26,"./utils.js":27,"browsernizr":3,"browsernizr/test/touchevents":18,"jquery":19,"outdated-browser-rework":21}],25:[function(require,module,exports){
+'use strict';
+
 require('leaflet');
 
 module.exports = {
 
-  create: function(id, options) {
+  create: function create(id, options) {
     options = options || {};
 
-    let el = document.querySelector('#'+id);
+    var el = document.querySelector('#' + id);
     if (el) {
       if (!options.lat && el.dataset.lat) {
         options.lat = el.dataset.lat;
@@ -24760,14 +24759,13 @@ module.exports = {
       }
 
       createMap(id, options);
-
     }
   }
 
-}
+};
 
 function createMap(element, options) {
-  let map = L.map(element, {
+  var map = L.map(element, {
     center: [options.lat, options.lng],
     zoom: 13,
     attributionControl: false,
@@ -24776,7 +24774,7 @@ function createMap(element, options) {
 
   // TODO: make Google Maps work.
   // See: https://gist.github.com/crofty/2197701
-  let urltemplate = 'https://api.mapbox.com/styles/v1/maneuver/cilziveem00flccm3rzont1uw/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg';
+  var urltemplate = 'https://api.mapbox.com/styles/v1/maneuver/cilziveem00flccm3rzont1uw/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg';
 
   if (options.urltemplate) {
     urltemplate = options.urltemplate;
@@ -24785,12 +24783,12 @@ function createMap(element, options) {
   L.tileLayer(urltemplate, options).addTo(map);
 
   if (options.icon) {
-    let markerIcon = L.icon({
+    var markerIcon = L.icon({
       iconUrl: options.icon, // || '/assets/img/marker.svg',
-      iconSize: [34,34],
-      iconAnchor: [17,34]
+      iconSize: [34, 34],
+      iconAnchor: [17, 34]
     });
-    L.marker([options.lat, options.lng], {icon: markerIcon}).addTo(map);
+    L.marker([options.lat, options.lng], { icon: markerIcon }).addTo(map);
   }
 
   // map.getSize();
@@ -24798,166 +24796,167 @@ function createMap(element, options) {
 }
 
 },{"leaflet":20}],26:[function(require,module,exports){
+'use strict';
 
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 
 // requestAnimationFrame polyfill by Erik Möller
 // fixes from Paul Irish and Tino Zijdel
-(function() {
+(function () {
     var lastTime = 0;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
-    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-        window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
     }
 
-    if (!window.requestAnimationFrame)
-        window.requestAnimationFrame = function(callback, element) {
-            var currTime = new Date().getTime();
-            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-              timeToCall);
-            lastTime = currTime + timeToCall;
-            return id;
-        };
-
-    if (!window.cancelAnimationFrame)
-        window.cancelAnimationFrame = function(id) {
-            clearTimeout(id);
-        };
-}());
-
-
-/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
-window.matchMedia = window.matchMedia || (function( doc, undefined ) {
-
-  "use strict";
-
-  var bool,
-      docElem = doc.documentElement,
-      refNode = docElem.firstElementChild || docElem.firstChild,
-      // fakeBody required for <FF4 when executed in <head>
-      fakeBody = doc.createElement( "body" ),
-      div = doc.createElement( "div" );
-
-  div.id = "mq-test-1";
-  div.style.cssText = "position:absolute;top:-100em";
-  fakeBody.style.background = "none";
-  fakeBody.appendChild(div);
-
-  return function(q){
-
-    div.innerHTML = "&shy;<style media=\"" + q + "\"> #mq-test-1 { width: 42px; }</style>";
-
-    docElem.insertBefore( fakeBody, refNode );
-    bool = div.offsetWidth === 42;
-    docElem.removeChild( fakeBody );
-
-    return {
-      matches: bool,
-      media: q
+    if (!window.requestAnimationFrame) window.requestAnimationFrame = function (callback, element) {
+        var currTime = new Date().getTime();
+        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+        var id = window.setTimeout(function () {
+            callback(currTime + timeToCall);
+        }, timeToCall);
+        lastTime = currTime + timeToCall;
+        return id;
     };
 
-  };
+    if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function (id) {
+        clearTimeout(id);
+    };
+})();
 
-}( document ));
+/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
+window.matchMedia = window.matchMedia || function (doc, undefined) {
+
+    "use strict";
+
+    var bool,
+        docElem = doc.documentElement,
+        refNode = docElem.firstElementChild || docElem.firstChild,
+
+    // fakeBody required for <FF4 when executed in <head>
+    fakeBody = doc.createElement("body"),
+        div = doc.createElement("div");
+
+    div.id = "mq-test-1";
+    div.style.cssText = "position:absolute;top:-100em";
+    fakeBody.style.background = "none";
+    fakeBody.appendChild(div);
+
+    return function (q) {
+
+        div.innerHTML = "&shy;<style media=\"" + q + "\"> #mq-test-1 { width: 42px; }</style>";
+
+        docElem.insertBefore(fakeBody, refNode);
+        bool = div.offsetWidth === 42;
+        docElem.removeChild(fakeBody);
+
+        return {
+            matches: bool,
+            media: q
+        };
+    };
+}(document);
 
 /*! matchMedia() polyfill addListener/removeListener extension. Author & copyright (c) 2012: Scott Jehl. Dual MIT/BSD license */
-(function(){
+(function () {
     // monkeypatch unsupported addListener/removeListener with polling
-    if( !window.matchMedia('min-width:1px').addListener ){
+    if (!window.matchMedia('min-width:1px').addListener) {
         var oldMM = window.matchMedia;
 
-        window.matchMedia = function( q ){
-            var ret = oldMM( q ),
+        window.matchMedia = function (q) {
+            var ret = oldMM(q),
                 listeners = [],
                 last = ret.matches,
                 timer,
-                check = function(){
-                    var list = oldMM( q ),
-                        unmatchToMatch = list.matches && !last,
-                        matchToUnmatch = !list.matches && last;
+                check = function check() {
+                var list = oldMM(q),
+                    unmatchToMatch = list.matches && !last,
+                    matchToUnmatch = !list.matches && last;
 
-                                        //fire callbacks only if transitioning to or from matched state
-                    if( unmatchToMatch || matchToUnmatch ){
-                        for( var i =0, il = listeners.length; i< il; i++ ){
-                            listeners[ i ].call( ret, list );
-                        }
+                //fire callbacks only if transitioning to or from matched state
+                if (unmatchToMatch || matchToUnmatch) {
+                    for (var i = 0, il = listeners.length; i < il; i++) {
+                        listeners[i].call(ret, list);
                     }
-                    last = list.matches;
-                };
+                }
+                last = list.matches;
+            };
 
-            ret.addListener = function( cb ){
-                listeners.push( cb );
-                if( !timer ){
-                    timer = setInterval( check, 1000 );
+            ret.addListener = function (cb) {
+                listeners.push(cb);
+                if (!timer) {
+                    timer = setInterval(check, 1000);
                 }
             };
 
-            ret.removeListener = function( cb ){
-                for( var i =0, il = listeners.length; i< il; i++ ){
-                    if( listeners[ i ] === cb ){
-                        listeners.splice( i, 1 );
+            ret.removeListener = function (cb) {
+                for (var i = 0, il = listeners.length; i < il; i++) {
+                    if (listeners[i] === cb) {
+                        listeners.splice(i, 1);
                     }
                 }
-                if( !listeners.length && timer ){
-                    clearInterval( timer );
+                if (!listeners.length && timer) {
+                    clearInterval(timer);
                 }
             };
 
             return ret;
         };
     }
-}());
+})();
 
 // https://github.com/tc39/proposal-object-values-entries
-const reduce = Function.bind.call(Function.call, Array.prototype.reduce);
-const isEnumerable = Function.bind.call(Function.call, Object.prototype.propertyIsEnumerable);
-const concat = Function.bind.call(Function.call, Array.prototype.concat);
+var reduce = Function.bind.call(Function.call, Array.prototype.reduce);
+var isEnumerable = Function.bind.call(Function.call, Object.prototype.propertyIsEnumerable);
+var concat = Function.bind.call(Function.call, Array.prototype.concat);
 // const keys = Reflect ? Reflect.ownKeys : Object.keys;
 
 if (!Object.values) {
-	Object.values = function values(O) {
-		return reduce(Object.keys(O), function(v, k) { return concat(v, typeof k === 'string' && isEnumerable(O, k) ? [O[k]] : [])}, []);
-	};
+    Object.values = function values(O) {
+        return reduce(Object.keys(O), function (v, k) {
+            return concat(v, typeof k === 'string' && isEnumerable(O, k) ? [O[k]] : []);
+        }, []);
+    };
 }
 
 },{}],27:[function(require,module,exports){
+'use strict';
+
 var $ = require('jquery');
 
 /**
  * Make entire elements clickable
  * Add class to enforce pointer cursor.
  **/
-$('[data-clickable]:has(a[href])').each(function(){
+$('[data-clickable]:has(a[href])').each(function () {
   $(this).addClass('clickable');
 });
-
 
 $(document).
 
 /**
  * Follow the containing link.
  **/
-on('click', '.clickable', function(e){
-    var $this = $(this),
-        $link = $this.find('a');
+on('click', '.clickable', function (e) {
+  var $this = $(this),
+      $link = $this.find('a');
 
-    switch ($link.attr('target')) {
-        case '_blank':
-          window.open($link.attr('href'));
-          break;
-        default:
-          window.location = $link.attr('href');
-    }
-    e.preventDefault();
+  switch ($link.attr('target')) {
+    case '_blank':
+      window.open($link.attr('href'));
+      break;
+    default:
+      window.location = $link.attr('href');
+  }
+  e.preventDefault();
 }).
 
 /**
  * Animate jump links.
  **/
-on('click', 'a[href^="#"]', function(e){
+on('click', 'a[href^="#"]', function (e) {
   var id = $(this).attr('href');
   if (id != '#') {
     window.animateTo(id);
@@ -24965,7 +24964,7 @@ on('click', 'a[href^="#"]', function(e){
   e.preventDefault();
 });
 
-window.animateTo = function(id){
+window.animateTo = function (id) {
   var $header = $('#site-header'),
       $target = $(id),
       top = 0;
@@ -24978,34 +24977,34 @@ window.animateTo = function(id){
 
     $('html, body').stop().animate({
       scrollTop: top
-    }, 750, 'swing', function(){
-        // window.location.hash = id;
+    }, 750, 'swing', function () {
+      // window.location.hash = id;
     });
   }
-}
+};
 
 /**
  * Replace hashed email adresses for antispam.
  * Use: http://www.katpatuka.org/pub/doc/anti-spam.html
  **/
-$('a[data-mailto]').each(function(){
-    $(this).text($(this).attr('href').replace('mailto:', ''));
+$('a[data-mailto]').each(function () {
+  $(this).text($(this).attr('href').replace('mailto:', ''));
 });
 
 /**
  * Equal height elements.
  */
-(function() {
-  $('[data-equal-height]').each(function(){
+(function () {
+  $('[data-equal-height]').each(function () {
     var $el = $(this),
         selector = $el.data('equal-height') || '> *',
         selectors = selector.split(',');
 
-    [].map.call(selectors, function(sel){
+    [].map.call(selectors, function (sel) {
       var $children = $(sel, $el),
           th = 0;
 
-      $children.each(function(){
+      $children.each(function () {
         th = Math.max(th, $(this).height());
       });
 
@@ -25015,14 +25014,16 @@ $('a[data-mailto]').each(function(){
 })();
 
 // Sticky scroll elements
-(function(){
-  var $stickies = $('.sticky'), $footer, $wrap;
+(function () {
+  var $stickies = $('.sticky'),
+      $footer,
+      $wrap;
   if ('getComputedStyle' in window) {
     $footer = $('#site-footer');
     $wrap = $('#site-wrap');
 
-    $(window).on('scroll', function(){
-      $stickies.each(function(){
+    $(window).on('scroll', function () {
+      $stickies.each(function () {
         var $this = $(this),
             top = $this.data('top'),
             bot = $this.data('bottom'),
@@ -25043,7 +25044,7 @@ $('a[data-mailto]').each(function(){
         }
 
         if ($footer.length) {
-          footeroverlap = Math.max(0, ($this.height() + 40) - ($footer.position().top - window.scrollY));
+          footeroverlap = Math.max(0, $this.height() + 40 - ($footer.position().top - window.scrollY));
         }
         if ($this.hasClass('sticky-on') && footeroverlap) {
           $this.css('top', -footeroverlap);
@@ -25052,31 +25053,31 @@ $('a[data-mailto]').each(function(){
     });
   }
 
-  $(window).on('resize', function(){
+  $(window).on('resize', function () {
     recalculateAll();
   });
   recalculateAll();
 
   function recalculateAll() {
-    $stickies.each(function(){
+    $stickies.each(function () {
       recalculate(this);
     });
   }
 
-  function recalculate(el){
-    var $this = $(el), style, top,
+  function recalculate(el) {
+    var $this = $(el),
+        style,
+        top,
         $parent = $this.parent();
 
     $this.removeClass('sticky-on');
 
-    style = window.getComputedStyle(el),
-    top = style.getPropertyValue('top'),
-    top = top == 'auto' ? 0 : top;
+    style = window.getComputedStyle(el), top = style.getPropertyValue('top'), top = top == 'auto' ? 0 : top;
 
     $parent.height('auto');
 
     // if (window.matchMedia('(min-width: 767px)').matches) {
-      // $parent.height($parent.parent().height());
+    // $parent.height($parent.parent().height());
     // }
     $this.css('width', $parent.width());
     $this.data({
@@ -25090,8 +25091,8 @@ $('a[data-mailto]').each(function(){
 /**
  * Capitalize first character of string.
  */
- String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+String.prototype.capitalize = function () {
+  return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
 },{"jquery":19}]},{},[24]);

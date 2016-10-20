@@ -9,6 +9,7 @@ var gulp = require('gulp')
     ,imagemin = require('gulp-imagemin')
     ,rename = require('gulp-rename')
     ,browserify = require('browserify')
+    ,babelify = require('babelify')
     ,source = require('vinyl-source-stream')
     ,buffer = require('vinyl-buffer')
     ,browserSync = require('browser-sync')
@@ -91,6 +92,7 @@ gulp.task('styles', function(){
 
 gulp.task('browserify', function(){
   return browserify({ entries: ['src/scripts/main.js'] })
+    .transform(babelify, {presets: ["es2015"]})
     .bundle()
     .on('error', function(error) {
       gutil.log(gutil.colors.red(error.message));
