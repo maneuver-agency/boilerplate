@@ -1,6 +1,6 @@
 {
   "name": "boilerplate",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Tiny opiniated framework for quickly prototyping a website",
   "main": "index.php",
   "scripts": {
