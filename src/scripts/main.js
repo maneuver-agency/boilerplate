@@ -10,8 +10,9 @@ require('./polyfills.js');
 require('./utils.js');
 
 if (!window.jQuery) window.jQuery = window.$ = $;
-require('../../bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js');
-require('../../bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
+require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/transition.js');
+require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
+jQuery.noConflict(true);
 
 var Maps = require('./modules/maps.js');
 
