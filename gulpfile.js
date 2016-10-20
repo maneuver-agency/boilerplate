@@ -92,7 +92,7 @@ gulp.task('styles', function(){
 
 gulp.task('browserify', function(){
   return browserify({ entries: ['src/scripts/main.js'] })
-    .transform(babelify, {presets: ["es2015"]})
+    .transform(babelify, {presets: ["latest"]})
     .bundle()
     .on('error', function(error) {
       gutil.log(gutil.colors.red(error.message));
