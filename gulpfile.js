@@ -14,6 +14,8 @@ var gulp = require('gulp')
     ,buffer = require('vinyl-buffer')
     ,browserSync = require('browser-sync')
     ,importCss = require('gulp-import-css')
+    ,rsync = require('gulp-rsync')
+    ,argv = require('minimist')(process.argv)
     ;
 
 /************/
@@ -21,11 +23,21 @@ var gulp = require('gulp')
 /************/
 
 var devUrl = 'boilerplate.local.mnvr.be';
-var productionEnv = 'prod';
 var outputDir = 'dist';
 var imgDir = 'assets/img';
-var isProd = function(){ return gutil.env.env == productionEnv };
-var filename = function(name) { return isProd() ? name.split('.').spliced(-1, 0, 'min').join('.') : name; }
+var filename = function(name) { return argv.production ? name.split('.').spliced(-1, 0, 'min').join('.') : name; }
+var connection = {
+  staging: {
+    host: '',
+    username: '',
+    path: '~/subsites/',
+  },
+  production: {
+    host: 'ssh011.webhosting.be',
+    username: 'maneuverbe',
+    path: '~/subsites/boilerplate.maneuver.be'
+  }
+};
 
 /*****************/
 /* DEFAULT TASKS */
@@ -61,8 +73,8 @@ gulp.task('bs-watch', ['watch'], function(){
 /**********/
 
 gulp.task('deploy', function(){
-  let rsyncPaths = [outputDir];
-  let rsyncConf = {
+  var rsyncPaths = [outputDir];
+  var rsyncConf = {
     progress: true,
     incremental: true,
     relative: true,
@@ -72,9 +84,15 @@ gulp.task('deploy', function(){
     exclude: [],
   };
 
-  rsyncConf.hostname = 'ssh011.webhosting.be';
-  rsyncConf.username = 'maneuverbe';
-  rsyncConf.destination = '~/subsites/boilerplate.maneuver.be';
+  if (!argv.production && !argv.staging) {
+    throwError('deploy', gutil.colors.red('Missing or invalid target. Use --production or --staging.'));
+  }
+
+  var target = argv.production ? 'production' : argv.staging ? 'staging' : '';
+
+  rsyncConf.hostname = connection[target].host;
+  rsyncConf.username = connection[target].username;
+  rsyncConf.destination = connection[target].path;
 
   return gulp.src(rsyncPaths)
   // .pipe(gulpif(
@@ -92,27 +110,27 @@ gulp.task('deploy', function(){
 /*******/
 
 gulp.task('editor', function(){
-  gulp.src('src/styles/editor.scss')
+  return gulp.src('src/styles/editor.scss')
     .pipe(sass({outputStyle: 'compressed'}))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('styles', function(){
-  gulp.src([
+  return gulp.src([
     'src/styles/main.scss'
   ])
   .pipe(plumber(function(error) {
     gutil.log(gutil.colors.red(error.message));
     this.emit('end');
   }))
-  .pipe(gulpif(!isProd(), sourcemaps.init()))
+  .pipe(gulpif(!argv.production, sourcemaps.init()))
   .pipe(sass({outputStyle: 'compressed'}))
-  .pipe(importCss())
+  // .pipe(importCss())
   .pipe(autoprefixer({
     browsers: ['last 3 versions']
   }))
-  .pipe(gulpif(!isProd(), sourcemaps.write()))
   .pipe(rename(filename('main.css')))
+  .pipe(gulpif(!argv.production, sourcemaps.write('./')))
   .pipe(gulp.dest(outputDir))
   .pipe(browserSync.reload({stream:true}));
 });
@@ -131,9 +149,9 @@ gulp.task('browserify', function(){
     })
     .pipe(source(filename('bundle.js')))
     .pipe(buffer()) // Create a stream so we can pipe.
-    .pipe(gulpif(!isProd(), sourcemaps.init({loadMaps:true})))
-    .pipe(gulpif(!isProd(), sourcemaps.write('./')))
-    .pipe(gulpif(isProd(), uglify()))
+    .pipe(gulpif(!argv.production, sourcemaps.init()))
+    .pipe(gulpif(!argv.production, sourcemaps.write('.')))
+    .pipe(gulpif(argv.production, uglify()))
     .pipe(gulp.dest(outputDir))
     .pipe(browserSync.reload({stream:true}));
 });
@@ -165,3 +183,10 @@ Array.prototype.spliced = function() {
   // Return current (mutated) array reference.
   return( this );
 };
+
+function throwError(taskName, msg) {
+  throw new gutil.PluginError({
+    plugin: taskName,
+    message: msg
+  });
+}
