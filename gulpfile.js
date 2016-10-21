@@ -56,6 +56,37 @@ gulp.task('bs-watch', ['watch'], function(){
   });
 });
 
+/**********/
+/* DEPLOY */
+/**********/
+
+gulp.task('deploy', function(){
+  let rsyncPaths = [outputDir];
+  let rsyncConf = {
+    progress: true,
+    incremental: true,
+    relative: true,
+    emptyDirectories: true,
+    recursive: true,
+    clean: true,
+    exclude: [],
+  };
+
+  rsyncConf.hostname = 'ssh011.webhosting.be';
+  rsyncConf.username = 'maneuverbe';
+  rsyncConf.destination = '~/subsites/boilerplate.maneuver.be';
+
+  return gulp.src(rsyncPaths)
+  // .pipe(gulpif(
+  //     argv.production,
+  //     prompt.confirm({
+  //       message: 'Heads Up! Are you SURE you want to push to PRODUCTION?',
+  //       default: false
+  //     })
+  // ))
+  .pipe(rsync(rsyncConf));
+});
+
 /*******/
 /* CSS */
 /*******/
