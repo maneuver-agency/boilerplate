@@ -2,7 +2,6 @@ var gulp = require('gulp')
     ,gutil = require('gulp-util')
     ,sourcemaps = require('gulp-sourcemaps')
     ,sass = require('gulp-sass')
-    ,gulpif = require('gulp-if')
     ,plumber = require('gulp-plumber')
     ,uglify = require('gulp-uglify')
     ,autoprefixer = require('gulp-autoprefixer')
@@ -81,7 +80,7 @@ gulp.task('deploy', function(){
     emptyDirectories: true,
     recursive: true,
     clean: true,
-    exclude: [],
+    exclude: ['*.map'],
   };
 
   if (!argv.production && !argv.staging) {
@@ -95,13 +94,6 @@ gulp.task('deploy', function(){
   rsyncConf.destination = connection[target].path;
 
   return gulp.src(rsyncPaths)
-  // .pipe(gulpif(
-  //     argv.production,
-  //     prompt.confirm({
-  //       message: 'Heads Up! Are you SURE you want to push to PRODUCTION?',
-  //       default: false
-  //     })
-  // ))
   .pipe(rsync(rsyncConf));
 });
 
@@ -123,14 +115,14 @@ gulp.task('styles', function(){
     gutil.log(gutil.colors.red(error.message));
     this.emit('end');
   }))
-  .pipe(gulpif(!argv.production, sourcemaps.init()))
+  .pipe(sourcemaps.init())
   .pipe(sass({outputStyle: 'compressed'}))
   // .pipe(importCss())
   .pipe(autoprefixer({
     browsers: ['last 3 versions']
   }))
   .pipe(rename(filename('main.css')))
-  .pipe(gulpif(!argv.production, sourcemaps.write('./')))
+  .pipe(sourcemaps.write('./'))
   .pipe(gulp.dest(outputDir))
   .pipe(browserSync.reload({stream:true}));
 });
@@ -149,9 +141,9 @@ gulp.task('browserify', function(){
     })
     .pipe(source(filename('bundle.js')))
     .pipe(buffer()) // Create a stream so we can pipe.
-    .pipe(gulpif(!argv.production, sourcemaps.init()))
-    .pipe(gulpif(!argv.production, sourcemaps.write('.')))
-    .pipe(gulpif(argv.production, uglify()))
+    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.write('.'))
+    .pipe(uglify())
     .pipe(gulp.dest(outputDir))
     .pipe(browserSync.reload({stream:true}));
 });
