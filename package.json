@@ -5,8 +5,7 @@
   "main": "index.php",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "composer install && npm install && bower install",
-    "build": "gulp --env prod",
+    "start": "composer install && yarn install",
     "deploy": "node node_modules/maneuver-deploy-site/index.js <connectionstring>",
     "stage": "node node_modules/maneuver-deploy-site/index.js -staging <foldername>"
   },
