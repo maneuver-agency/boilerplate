@@ -24,7 +24,6 @@ var gulp = require('gulp')
 var devUrl = 'boilerplate.local.mnvr.be';
 var outputDir = 'dist';
 var imgDir = 'assets/img';
-var filename = function(name) { return argv.production ? name.split('.').spliced(-1, 0, 'min').join('.') : name; }
 var connection = {
   staging: {
     host: '',
@@ -121,7 +120,7 @@ gulp.task('styles', function(){
   .pipe(autoprefixer({
     browsers: ['last 3 versions']
   }))
-  .pipe(rename(filename('main.css')))
+  .pipe(rename('main.css'))
   .pipe(sourcemaps.write('./'))
   .pipe(gulp.dest(outputDir))
   .pipe(browserSync.reload({stream:true}));
@@ -139,7 +138,7 @@ gulp.task('browserify', function(){
       gutil.log(gutil.colors.red(error.message));
       this.emit('end');
     })
-    .pipe(source(filename('bundle.js')))
+    .pipe(source('bundle.js'))
     .pipe(buffer()) // Create a stream so we can pipe.
     .pipe(sourcemaps.init())
     .pipe(sourcemaps.write('.'))
