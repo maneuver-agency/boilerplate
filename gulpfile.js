@@ -4,6 +4,7 @@ var gulp = require('gulp')
     ,sass = require('gulp-sass')
     ,plumber = require('gulp-plumber')
     ,uglify = require('gulp-uglify')
+    ,cleancss = require('gulp-clean-css')
     ,autoprefixer = require('gulp-autoprefixer')
     ,imagemin = require('gulp-imagemin')
     ,rename = require('gulp-rename')
@@ -12,7 +13,7 @@ var gulp = require('gulp')
     ,source = require('vinyl-source-stream')
     ,buffer = require('vinyl-buffer')
     ,browserSync = require('browser-sync')
-    ,importCss = require('gulp-import-css')
+    ,cssimport = require("gulp-cssimport")
     ,rsync = require('gulp-rsync')
     ,argv = require('minimist')(process.argv)
     ;
@@ -115,13 +116,14 @@ gulp.task('styles', function(){
     this.emit('end');
   }))
   .pipe(sourcemaps.init())
-  .pipe(sass({outputStyle: 'compressed'}))
-  // .pipe(importCss())
+  .pipe(sass())
   .pipe(autoprefixer({
     browsers: ['last 3 versions']
   }))
+  .pipe(cleancss())
   .pipe(rename('main.css'))
   .pipe(sourcemaps.write('./'))
+  .pipe(cssimport())
   .pipe(gulp.dest(outputDir))
   .pipe(browserSync.reload({stream:true}));
 });
