@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "composer install && yarn install",
-    "deploy": "node node_modules/maneuver-deploy-site/index.js <connectionstring>",
-    "stage": "node node_modules/maneuver-deploy-site/index.js -staging <foldername>"
+    "deploy": "node node_modules/maneuver-deploy-site/index.js maneuverbe@ssh011.webhosting.be subsites/boilerplate.maneuver.be && gulp deploy",
+    "stage": "node node_modules/maneuver-deploy-site/index.js maneuverbe@ssh011.webhosting.be subsites/boilerplate.maneuver.be && gulp deploy"
   },
   "repository": "",
   "author": "David De Coninck",
@@ -34,7 +34,7 @@
     "gulp-util": "^3.0.7",
     "jquery": "^2.2.3",
     "leaflet": "^1.0.1",
-    "maneuver-deploy-site": "git+ssh://git@bitbucket.org/maneuver/deploy-site.git",
+    "maneuver-deploy-site": "bitbucket.org/maneuver/deploy-site.git",
     "minimist": "^1.2.0",
     "outdated-browser-rework": "^1.0.0",
     "vinyl-buffer": "^1.0.0",

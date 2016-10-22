@@ -26,9 +26,9 @@ var outputDir = 'dist';
 var imgDir = 'assets/img';
 var connection = {
   staging: {
-    host: '',
-    username: '',
-    path: '~/subsites/',
+    host: 'ssh011.webhosting.be',
+    username: 'maneuverbe',
+    path: '~/subsites/boilerplate.maneuver.be',
   },
   production: {
     host: 'ssh011.webhosting.be',

@@ -2220,6 +2220,13 @@ gifsicle@^3.0.0:
     bin-wrapper "^3.0.0"
     logalot "^2.0.0"
 
+"git+ssh://git@bitbucket.org/maneuver/deploy-site.git":
+  name maneuver-deploy-site
+  version "0.0.3"
+  resolved "git+ssh://git@bitbucket.org/maneuver/deploy-site.git#00a81fccfb3a078833f25ea6f9138930ff498a86"
+  dependencies:
+    sequest "^0.9.0"
+
 glob-base@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/glob-base/-/glob-base-0.3.0.tgz#dbb164f6221b1c0b1ccf82aea328b497df0ea3c4"
@@ -3721,12 +3728,6 @@ lru-cache@^4.0.1:
 lru-cache@2:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"
-
-"maneuver-deploy-site@git+ssh://git@bitbucket.org/maneuver/deploy-site.git":
-  version "0.0.2"
-  resolved "git+ssh://git@bitbucket.org/maneuver/deploy-site.git#d12b2dbb84fc763e7906a4ee8ac7be999ed1b2c7"
-  dependencies:
-    sequest "^0.9.0"
 
 map-cache@^0.2.0:
   version "0.2.2"
