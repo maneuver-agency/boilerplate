@@ -136,14 +136,14 @@ gulp.task('browserify', function(){
   return browserify({ entries: ['src/scripts/main.js'] })
     .transform(babelify, {presets: ["latest"]})
     .bundle()
-    .on('error', function(error) {
+    .pipe(plumber(function(error) {
       gutil.log(gutil.colors.red(error.message));
       this.emit('end');
-    })
+    }))
     .pipe(source('bundle.js'))
     .pipe(buffer()) // Create a stream so we can pipe.
-    .pipe(sourcemaps.init())
-    .pipe(sourcemaps.write('.'))
+    // .pipe(sourcemaps.init())
+    // .pipe(sourcemaps.write('.'))
     .pipe(uglify())
     .pipe(gulp.dest(outputDir))
     .pipe(browserSync.reload({stream:true}));

@@ -35,6 +35,7 @@ function createMap(element, options) {
 
   if (options.urltemplate) {
     urltemplate = options.urltemplate;
+    console.debug(urltemplate);
   }
 
   L.tileLayer(urltemplate, options).addTo(map);
