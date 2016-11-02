@@ -6,7 +6,7 @@
   ```
   npm start
   ```
-  Or you can run `composer install` and `yarn install` separately.
+  Or you can run `composer install` and `npm install` separately.
 
 3. Open gulpfile.js and change the setting variables accordingly.
 

@@ -5,7 +5,7 @@
   "main": "index.php",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "composer install && yarn install",
+    "start": "composer install && npm install",
     "deploy": "node node_modules/maneuver-deploy-site/index.js maneuverbe@ssh011.webhosting.be subsites/boilerplate.maneuver.be && gulp deploy --production",
     "stage": "node node_modules/maneuver-deploy-site/index.js maneuverbe@ssh011.webhosting.be subsites/boilerplate.maneuver.be && gulp deploy --staging"
   },
