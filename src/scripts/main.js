@@ -1,3 +1,5 @@
+"use strict"
+
 global.jQuery = require('jquery');
 // var GoogleMap = require('./modules/gmap.js');
 

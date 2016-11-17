@@ -10,6 +10,7 @@ var gulp = require('gulp')
     ,rename = require('gulp-rename')
     ,browserify = require('browserify')
     ,babelify = require('babelify')
+    ,watchify = require('watchify')
     ,source = require('vinyl-source-stream')
     ,buffer = require('vinyl-buffer')
     ,browserSync = require('browser-sync')
@@ -37,6 +38,7 @@ var connection = {
     path: '~/subsites/boilerplate.maneuver.be'
   }
 };
+var libs = ['jquery'];
 
 /*****************/
 /* DEFAULT TASKS */
@@ -44,17 +46,17 @@ var connection = {
 
 gulp.task('default', ['css', 'js', 'img'], function(){});
 gulp.task('css', ['editor', 'styles']);
-gulp.task('js', ['browserify']);
+gulp.task('js', ['app', 'libs']);
 gulp.task('img', ['imagemin']);
 
 /*********/
 /* WATCH */
 /*********/
 
-gulp.task('watch', [], function(){
+gulp.task('watch', ['watchify'], function(){
   gulp.watch('src/styles/**/*', ['css']);
-  gulp.watch('src/scripts/**/*', ['js']);
-  gulp.watch(imgDir + '/**/*', ['img']);
+  // gulp.watch('src/scripts/**/*', ['app']);
+  // gulp.watch(imgDir + '/**/*', ['img']);
 });
 
 gulp.task('bs-watch', ['watch'], function(){
@@ -132,21 +134,70 @@ gulp.task('styles', function(){
 /* JS */
 /******/
 
-gulp.task('browserify', function(){
-  return browserify({ entries: ['src/scripts/main.js'] })
-    .transform(babelify, {presets: ["latest"]})
+var bundler = browserify({
+    entries: ['src/scripts/main.js'],
+    debug: false,
+    insertGlobals: false,
+    // detectGlobals: false
+  })
+  .external(libs)
+  .transform(babelify, {
+    "presets": ["es2015"]
+  });
+  // .transform(babelify, {
+  //   "presets": [
+  //     ["env", {
+  //       "targets": {
+  //         "chrome": 52,
+  //         "browsers": ["last 2 versions"]
+  //       },
+  //       "modules": false,
+  //       // "loose": true
+  //     }]
+  //   ]
+  // });
+
+gulp.task('app', function(){
+  return bundler
     .bundle()
-    .pipe(plumber(function(error) {
-      gutil.log(gutil.colors.red(error.message));
-      this.emit('end');
-    }))
-    .pipe(source('bundle.js'))
+    .on('error', function (err) {
+      gutil.log(gutil.colors.red(err.toString()));
+      this.emit("end");
+    })
+    // .pipe(plumber(function(error) {
+    //   gutil.log(gutil.colors.red(error.message));
+    //   this.emit('end');
+    // }))
+    .pipe(source('app.js'))
     .pipe(buffer()) // Create a stream so we can pipe.
     // .pipe(sourcemaps.init())
-    // .pipe(sourcemaps.write('.'))
     .pipe(uglify())
+    // .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(outputDir))
-    .pipe(browserSync.reload({stream:true}));
+    .pipe(browserSync.stream({once: true}));
+});
+
+gulp.task('libs', function(){
+  const b = browserify();
+
+  libs.forEach(lib => {
+    b.require(lib);
+  });
+
+  b.bundle()
+  .pipe(source('libs.js'))
+  .pipe(buffer())
+  // .pipe(uglify())
+  .pipe(gulp.dest(outputDir));
+});
+
+gulp.task('watchify', function(){
+  watchify(bundler)
+    .on('update', () => {
+      gulp.start('app');
+    });
+
+  return gulp.start('app');
 });
 
 /*******/
