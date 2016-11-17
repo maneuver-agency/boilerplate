@@ -31,7 +31,7 @@ function createMap(element, options) {
 
   // TODO: make Google Maps work.
   // See: https://gist.github.com/crofty/2197701
-  let urltemplate = 'https://api.mapbox.com/styles/v1/maneuver/cilziveem00flccm3rzont1uw/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg';
+  let urltemplate = 'https://api.mapbox.com/styles/v1/maneuver/ciua24ers00322iodnbymkbuv/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg';
 
   if (options.urltemplate) {
     urltemplate = options.urltemplate;

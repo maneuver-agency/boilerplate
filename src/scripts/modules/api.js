@@ -42,7 +42,7 @@ let requests = []
 /**
  * Makes the actual request.
  **/
-makeCall(endpoint, data, method, datatype) => {
+let makeCall = (endpoint, data, method, datatype) => {
   var url = API.protocol + '//' + API.host + API.path + '/v' + API.version + '/' + endpoint
   var xhr = $.ajax({
     url: url,
