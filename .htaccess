@@ -1,10 +1,7 @@
-#AuthUserFile  /etc/apache2/.htpasswd
-#AuthGroupFile /dev/null
-#AuthName "secret maneuver development operation [codename: panzer]"
-#AuthType Basic
-#require user maneuver client
-
 DirectoryIndex index.php index.html
+
+# Prevent accessing .git folder over http
+RedirectMatch 404 /\.git
 
 RewriteEngine on
 
