@@ -63,7 +63,7 @@ gulp.task('bs-watch', ['watch'], function(){
   browserSync.init({
     proxy: devUrl,
     open: false,
-    tunnel: 'mnvr'
+    tunnel: devUrl.split('.')[0]
   });
 
   gulp.watch('templates/**/*.twig').on('change', function(){
@@ -129,7 +129,7 @@ gulp.task('styles', function(){
   .pipe(sourcemaps.write('./'))
   .pipe(cssimport())
   .pipe(gulp.dest(outputDir))
-  .pipe(browserSync.reload({stream:true}));
+  .pipe(browserSync.reload({stream:true, match: '**/*.css'}));
 });
 
 /******/
