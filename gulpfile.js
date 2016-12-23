@@ -13,7 +13,7 @@ var gulp = require('gulp')
     ,watchify = require('watchify')
     ,source = require('vinyl-source-stream')
     ,buffer = require('vinyl-buffer')
-    ,browserSync = require('browser-sync')
+    ,browserSync = require('browser-sync').create()
     ,cssimport = require("gulp-cssimport")
     ,rsync = require('gulp-rsync')
     ,argv = require('minimist')(process.argv)
@@ -61,7 +61,9 @@ gulp.task('watch', ['watchify'], function(){
 
 gulp.task('bs-watch', ['watch'], function(){
   browserSync.init({
-    proxy: devUrl
+    proxy: devUrl,
+    open: false,
+    tunnel: 'mnvr'
   });
 
   gulp.watch('templates/**/*.twig').on('change', function(){
