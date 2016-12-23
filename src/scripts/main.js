@@ -6,7 +6,7 @@ global.jQuery = require('jquery');
 // Modernizr tests.
 // See: https://github.com/jnordberg/browsernizr
 require('browsernizr/test/touchevents');
-require('browsernizr');
+global.Modernizr = require('browsernizr');
 
 require('./polyfills.js');
 require('./utils.js');
