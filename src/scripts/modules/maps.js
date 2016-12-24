@@ -1,9 +1,12 @@
-require('leaflet');
+require('leaflet')
+const log = require('bows')('Maps')
 
 module.exports = {
 
   create: function(id, options) {
     options = options || {};
+
+    log(options)
 
     let el = document.querySelector('#'+id);
     if (el) {
