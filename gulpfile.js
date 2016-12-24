@@ -13,6 +13,7 @@ const rename = require('gulp-rename')
 const browserify = require('browserify')
 const babelify = require('babelify')
 const watchify = require('watchify')
+const exorcist = require('exorcist')
 const source = require('vinyl-source-stream')
 const buffer = require('vinyl-buffer')
 const browserSync = require('browser-sync').create()
@@ -135,47 +136,36 @@ gulp.task('styles', function () {
 /* JS */
 /******/
 
-let bundler = browserify({
-  entries: ['src/scripts/main.js'],
-  debug: false,
-  insertGlobals: false
-  // detectGlobals: false
-})
-.external(libs)
-.transform(babelify, {
-  'presets': ['es2015']
-})
-// .transform(babelify, {
-//   "presets": [
-//     ["env", {
-//       "targets": {
-//         "chrome": 52,
-//         "browsers": ["last 2 versions"]
-//       },
-//       "modules": false,
-//       // "loose": true
-//     }]
-//   ]
-// });
+watchify.args.debug = true
 
-gulp.task('app', function () {
-  return bundler
-    .bundle()
+let bundler = browserify('src/scripts/main.js', watchify.args)
+
+bundler.external(libs)
+
+bundler.transform(babelify.configure({
+  sourceMapRelative: outputDir,
+  'presets': ['es2015']
+}))
+
+function bundle () {
+  gutil.log('Compiling JS...')
+
+  return bundler.bundle()
     .on('error', function (err) {
-      gutil.log(gutil.colors.red(err.toString()))
+      gutil.log(err.message)
+      browserSync.notify('Browserify Error!')
       this.emit('end')
     })
-    // .pipe(plumber(function(error) {
-    //   gutil.log(gutil.colors.red(error.message));
-    //   this.emit('end');
-    // }))
+    .pipe(exorcist(outputDir + '/app.js.map'))
     .pipe(source('app.js'))
     .pipe(buffer()) // Create a stream so we can pipe.
-    // .pipe(sourcemaps.init())
-    .pipe(uglify())
-    // .pipe(sourcemaps.write('.'))
+    .pipe(uglify().on('error', gutil.log))
     .pipe(gulp.dest(outputDir))
     .pipe(browserSync.stream({once: true}))
+}
+
+gulp.task('app', function () {
+  return bundle()
 })
 
 gulp.task('libs', function () {
@@ -188,17 +178,13 @@ gulp.task('libs', function () {
   b.bundle()
   .pipe(source('libs.js'))
   .pipe(buffer())
-  // .pipe(uglify())
+  .pipe(uglify().on('error', gutil.log))
   .pipe(gulp.dest(outputDir))
 })
 
 gulp.task('watchify', function () {
-  watchify(bundler)
-    .on('update', () => {
-      gulp.start('app')
-    })
-
-  return gulp.start('app')
+  watchify(bundler).on('update', bundle)
+  return bundle()
 })
 
 /*******/
