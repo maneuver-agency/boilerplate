@@ -1,35 +1,33 @@
 'use strict'
 
+// Use global jQuery object to use by third party jQuery plugins.
 global.jQuery = require('jquery')
-// var GoogleMap = require('./modules/gmap.js')
 
-// Modernizr tests.
+// Add Modernizr tests.
 // See: https://github.com/jnordberg/browsernizr
 require('browsernizr/test/touchevents')
 global.Modernizr = require('browsernizr')
 
+// Add our own utilities and polyfills.
 require('./polyfills.js')
 require('./utils.js')
 
+// Add bootstrap javascripts.
 require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/transition.js')
 require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/collapse.js')
 
+// Our own modules.
 const Maps = require('./modules/maps.js')
 
+// START
 ;(function ($) {
-  let ticking
+  let ticking = false
   let $siteheader = $('#site-header')
 
-  function initialize () {
-    ticking = false
-
-    bindEvents()
-
-    Maps.create('map', {
-      // urltemplate: 'https://api.mapbox.com/styles/v1/maneuver/ciubdy6pb00642io6anxjb705/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg',
-      icon: '/assets/img/marker.svg'
-    })
-  }
+  Maps.create('map', {
+    // urltemplate: 'https://api.mapbox.com/styles/v1/maneuver/ciubdy6pb00642io6anxjb705/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFuZXV2ZXIiLCJhIjoiMGR4aGktMCJ9.MF4X_7cnibJhu4RubB56Bg',
+    icon: '/assets/img/marker.svg'
+  })
 
   /*
    * Main method for binding some events to the document or window.
@@ -77,6 +75,8 @@ const Maps = require('./modules/maps.js')
 
   }
 
+  bindEvents()
+
   // @TODO: put in seperate file.
   let outdatedBrowserRework = require('outdated-browser-rework')
   outdatedBrowserRework({
@@ -88,7 +88,4 @@ const Maps = require('./modules/maps.js')
       'Firefox': 32
     }
   })
-
-  /* KICKSTART */
-  initialize()
 })(global.jQuery)
