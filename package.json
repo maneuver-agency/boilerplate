@@ -21,6 +21,7 @@
     "browser-sync": "^2.18.5",
     "browserify": "^13.0.0",
     "browsernizr": "^2.1.0",
+    "del": "^2.2.2",
     "exorcist": "^0.4.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",

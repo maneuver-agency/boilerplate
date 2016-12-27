@@ -20,6 +20,7 @@ const browserSync = require('browser-sync').create()
 const cssimport = require('gulp-cssimport')
 const rsync = require('gulp-rsync')
 const argv = require('minimist')(process.argv)
+const del = require('del')
 
 /************/
 /* SETTINGS */
@@ -69,6 +70,28 @@ gulp.task('bs-watch', ['watch'], function () {
   gulp.watch('templates/**/*.twig').on('change', function () {
     browserSync.reload({once: true})
   })
+})
+
+/*********/
+/* CLEAN */
+/*********/
+
+gulp.task('clean', function () {
+  return del(outputDir)
+})
+
+gulp.task('clean:js', function () {
+  return del([
+    outputDir + '**/*.js',
+    outputDir + '**/*.js.map'
+  ])
+})
+
+gulp.task('clean:css', function () {
+  return del([
+    outputDir + '**/*.css',
+    outputDir + '**/*.css.map'
+  ])
 })
 
 /**********/
