@@ -99,15 +99,12 @@ gulp.task('clean:css', function () {
 /**********/
 
 gulp.task('deploy', function () {
-  var rsyncPaths = [outputDir]
+  var rsyncPaths = [outputDir + '/**/*']
   var rsyncConf = {
-    progress: true,
-    incremental: true,
     relative: true,
-    emptyDirectories: true,
-    recursive: true,
     clean: true,
-    exclude: ['*.map']
+    compress: true,
+    exclude: ['**/*.map']
   }
 
   if (!argv.production && !argv.staging) {
