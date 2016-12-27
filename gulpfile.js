@@ -121,13 +121,13 @@ gulp.task('styles', function () {
   }))
   .pipe(sourcemaps.init())
   .pipe(sass())
+  .pipe(cssimport())
   .pipe(autoprefixer({
     browsers: ['last 3 versions']
   }))
   .pipe(cleancss())
   .pipe(rename('main.css'))
   .pipe(sourcemaps.write('./'))
-  .pipe(cssimport())
   .pipe(gulp.dest(outputDir))
   .pipe(browserSync.reload({stream: true, match: '**/*.css'}))
 })
