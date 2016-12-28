@@ -103,7 +103,9 @@ gulp.task('deploy', function () {
   var rsyncConf = {
     relative: true,
     clean: true,
+    recursive: true,
     compress: true,
+    silent: true,
     exclude: ['**/*.map']
   }
 
