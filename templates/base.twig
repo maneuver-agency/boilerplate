@@ -26,7 +26,7 @@
     <meta name="twitter:card"     content="summary_large_image">
     <meta name="twitter:site"     content="{# @handle #}">
 
-    <link rel="stylesheet" href="{{ theme.link }}/dist/main.css">
+    <link rel="stylesheet" href="{{ theme.link }}/dist/main.css?c={{ buster }}">
     {# Implement in template file to add stylesheets. #}
     {% block styles %}{% endblock %}
 
@@ -126,7 +126,7 @@
     {% block scripts %}{% endblock %}
 
     <script src="{{ theme.link }}/dist/libs.js"></script>
-    <script src="{{ theme.link }}/dist/app.js"></script>
+    <script src="{{ theme.link }}/dist/app.js?c={{ buster }}"></script>
     <!--[if lt IE 9]>
       <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
     <![endif]-->

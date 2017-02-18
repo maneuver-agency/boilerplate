@@ -98,7 +98,7 @@ gulp.task('clean:css', function () {
 /* DEPLOY */
 /**********/
 
-gulp.task('deploy', function () {
+gulp.task('deploy', ['bust'], function () {
   var rsyncPaths = [outputDir + '/**/*']
   var rsyncConf = {
     relative: true,
@@ -121,6 +121,16 @@ gulp.task('deploy', function () {
 
   return gulp.src(rsyncPaths)
     .pipe(rsync(rsyncConf))
+})
+
+/*****************/
+/* CACHE BUSTING */
+/*****************/
+
+gulp.task('bust', function () {
+  var fs = require('fs')
+  var now = new Date().getTime()
+  fs.writeFile(outputDir + '/buster.txt', now)
 })
 
 /*******/
