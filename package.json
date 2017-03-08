@@ -14,7 +14,7 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "@fieldmarshal/deploy": "^1.0.0",
+    "@fieldmarshal/deploy": "git+ssh://git@bitbucket.org/maneuver/deploy-site.git",
     "babel-preset-es2015": "^6.18.0",
     "babelify": "^7.3.0",
     "bootstrap-sass": "^3.3.7",
