@@ -19,7 +19,9 @@ $config['ENV'] = ENV;
 $config['body_classes'] = [];
 $config['lang'] = 'en';
 
-$config['buster'] = file_get_contents('dist/buster.txt');
+if (file_exists('dist/buster.txt')) {
+  $config['buster'] = file_get_contents('dist/buster.txt');
+}
 
 
 /*************/
