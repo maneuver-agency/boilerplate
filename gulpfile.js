@@ -64,7 +64,7 @@ gulp.task('bs-watch', ['watch'], function () {
   browserSync.init({
     proxy: devUrl,
     open: false,
-    tunnel: devUrl.split('.')[0]
+    // tunnel: devUrl.split('.')[0]
   })
 
   gulp.watch('templates/**/*.twig').on('change', function () {
