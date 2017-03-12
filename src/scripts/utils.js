@@ -1,4 +1,5 @@
 const $ = require('jquery')
+require('svgxuse')
 
 /**
  * Make entire elements clickable
