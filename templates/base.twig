@@ -137,5 +137,28 @@
     <![endif]-->
 
     {{ wp_footer }}
+
+    <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Organization",
+      "name" : "{{ site.name }}",
+      "url" : "{{ site.url }}",
+      "sameAs" : [
+        {% for item in ['facebook', 'twitter', 'linkedin', 'instagram', 'vimeo', 'youtube'] %}
+          {% if options[item] %}
+            "{{ options[item] }}"{{ not loop.last ? ',' }}
+          {% endif %}
+        {% endfor %}
+       ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ options.address }}",
+        "addressRegion": "{{ options.city }}",
+        "postalCode": "{{ options.zip }}",
+        "addressCountry": "BE"
+      }
+    }
+    </script>
   </body>
 </html>
