@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{{ wp_title }}</title>
+    <title>{{ meta_title }}</title>
+    <meta name="description" content="{{ meta_desc }}">
     <link rel="shortcut icon" href="{{ theme.link }}/assets/favicon.ico">
 
     {# iOS #}
@@ -16,10 +17,11 @@
     <meta name="format-detection" content="telephone=no">
 
     {# OpenGraph #}
+    <meta name="og:title"         content="{{ meta_title|default(site.name) }}">
     <meta name="og:site"          content="{{ site.name }}">
-    <meta name="og:url"           content="">
-    <meta name="og:image"         content="">
-    <meta name="og:description"   content="">
+    <meta name="og:url"           content="{{ site.page_url }}">
+    <meta name="og:image"         content="{{ site.url ~ meta_image }}">
+    <meta name="og:description"   content="{{ meta_desc }}">
     <meta name="og:type"          content="website">
 
     {# Twitter #}
