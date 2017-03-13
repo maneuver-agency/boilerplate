@@ -1,6 +1,6 @@
 ## Instructions
 
-1. Make sure node, yarn and composer are installed globally on your system.
+1. Make sure node, npm and composer are installed globally on your system.
 
 2. Run the following command:
   ```
@@ -8,7 +8,9 @@
   ```
   Or you can run `composer install` and `npm install` separately.
 
-3. Open gulpfile.js and change the setting variables accordingly.
+3. Open gulpfile.js and change the variables accordingly.
+
+4. Open config.php and change settings.
 
 4. Open package.json and change the 'deploy' or 'stage' scripts with the correct parameters.
 
@@ -29,11 +31,3 @@
   ```
   npm run deploy
   ```
-
-
-## Development
-
-Add new packages:
-```
-yarn add <package> --dev
-```
