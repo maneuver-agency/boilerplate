@@ -1,6 +1,8 @@
 {
     "name": "maneuver/boilerplate",
     "description": "Tiny opiniated framework for quickly prototyping a website",
+    "type": "project",
+    "license": "MIT",
     "require": {
         "twig/twig": "1.*",
         "silex/silex": "~1.2",
