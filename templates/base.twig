@@ -17,12 +17,12 @@
     <meta name="format-detection" content="telephone=no">
 
     {# OpenGraph #}
-    <meta name="og:title"         content="{{ meta_title|default(site.name) }}">
-    <meta name="og:site"          content="{{ site.name }}">
-    <meta name="og:url"           content="{{ site.page_url }}">
-    <meta name="og:image"         content="{{ site.url ~ meta_image }}">
-    <meta name="og:description"   content="{{ meta_desc }}">
-    <meta name="og:type"          content="website">
+    <meta property="og:title"         content="{{ meta_title|default(site.name) }}">
+    <meta property="og:site"          content="{{ site.name }}">
+    <meta property="og:url"           content="{{ site.page_url }}">
+    <meta property="og:image"         content="{{ site.url ~ meta_image }}">
+    <meta property="og:description"   content="{{ meta_desc }}">
+    <meta property="og:type"          content="website">
 
     {# Twitter #}
     <meta name="twitter:card"     content="summary_large_image">
