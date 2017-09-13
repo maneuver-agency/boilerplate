@@ -68,7 +68,7 @@ const Maps = require('./modules/maps.js')
     onScroll: function () {
       // do stuff here
 
-      $siteheader.toggleClass('shrink', window.scrollY > 100)
+      $siteheader.toggleClass('shrink', window.pageYOffset > 100)
 
       ticking = false
     }
