@@ -47,7 +47,7 @@ a:focus, button:focus, input[type="submit"]:focus,
   @media (min-width: $screen-sm-min) {
     @include flexbox-horizontal; flex-wrap: wrap;
     > * { @include flexbox-vertical; }
-    &:before { flex-basis:0; /* Safari bugfix */ }
+    &:before { flex-basis:0; width:0;/* Safari bugfix */ }
   }
 }
 .valign                 { @include flexbox-vertical; justify-content: center; }
