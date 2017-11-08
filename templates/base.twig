@@ -28,7 +28,7 @@
     <meta name="twitter:card"     content="summary_large_image">
     <meta name="twitter:site"     content="{# @handle #}">
 
-    <link rel="stylesheet" href="{{ theme.link~manifest['app.css'] }}">
+    <link rel="stylesheet" href="{{ manifest['app.css'] }}">
     {# Implement in template file to add stylesheets. #}
     {% block styles %}{% endblock %}
 
@@ -134,8 +134,8 @@
     {# Implement in template file to add scripts. #}
     {% block scripts %}{% endblock %}
 
-    <script src="{{ theme.link~manifest['vendor.js'] }}"></script>
-    <script src="{{ theme.link~manifest['app.js'] }}"></script>
+    <script src="{{ manifest['vendor.js'] }}"></script>
+    <script src="{{ manifest['app.js'] }}"></script>
 
     <!--[if lt IE 9]>
       <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>

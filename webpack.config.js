@@ -6,11 +6,13 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 // const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
+const WriteFilePlugin = require('write-file-webpack-plugin')
 const path = require('path')
 
 
 const extractSass = new ExtractTextPlugin({
-  filename: "[name].[chunkhash].css",
+  // filename: "[name].[hash].css",
+  filename: "[name].css",
   // filename: ""
 });
 
@@ -21,9 +23,22 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: "[name].[chunkhash].js"
+    // filename: "[name].[hash].js",
+    filename: "[name].js",
+    publicPath: 'http://boilerplate.local.mnvr.be/dist/'
   },
   devtool: 'source-map',
+  devServer: {
+    hot: true, // this enables hot reload
+    inline: true, // use inline method for hmr 
+    host: "localhost",
+    port: 8080,
+    headers: { 'Access-Control-Allow-Origin': '*' }
+    // contentBase: path.join(__dirname, "/"),
+    // watchOptions: {
+    //   poll: false // needed for homestead/vagrant setup
+    // }
+  },
   module: {
     rules: [
       {
@@ -40,7 +55,7 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
-        use: extractSass.extract({
+        use: ['css-hot-loader'].concat(extractSass.extract({
           fallback: 'style-loader',
           //resolve-url-loader may be chained before sass-loader if necessary
           use: [{
@@ -55,7 +70,7 @@ module.exports = {
               sourceMap: true
             }
           }]
-        })
+        }))
       }
     ]
   },
@@ -70,8 +85,13 @@ module.exports = {
     new ManifestPlugin({
       filter(object) {
         return object.name.indexOf(".map") == -1
-      }
+      },
+      publicPath: 'http://localhost:8080/dist/',
     }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new WriteFilePlugin()
+
     // new BrowserSyncPlugin({
     //   proxy: devUrl,
     //   port: 3000,

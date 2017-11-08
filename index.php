@@ -21,9 +21,9 @@ $config['lang'] = 'en';
 
 if (file_exists('dist/manifest.json')) {
   $manifest = json_decode(file_get_contents('dist/manifest.json'), true);
-  foreach ($manifest as &$entry) {
-    $entry = '/dist/' . $entry;
-  }
+  // foreach ($manifest as &$entry) {
+  //   $entry = '/dist/' . $entry;
+  // }
   $config['manifest'] = $manifest;
 }
 
