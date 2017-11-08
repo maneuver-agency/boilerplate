@@ -1,0 +1,26 @@
+.mnvr-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  
+  &__inner {
+    display:block; 
+    width:13px; 
+    height:6px; 
+    margin:auto; 
+    background:url('/assets/img/mnvr-dark.png') no-repeat 0 0;  
+    opacity:.3; 
+    transition:all 250ms ease-in-out;
+
+    &:hover { 
+      width:63px; 
+      opacity:.3; 
+    }
+  }
+
+  &--light {
+    .mnvr-badge__inner {
+      background:url('/assets/img/mnvr-light.png') no-repeat 0 0;  
+    }
+  }
+}

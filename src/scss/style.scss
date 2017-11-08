@@ -1,7 +1,18 @@
+$fa-font-path: "fonts";
+@import 'node_modules/font-awesome/scss/font-awesome.scss';
 @import 'bootstrap-variables';
-@import '~bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap/scss/bootstrap';
 
-body {
-  background: $body-bg;
-  color: yellow;
-}
+
+@import 'mixins';
+
+//
+@import 'layout/general';
+@import 'layout/header';
+@import 'layout/footer';
+
+
+@import 'components/hero';
+@import 'components/page-section';
+@import 'components/site-socials';
+@import 'components/mnvr-badge';

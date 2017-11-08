@@ -28,7 +28,7 @@
     <meta name="twitter:card"     content="summary_large_image">
     <meta name="twitter:site"     content="{# @handle #}">
 
-    <link rel="stylesheet" href="{{ manifest['app.css'] }}">
+    <link rel="stylesheet" href="/dist/style.css">
     {# Implement in template file to add stylesheets. #}
     {% block styles %}{% endblock %}
 
@@ -58,73 +58,47 @@
       ga('send', 'pageview'); */
     </script>
 
-    <main id="site-wrap" class="site-wrap" role="main">
-      <header id="site-header" class="site-header navbar navbar-fixed-top" role="banner">
+    <div class="site-wrap d-flex flex-column">
+      
+      <nav class="site-header navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container">
-          <div id="site-logo" class="navbar-header">
-            <a href="/" title="home" class="navbar-brand">{{ site.name }}</a>
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".main-menu">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-
-
-
-          <nav id="main-menu" class="main-menu navbar-collapse collapse" role="navigation">
-            <ul class="nav navbar-nav navbar-right navbar-links">
-              {% set hasmore = false %}
+          <a class="navbar-brand" href="#">
+            {{ site.name }}
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
               {% for item in menus().header.items %}
-                {% if 'nav-more-item' in item.class %}
-                  <li class="nav-more-item">
-                    <a class="nav-more-link">more</a>
-                    <ul class="nav-more-list sub-menu">
-                  {% set hasmore = true %}
-                {% endif %}
-                <li><a href="{{ item.link }}" class="menu-link {{ item.class }}">{{ item.title }}</a></li>
-                {% if loop.last and hasmore %}
-                    </ul>
-                  </li>
-                {% endif %}
+                <li class="nav-item"><a href="{{ item.link }}" class="nav-link {{ item.class }}">{{ item.title }}</a></li>
               {% endfor %}
             </ul>
-          </nav>
+          </div>
         </div>
-      </header>
+      </nav>
 
-      <div id="site-content" class="site-content">
-        <button class="btn btn-primary">primary button</button>
-        <div id="app">
-        </div>
+      <div class="site-content">
+        
         {% block content %}
-
 
         {% endblock %}
 
       </div>
 
-      <footer id="site-footer" class="site-footer" role="contentinfo">
+      <footer class="site-footer">
         <div class="container">
           <div class="row">
-            <div class="col-sm-4 col-sm-offset-8">
-              <div class="pull-right">
+            <div class="col-sm-4">
                 {{ macros.socials(_context) }}
-              </div>
             </div>
           </div>
         </div>
-        <div id="mnvr">
-          <a class="inner" href="http://www.maneuver.be" target="_blank" title="site by maneuver"></a>
+        <div class="mnvr-badge mnvr-badge--light">
+          <a class="mnvr-badge__inner" href="http://www.maneuver.be" target="_blank" title="site by maneuver"></a>
         </div>
       </footer>
-    </main>
-
-    <div id="outdated">
-      <h6>Your browser is out-of-date!</h6>
-      <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
-      <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
     </div>
 
     {# Expose to javascript. #}
@@ -136,8 +110,8 @@
     {# Implement in template file to add scripts. #}
     {% block scripts %}{% endblock %}
 
-    <script src="{{ manifest['vendor.js'] }}"></script>
-    <script src="{{ manifest['app.js'] }}"></script>
+    <script src="/dist/vendor.js"></script>
+    <script src="/dist/app.js"></script>
 
     <!--[if lt IE 9]>
       <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>

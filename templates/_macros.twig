@@ -8,7 +8,8 @@
  # macros.socialicon(_context, 'facebook')
  #}
 {% macro socialicon(ctx, name) %}
-  <svg class="social-icon-{{ name }} svg-icon"><use xlink:href="{{ ctx.theme.link }}/assets/social-icons.svg#icon-{{ name }}"></use></svg>
+  {# <svg class="social-icon-{{ name }} svg-icon"><use xlink:href="{{ ctx.theme.link }}/assets/social-icons.svg#icon-{{ name }}"></use></svg> #}
+  <i class="fa fa-{{name}}"></i>
 {% endmacro %}
 
 {# ########################################################################## #}
