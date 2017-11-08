@@ -42,6 +42,15 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+          }
+          // other vue-loader options go here
+        }
+      },
+      {
         test: /\.js$/,
         include: path.resolve(__dirname, 'src'),
         use: [{
@@ -86,7 +95,8 @@ module.exports = {
       filter(object) {
         return object.name.indexOf(".map") == -1
       },
-      publicPath: 'http://localhost:8080/dist/',
+      //publicPath: 'http://localhost:8080/dist/',
+      publicPath: '/dist/',
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),

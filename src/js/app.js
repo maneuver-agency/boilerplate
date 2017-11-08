@@ -1,4 +1,10 @@
 //import sass
 import '../scss/style.scss';
 
-console.log('test')
+import Vue from 'vue'
+import App from './vue/App.vue'
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
