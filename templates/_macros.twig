@@ -7,7 +7,7 @@
  # Use:
  # macros.socialicon(_context, 'facebook')
  #}
-{% macro socialicon(ctx, name) %}
+{% macro fontawesome(ctx, name) %}
   {# <svg class="social-icon-{{ name }} svg-icon"><use xlink:href="{{ ctx.theme.link }}/assets/social-icons.svg#icon-{{ name }}"></use></svg> #}
   <i class="fa fa-{{name}}"></i>
 {% endmacro %}
@@ -27,7 +27,7 @@
     {% for type in ['facebook','twitter','linkedin','instagram','youtube','vimeo'] %}
       {% if ctx.options[type] %}
         <a class="site-socials__item" href="{{ ctx.options[type] }}" target="_blank">
-          {{ this.socialicon(ctx, type) }}
+          {{ this.fontawesome(ctx, type) }}
         </a>
       {% endif %}
     {% endfor %}
@@ -46,7 +46,7 @@
 {% macro share_button(ctx, name, url, small) %}
   {% import _self as this %}
   <a href="{{ url|share(name) }}" target="_blank" class="btn btn-default btn-share clr-{{ name }} {{ small ? 'btn-share--small' }}">
-    <span class="btn-share__icon">{{ _self.socialicon(ctx, name) }}</span>
+    <span class="btn-share__icon">{{ _self.fontawesome(ctx, name) }}</span>
     <span class="btn-share__label">Share</span>
   </a>
 {% endmacro %}

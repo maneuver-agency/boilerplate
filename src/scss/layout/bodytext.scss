@@ -1,0 +1,32 @@
+.bodytext {
+  font-size: 1rem;
+
+  &--small {
+    font-size: 0.8rem;
+  }
+
+  &--large {
+    font-size: 1.2rem;
+  }
+
+  h2 {
+    @extend .h2;
+  }
+  h3 {
+    @extend .h3;
+  }
+  h4 {
+    @extend .h4;
+  }
+  h5 {
+    @extend .h5;
+  }
+  h6 {
+    @extend .h6;
+  }
+
+  ul {
+    padding: 0;
+    list-style-position: inside;
+  }
+}

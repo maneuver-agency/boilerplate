@@ -1,17 +1,16 @@
 {% set microdata = microdata|default(true) %}
 
-<div class="profile" {% if microdata %} itemscope itemtype="http://schema.org/Person {% endif %}">
+<div class="profile text-center text-sm-left" {% if microdata %} itemscope itemtype="http://schema.org/Person {% endif %}">
   <div class="row">
-    <div class="col-xxs-12 col-xs-3 col-sm-4">
+    <div class="col-xs-3 col-sm-4 ">
       <div class="profile__image">
-        <img src="https://placem.at/people?w=300&h=300&txt=0" alt="" class="img-responsive img-circle" {% if microdata %} itemprop="image" {% endif %} />
+        <img src="https://placem.at/people?w=150&h=150&txt=0" alt="" class="img-fluid rounded-circle" {% if microdata %} itemprop="image" {% endif %} />
       </div>
     </div>
-    <div class="col-xxs-12 col-xs-9 col-sm-8">
-      <div class="spacer-xxs-10vw"></div>
+    <div class="col-xs-9 col-sm-8">
       <div class="profile__info rhythm-mb2">
-        <div class="profile__name item-title" {% if microdata %} itemprop="name" {% endif %}>John Doe</div>
-        <div class="profile__jobtitle" {% if microdata %} itemprop="jobTitle" {% endif %}>Executive Officer</div>
+        <h2 class="h3 profile__name text-primary" {% if microdata %} itemprop="name" {% endif %}>John Doe</h2>
+        <h3 class="h5 profile__jobtitle" {% if microdata %} itemprop="jobTitle" {% endif %}>Executive Officer</h3>
         <div class="profile__bio" {% if microdata %} itemprop="description" {% endif %}>{{ lipsum(20) }}</div>
         <div class="profile__links">
           <div class="profile__links__item">

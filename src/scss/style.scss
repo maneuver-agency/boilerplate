@@ -2,7 +2,7 @@ $fa-font-path: "fonts";
 @import 'node_modules/font-awesome/scss/font-awesome.scss';
 @import 'bootstrap-variables';
 @import 'node_modules/bootstrap/scss/bootstrap';
-
+@import 'utils/spacing';
 
 @import 'mixins';
 
@@ -10,9 +10,12 @@ $fa-font-path: "fonts";
 @import 'layout/general';
 @import 'layout/header';
 @import 'layout/footer';
+@import 'layout/bodytext';
+
 
 
 @import 'components/hero';
 @import 'components/page-section';
 @import 'components/site-socials';
 @import 'components/mnvr-badge';
+@import 'components/logo-ribbon';

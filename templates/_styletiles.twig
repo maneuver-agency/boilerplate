@@ -60,6 +60,16 @@
           <span>secondary</span>
         </div>
       </div>
+      <div class="col-sm-3">
+        <div class="st-swatch bg-tertiary">
+          <span>tertiary</span>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="st-swatch bg-quaternary">
+          <span>quaternary</span>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-sm-3">
@@ -86,8 +96,18 @@
 
   <div class="page-section">
     <div class="st-head">Typography</div>
-    <div class="st-head-sub">Bodytext</div>
 
+    <div class="st-head-sub">Headings</div>
+    <div class="bodytext">
+      <h1>Heading 1 / .h1</h1>
+      <h2>Heading 2 / .h2</h2>
+      <h3>Heading 2 / .h2</h3>
+      <h4>H4 / .h4</h4>
+      <h5>H5 / .h5</h5>
+      <h6>H6 / .h6</h6>
+    </div>
+    
+    <div class="st-head-sub">Bodytext</div>
     <div class="bodytext">
       <h2>Heading 2</h2>
       <h3>Heading 3</h3>
@@ -105,10 +125,8 @@
   </div>
 
   {# Titles #}
-
   <div class="page-section">
     <div class="st-head-sub">Titles</div>
-
     <div class="large-title">Large title</div>
     <div class="small-title">Small title</div>
   </div>
@@ -122,14 +140,12 @@
     <div class="st-head">Buttons</div>
 
     <p>
-      <div class="btn btn-default">Default</div>
       <div class="btn btn-primary">Primary</div>
       <div class="btn btn-secondary">Secondary</div>
     </p>
     <p>
-      <div class="btn btn-default btn-ghost">Default</div>
-      <div class="btn btn-primary btn-ghost">Primary</div>
-      <div class="btn btn-secondary btn-ghost">Secondary</div>
+      <div class="btn btn-outline-primary">Primary</div>
+      <div class="btn btn-outline-secondary">Secondary</div>
     </p>
     <p>
       {{ macros.share_button(_context, 'facebook', 'google.be') }}
@@ -148,40 +164,40 @@
   <div class="page-section">
     <div class="st-head">Components</div>
 
-    <div class="rhythm-mb15">
+    <div class="rhythm-mb-15">
 
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col">
           {% include 'templates/inc/sections/hero.twig' %}
         </div>
       </div>
 
-      <div class="row flexrow">
+      <div class="row">
         {% for i in 0..2 %}
-          <div class="col-sm-4">
+          <div class="col-sm-6 col-md-4">
             {% include 'templates/inc/components/teaser.twig' %}
           </div>
         {% endfor %}
       </div>
 
-      <div class="row flexrow">
+      <div class="row">
         {% for i in 0..2 %}
-          <div class="col-sm-4">
+          <div class="col-sm-6 col-md-4">
             {% include 'templates/inc/components/feature.twig' %}
           </div>
         {% endfor %}
       </div>
 
-      <div class="row flexrow">
+      <div class="row">
         {% for i in 0..1 %}
-          <div class="col-xs-10 col-sm-6">
+          <div class="col-xs-10 col-md-6">
             {% include 'templates/inc/components/profile.twig' %}
           </div>
         {% endfor %}
       </div>
 
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col">
           {% include 'templates/inc/components/logo-ribbon.twig' %}
         </div>
       </div>
