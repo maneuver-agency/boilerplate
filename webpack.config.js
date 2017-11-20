@@ -18,6 +18,7 @@ Encore
       resolveUrlLoader: false
     })
 
+    // See postcss.config.js for configuration
     .enablePostCssLoader()
 
     // allow legacy applications to use $/jQuery as a global variable
@@ -33,20 +34,22 @@ Encore
     // empty the outputPath dir before each build
     .cleanupOutputBeforeBuild()
 
+    // create a vendor js file with common code that rarely changes
     .createSharedEntry('vendor', [
       'jquery',
       'popper.js',
       'bootstrap',
     ])
 
-    // show OS notifications when builds finish/fail
-    // .enableBuildNotifications()
-
     // create hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
 let config = Encore.getWebpackConfig()
 
+/**
+ * Setup BrowserSync which is not yet supported out-of-the-box.
+ * @see https://github.com/symfony/webpack-encore/issues/2
+ */
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 config.plugins.push(new BrowserSyncPlugin(
     {
@@ -87,6 +90,10 @@ config.plugins.push(new BrowserSyncPlugin(
     }
 ));
 
+/**
+ * Add plugin to write the css file to disk when using webpack-dev-server to 
+ * utilize browsersync.
+ */
 const WriteFilePlugin = require('write-file-webpack-plugin')
 config.plugins.push(new WriteFilePlugin({
     test: /\.css$/,
