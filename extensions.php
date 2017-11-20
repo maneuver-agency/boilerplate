@@ -23,6 +23,27 @@ $twig->addFunction(new Twig_SimpleFunction('dump', function($var){
   var_dump($var);exit;
 }));
 
+global $assets;
+
+$twig->addFunction(new Twig_SimpleFunction('asset', function($key) use ($assets) {
+
+  if (empty($assets)) {
+    $dir = '';
+
+    if (function_exists('get_stylesheet_directory')) {
+      $dir = get_stylesheet_directory();
+    }
+
+    $manifest = $dir . 'dist/manifest.json';
+
+    $assets = json_decode(file_get_contents($manifest), true);
+  }
+
+  if (isset($assets[$key])) {
+    return $assets[$key];
+  }
+}));
+
 $twig->addFunction(new Twig_SimpleFunction('menus', function(){
   $links = [
     'header' => [

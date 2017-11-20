@@ -28,7 +28,9 @@
     <meta name="twitter:card"     content="summary_large_image">
     <meta name="twitter:site"     content="{# @handle #}">
 
-    <link rel="stylesheet" href="/dist/style.css">
+    <script src="http://localhost:3000/browser-sync/browser-sync-client.js?v=2.18.13"></script>
+
+    <link rel="stylesheet" href="{{ asset('dist/app.css') }}">
     {# Implement in template file to add stylesheets. #}
     {% block styles %}{% endblock %}
 
@@ -110,8 +112,10 @@
     {# Implement in template file to add scripts. #}
     {% block scripts %}{% endblock %}
 
-    <script src="/dist/vendor.js"></script>
-    <script src="/dist/app.js"></script>
+    <script src="{{ asset('dist/manifest.js') }}"></script>
+    <script src="{{ asset('dist/vendor.js') }}"></script>
+    <script src="{{ asset('dist/app.js') }}"></script>
+    <script src="{{ asset('dist/hot-css.js') }}"></script>
 
     <!--[if lt IE 9]>
       <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
