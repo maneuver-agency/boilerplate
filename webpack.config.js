@@ -9,17 +9,17 @@ Encore
 
     // will create web/build/app.js and web/build/app.css
     .addEntry('app', './src/js/app.js')
-    .addStyleEntry('core', './src/scss/core.scss')
+
+    .configureExtractTextPlugin((options) => {
+        options.disable = true
+    })
 
     .enableVueLoader()
 
     // allow sass/scss files to be processed
     .enableSassLoader(function(sassOptions) {}, {
       resolveUrlLoader: false
-    })
-
-    // See postcss.config.js for configuration
-    .enablePostCssLoader()
+    })    
 
     // allow legacy applications to use $/jQuery as a global variable
     .autoProvidejQuery()
@@ -29,7 +29,7 @@ Encore
       Popper: ['popper.js']
     })
 
-    .enableSourceMaps(!Encore.isProduction())
+    // .enableSourceMaps(!Encore.isProduction())
 
     // empty the outputPath dir before each build
     .cleanupOutputBeforeBuild()
@@ -41,8 +41,15 @@ Encore
       'bootstrap',
     ])
 
-    // create hashed filenames (e.g. app.abc123.css)
-    .enableVersioning(Encore.isProduction())
+
+if (Encore.isProduction()) {
+    Encore
+        // See postcss.config.js for configuration
+        .enablePostCssLoader()
+
+        // create hashed filenames (e.g. app.abc123.css)
+        .enableVersioning()
+}
 
 let config = Encore.getWebpackConfig()
 
@@ -57,18 +64,6 @@ config.plugins.push(new BrowserSyncPlugin(
         host: 'localhost',
         port: 3000,
         files: [ // watching on changes
-            {
-                match: [
-                    './dist/*.css'
-                ],
-                fn: function (event, file) {
-                    if (event === 'change') {
-                        // get the named instance
-                        const bs = require('browser-sync').get('bs-webpack-plugin');
-                        bs.reload('*.css');
-                    }
-                }
-            },
             {
                 match: [
                     './**/*.twig'
@@ -89,16 +84,6 @@ config.plugins.push(new BrowserSyncPlugin(
         name: 'bs-webpack-plugin' // notice the name when getting instance above
     }
 ));
-
-/**
- * Add plugin to write the css file to disk when using webpack-dev-server to 
- * utilize browsersync.
- */
-const WriteFilePlugin = require('write-file-webpack-plugin')
-config.plugins.push(new WriteFilePlugin({
-    test: /\.css$/,
-    useHashIndex: true
-}))
 
 // export the final configuration
 module.exports = config
