@@ -1,7 +1,7 @@
 {
   "name": "boilerplate",
-  "version": "1.0.0",
-  "description": "1. Make sure node, npm and composer are installed globally on your system.",
+  "version": "2.1.0",
+  "description": "Tiny opiniated framework for quickly prototyping a website",
   "main": "index.php",
   "scripts": {
     "watch": "./node_modules/.bin/encore dev-server --hot",
@@ -13,8 +13,9 @@
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/maneuver/maneuver-boilerplate.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "David De Coninck",
+  "license": "UNLICENSED",
+  "private": true,
   "homepage": "https://bitbucket.org/maneuver/maneuver-boilerplate#readme",
   "devDependencies": {
     "@symfony/webpack-encore": "^0.17.0",
