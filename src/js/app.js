@@ -8,4 +8,4 @@ new Vue({
   render: h => h(App)
 })
 
-console.log('test')
+console.log('testje')

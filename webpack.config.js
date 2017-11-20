@@ -9,6 +9,7 @@ Encore
 
     // will create web/build/app.js and web/build/app.css
     .addEntry('app', './src/js/app.js')
+    .addStyleEntry('core', './src/scss/core.scss')
 
     .enableVueLoader()
 
@@ -49,30 +50,48 @@ let config = Encore.getWebpackConfig()
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 config.plugins.push(new BrowserSyncPlugin(
     {
-        proxy: 'http://localhost:8080', // coming from some settings variables
+        proxy: 'http://boilerplate.local.mnvr.be', // coming from some settings variables
         host: 'localhost',
         port: 3000,
-        // files: [ // watching on changes
-        //     {
-        //         match: [
-        //             '/dist/*.css'
-        //         ],
-        //         fn: function (event, file) {
-        //             if (event === 'change') {
-        //                 // get the named instance
-        //                 const bs = require('browser-sync').get('bs-webpack-plugin');
-        //                 bs.reload();
-        //             }
-        //         }
-        //     }
-        // ],
-        // injectChanges: true
+        files: [ // watching on changes
+            {
+                match: [
+                    './dist/*.css'
+                ],
+                fn: function (event, file) {
+                    if (event === 'change') {
+                        // get the named instance
+                        const bs = require('browser-sync').get('bs-webpack-plugin');
+                        bs.reload('*.css');
+                    }
+                }
+            },
+            {
+                match: [
+                    './**/*.twig'
+                ],
+                fn: function (event, file) {
+                    if (event === 'change') {
+                        // get the named instance
+                        const bs = require('browser-sync').get('bs-webpack-plugin');
+                        bs.reload();
+                    }
+                }
+            }
+        ],
+        injectChanges: true
     },
     {
         reload: false, // this allow webpack server to take care of instead browser sync
         name: 'bs-webpack-plugin' // notice the name when getting instance above
     }
 ));
+
+const WriteFilePlugin = require('write-file-webpack-plugin')
+config.plugins.push(new WriteFilePlugin({
+    test: /\.css$/,
+    useHashIndex: true
+}))
 
 // export the final configuration
 module.exports = config

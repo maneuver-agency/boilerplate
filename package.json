@@ -4,6 +4,9 @@
   "description": "1. Make sure node, npm and composer are installed globally on your system.",
   "main": "index.php",
   "scripts": {
+    "watch": "./node_modules/.bin/encore dev-server --hot",
+    "dev": "./node_modules/.bin/encore dev",
+    "prod": "./node_modules/.bin/encore production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,7 +30,8 @@
     "sass-loader": "^6.0.6",
     "vue": "^2.5.6",
     "vue-loader": "^13.5.0",
-    "vue-template-compiler": "^2.5.6"
+    "vue-template-compiler": "^2.5.6",
+    "write-file-webpack-plugin": "^4.2.0"
   },
   "browserslist": [
     "last 2 versions",
