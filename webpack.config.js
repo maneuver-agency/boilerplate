@@ -1,17 +1,25 @@
+/**
+ * TODO:
+ * - parse editor.scss file to seperate css file
+ * - minify and uglify all assets in production
+ * - speed up the process for development
+ */
+
+const settings = require('./app.config.js')
 const Encore = require('@symfony/webpack-encore')
 
 Encore
     // the project directory where all compiled assets will be stored
-    .setOutputPath('dist/')
+    .setOutputPath(settings.outputDir + '/')
 
     // the public path used by the web server to access the previous directory
-    .setPublicPath('/dist')
+    .setPublicPath('/' + settings.outputDir)
 
     // will create web/build/app.js and web/build/app.css
     .addEntry('app', './src/js/app.js')
 
     .configureExtractTextPlugin((options) => {
-        options.disable = true
+        options.disable = !Encore.isProduction()
     })
 
     .enableVueLoader()
@@ -60,7 +68,7 @@ let config = Encore.getWebpackConfig()
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 config.plugins.push(new BrowserSyncPlugin(
     {
-        proxy: 'http://boilerplate.local.mnvr.be', // coming from some settings variables
+        proxy: settings.devUrl, // coming from some settings variables
         host: 'localhost',
         port: 3000,
         files: [ // watching on changes

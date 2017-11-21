@@ -7,6 +7,8 @@
     "watch": "./node_modules/.bin/encore dev-server --hot",
     "dev": "./node_modules/.bin/encore dev",
     "prod": "./node_modules/.bin/encore production",
+    "stage": "npm run prod && gulp deploy --staging",
+    "deploy": "npm run prod && gulp deploy --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,7 +26,11 @@
     "browser-sync": "^2.18.13",
     "browser-sync-webpack-plugin": "^1.2.0",
     "font-awesome": "^4.7.0",
+    "gulp": "^3.9.1",
+    "gulp-rsync": "0.0.8",
+    "gulp-util": "^3.0.8",
     "jquery": "^3.2.1",
+    "minimist": "^1.2.0",
     "node-sass": "^4.7.1",
     "popper.js": "^1.12.9",
     "postcss-loader": "^2.0.8",
@@ -37,5 +43,6 @@
     "last 2 versions",
     "ios >= 8",
     "IE >= 11"
-  ]
+  ],
+  "dependencies": {}
 }
