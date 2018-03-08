@@ -1,5 +1,6 @@
 .bodytext {
-  font-size: 1rem;
+  font-size: inherit;
+  line-height: inherit;
 
   &--small {
     font-size: 0.8rem;
@@ -7,6 +8,10 @@
 
   &--large {
     font-size: 1.2rem;
+  }
+
+  &--tall {
+    line-height: 195%;
   }
 
   h2 {
@@ -28,5 +33,26 @@
   ul {
     padding: 0;
     list-style-position: inside;
+
+    li {
+      list-style: none;
+      margin-bottom: 0.7rem;
+      &:before {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 15px;
+        background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="13.61" height="11.54" viewBox="0 0 13.61 11.54"><defs><style>.cls-1{fill:#f8ad3b;}</style></defs><title>list-icon</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polygon class="cls-1" points="11.54 0 4.14 7.4 2.07 5.33 0 7.4 4.14 11.54 13.61 2.07 11.54 0"/></g></g></svg>');
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        content:'';
+      }
+    }
+  }
+
+  &--has-green-bullets {
+    ul li:before {
+      background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="13.61" height="11.54" viewBox="0 0 13.61 11.54"><defs><style>.cls-1{fill:#22b273;}</style></defs><title>list-icon</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polygon class="cls-1" points="11.54 0 4.14 7.4 2.07 5.33 0 7.4 4.14 11.54 13.61 2.07 11.54 0"/></g></g></svg>');
+    }
   }
 }

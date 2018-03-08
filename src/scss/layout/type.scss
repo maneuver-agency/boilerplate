@@ -1,0 +1,35 @@
+
+html {
+  font-size: 13px;
+  @include media-breakpoint-up(md) {
+    font-size: 16px;
+  }
+}
+
+strong, b {
+  font-weight: $font-weight-bold;
+}
+
+.h2 {
+  &--medium {
+    font-weight: $font-weight-medium;
+  }
+}
+
+h3, .h3 {
+  font-weight: $font-weight-light;
+}
+
+h4, .h4 {
+  font-weight: $font-weight-light;
+}
+
+h5, .h5 {
+  font-weight: $font-weight-light;
+  font-family: $font-family-base;
+}
+
+h6, .h6 {
+  font-weight: normal;
+  font-family: $font-family-base;
+}

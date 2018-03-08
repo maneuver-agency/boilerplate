@@ -1,0 +1,15 @@
+.triangle-up {
+  @include triangle-up(theme-color('primary'));
+}
+
+.triangle-down {
+  @include triangle-down(theme-color('primary'));
+}
+
+.triangle-right {
+  @include triangle-right(theme-color('primary'));
+}
+
+.triangle-left {
+  @include triangle-left(theme-color('primary'));
+}

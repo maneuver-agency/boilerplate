@@ -1,0 +1,10 @@
+.card {
+  &--narrow {
+    .card-header {
+      padding: 0.4rem 0.6rem
+    }
+    .card-body {
+      padding: 0.6rem;
+    }
+  }
+}

@@ -1,10 +1,85 @@
-@mixin overlay($color: #000, $opacity: 0.3) {
-  display: block;
-  position: absolute;
+@mixin fill($fixed: false) {
+  @if $fixed {
+    position: fixed;
+  } @else {
+    position: absolute;
+  }
+
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  display: block;
+}
+
+@mixin overlay($color: #000, $opacity: 0.3, $fixed: false) {
+  @include fill($fixed);
   background: rgba($color, $opacity);
   z-index: 1;
+}
+
+@mixin gradient-overlay($color: #fff) {
+  @include fill();
+  z-index: 1;
+  background : linear-gradient(0deg, rgba($color, 1) 0%, rgba($color, 0) 77.35%, rgba($color, 0) 100%);
+}
+
+
+@mixin triangle-up($color: #000, $size:5px) {
+  width: 0; 
+  height: 0; 
+  border-left: $size solid transparent;
+  border-right: $size solid transparent;
+  border-bottom: ($size*1.5) solid $color;
+ 
+}
+@mixin triangle-down($color: #000, $size:5px) {
+  width: 0;
+  height: 0;
+  border-left: $size solid transparent;
+  border-right: $size solid transparent;
+  border-top: ($size*1.5) solid $color;
+}
+@mixin triangle-right($color: #000, $size:5px) {
+  width: 0; 
+  height: 0; 
+  border-top: $size solid transparent;
+  border-bottom: $size solid transparent;
+  border-left: ($size*1.5) solid $color;
+}
+@mixin triangle-left($color: #000, $size:5px) {
+  width: 0;
+  height: 0;
+  border-top: $size solid transparent;
+  border-bottom: $size solid transparent; 
+  border-right:($size*1.5) solid $color; 
+}
+
+@mixin color-variant($parent, $color) {
+  #{$parent} {
+    color: $color !important;
+  }
+  a#{$parent} {
+    @include hover-focus {
+      color: darken($color, 10%) !important;
+    }
+  }
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    bottom: 0;
+  }
 }

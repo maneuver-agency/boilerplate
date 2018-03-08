@@ -1,0 +1,43 @@
+.btn-secondary {
+  &:not([disabled]):not(.disabled):active,
+  &:not([disabled]):not(.disabled).active {
+    box-shadow: none;
+    border: none;
+    background-color: theme-color('primary');
+  }
+}
+
+.btn-primary {
+  color: #fff;
+
+  &.active, &:disabled {
+    color: #fff !important;
+  }
+}
+.btn-icon {
+  font-size : 1rem;
+  letter-spacing : 1.5px;
+  color: $gray-600;
+  text-transform: uppercase;
+  background-color: transparent;
+  font-weight: 900;
+  padding: 0;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+
+  > .icon {
+    margin-left: 0.5rem;
+    transition: all 200ms $easeOutCubic;
+  }
+
+  &.hover, &:hover, &:focus, &:active {
+    color: theme-color('primary') !important;
+
+    > .icon {
+      transform: translateX(3px);
+    }
+  }
+}

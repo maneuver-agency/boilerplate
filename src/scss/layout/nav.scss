@@ -1,0 +1,11 @@
+.main-menu {
+  &__link {
+    text-transform: uppercase;
+    color: $gray-600 !important;
+    font-weight: $font-weight-light;
+
+    &:hover, &:focus {
+      color: theme-color('primary') !important;
+    }
+  }
+}

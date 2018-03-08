@@ -1,6 +1,6 @@
 .hero {
-  min-height: 350px;
-  max-height: 700px;
+  min-height: 40vw;
+  // max-height: 700px;
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -8,9 +8,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-height: 75vh;
+
+  padding: 60px 0;
 
   &__overlay {
-    @include overlay(#000);
+    @include overlay(#000, 0.35);
   }
 
   &__content {
@@ -18,10 +21,30 @@
     z-index: 2;
     color: #fff;
     max-width: 65%;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
-    text-transform: uppercase;
-    font-weight: 100;
-    letter-spacing: 2px;
+    font-weight: 200;
+
+    @include media-breakpoint-up(xl) {
+      max-width: 40%;
+    }
+  }
+
+  &__quote {
+    font-style: italic;
+  }
+
+  &__share {
+    .at-resp-share-element .at-share-btn {
+      background: #fff !important;
+      svg {
+        fill: #444 !important;  
+      }
+      
+    }
+  }
+
+  &--sm {
+    min-height: 30vw;
   }
 }

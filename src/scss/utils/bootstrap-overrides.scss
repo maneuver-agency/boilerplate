@@ -1,0 +1,20 @@
+/** extend badge **/
+@each $color, $value in $grays {
+  .badge-gray-#{$color} {
+    @include badge-variant($value);
+  }
+}
+
+.badge {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.badge-pill {
+  border-radius: 5px;
+  color: #ababab;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: $font-weight-light;
+}

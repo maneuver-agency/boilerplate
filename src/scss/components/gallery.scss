@@ -1,0 +1,8 @@
+.gallery {
+  &__col {
+    display: none;
+    &:nth-child(-n+12){
+      display:block;
+    }
+  }
+}
