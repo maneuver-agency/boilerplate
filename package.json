@@ -22,7 +22,7 @@
   "devDependencies": {
     "@symfony/webpack-encore": "^0.17.0",
     "autoprefixer": "^7.1.6",
-    "bootstrap": "^4.0.0-beta.2",
+    "bootstrap": "^4.0.0",
     "browser-sync": "^2.18.13",
     "browser-sync-webpack-plugin": "^1.2.0",
     "font-awesome": "^4.7.0",
