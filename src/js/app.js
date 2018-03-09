@@ -1,4 +1,5 @@
 require('../scss/style.scss')
+require('./utils.js')
 
 // import slick from 'slick-carousel';
 
