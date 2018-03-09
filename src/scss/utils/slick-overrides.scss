@@ -1,0 +1,80 @@
+$dot-size: 10px;
+$arrow-size: 30px;
+
+.slick {
+  &-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: $arrow-size;
+    height: $arrow-size;
+    font-size: 22px;
+    line-height: $arrow-size;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    text-align: center;
+  }
+
+  &-prev {
+    left: 0;
+  }
+
+  &-next {
+    right: 0;
+  }
+
+  &-dots {
+    position: absolute;
+    z-index: 2;
+    bottom: 15px;
+    margin: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    list-style: none;
+    padding: 0;
+
+    & > li  {
+      width: $dot-size;
+      height: $dot-size;
+      margin-right: 7px;
+
+      & > button {
+        cursor: pointer;
+        outline: 0;
+        border-radius:50%;
+        border: none;
+        width: $dot-size;
+        height: $dot-size;
+        text-indent: -999px;
+        overflow: hidden;
+        box-shadow: 0;
+        position: relative;
+        background: $gray-600;
+        padding: 0;
+      }
+
+      &.slick-active > button {
+        background: $primary;
+      }
+
+      // &.slick-active > button:before {
+      //   background-color: theme-color('primary');
+      //   content:"";
+      //   display: block;
+      //   border-radius: 50%;
+      //   width: 12px;
+      //   height: 12px;
+      //   top: 50%;
+      //   left: 50%;
+      //   position: absolute;
+
+      //   transform: translateX(-50%) translateY(-50%);
+      // }
+    }
+  }
+}
