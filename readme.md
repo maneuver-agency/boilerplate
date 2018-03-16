@@ -8,19 +8,17 @@
   ```
   Or you can run `composer install` and `npm install` separately.
 
-3. Open gulpfile.js and change the variables accordingly.
+3. Open app.config.js and change the variables accordingly.
 
 4. Open config.php and change settings.
 
-4. Open package.json and change the 'deploy' or 'stage' scripts with the correct parameters.
 
 5. Kickstart the automation and watch regular updated files (styles, scripts and images):
   ```
-  gulp watch
+  npm run dev
   ```
-  Or use browser-sync with (be sure to set 'dev-url'):
-  ```
-  gulp bs-watch
+  Or with Hot Module reloading and brower-sync enabled:
+  npm run watch 
   ```
 
 6. Deploy to staging server:
