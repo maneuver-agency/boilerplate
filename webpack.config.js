@@ -37,7 +37,7 @@ Encore
       Popper: ['popper.js']
     })
 
-    // .enableSourceMaps(!Encore.isProduction())
+    .enableSourceMaps(!Encore.isProduction())
 
     // empty the outputPath dir before each build
     .cleanupOutputBeforeBuild()
