@@ -9,6 +9,7 @@ const settings = require('./app.config.js')
 const Encore = require('@symfony/webpack-encore')
 
 Encore
+    
     // the project directory where all compiled assets will be stored
     .setOutputPath(settings.outputDir + '/')
 
