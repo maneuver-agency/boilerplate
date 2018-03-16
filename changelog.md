@@ -2,6 +2,17 @@
 
 ---
 
+## 2.0.0
+
+**CSS & HTML**
+- Upgrade to Bootstrap 4.0.0 framework
+
+**JS**
+- VueJS integration
+
+**Other**
+- bundling with webpack-encore v0.0.19
+
 ## 1.0.5 - ?
 
 **CSS & HTML**
