@@ -1,50 +1,62 @@
 .hero {
-  min-height: 40vw;
-  // max-height: 700px;
   background-position: center center;
   background-size: cover;
   position: relative;
+  padding: $grid-gutter-width * 3 0;
+  min-height: 50vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  max-height: 75vh;
 
-  padding: 60px 0;
+  
+  &__title {
+    font-weight: 300;
+    font-size: 3rem;
+
+  }
+
 
   &__overlay {
     @include overlay(#000, 0.35);
+  }
+
+  &__container {
+    display: flex;
   }
 
   &__content {
     position: relative;
     z-index: 2;
     color: #fff;
-    max-width: 65%;
-    font-size: 1.5rem;
+    max-width: 90%;
+    margin: 0 auto;
+
+    @include media-breakpoint-up(sm) {
+      max-width: 60%;
+    }
+    @include media-breakpoint-up(md) {
+      max-width: 50%;
+    }
+    @include media-breakpoint-up(lg) {
+      max-width: 45%;
+    }
+
+  }
+
+  &--full {
+    height: calc(100vh - #{$header-height});
+  }
+
+  &--center {
+    justify-content: center;
     text-align: center;
-    font-weight: 200;
-
-    @include media-breakpoint-up(xl) {
-      max-width: 40%;
-    }
+  }
+  
+  &--top {
+    align-items: flex-start;
   }
 
-  &__quote {
-    font-style: italic;
+  &--bottom {
+    align-items: flex-end;
   }
 
-  &__share {
-    .at-resp-share-element .at-share-btn {
-      background: #fff !important;
-      svg {
-        fill: #444 !important;  
-      }
-      
-    }
-  }
-
-  &--sm {
-    min-height: 30vw;
-  }
 }

@@ -1,31 +1,10 @@
 .page-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-
-  &__header {
+  
+  &__title {
 
   }
 
   &__content {
     text-align: center;
   }
-
-  /*************/
-  /* MODIFIERS */
-  /*************/
-
-  &--sm {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-  
-  &--md {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-  }
-  &--lg {
-    padding-top: 10rem;
-    padding-bottom: 10rem;
-  }
-
 }

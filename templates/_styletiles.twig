@@ -1,10 +1,13 @@
 {% extends '/templates/base.twig' %}
 
-{% block body_class %}{{ parent() }} about{% endblock %}
+{% block body_class %}{{ parent() }} styletiles{% endblock %}
 
 {% block content %}
 
 <style>
+  body {
+    background: #fff;
+  }
   .st-head {
     font-size:40px;
     font-weight: 900;
@@ -17,7 +20,8 @@
     font-size:28px;
     font-weight: 700;
     color:#aaa;
-    margin-bottom: 4vw;
+    margin-bottom: 30px;
+    margin-top: 20px;
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
   }
@@ -40,60 +44,52 @@
   }
 </style>
 
-<div class="container">
+
 
   {# ************** #}
   {# *** COLORS *** #}
   {# ************** #}
 
-  <div class="page-section">
-    <div class="st-head">Colors</div>
-
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="st-swatch bg-primary">
-          <span>primary</span>
+ <div class="container">
+    <div class="page-section">
+      <div class="st-head">Colors</div>
+   
+      <div class="row">
+         <div class="col-sm-3">
+           <div class="st-swatch bg-primary">
+             <span>primary</span>
+           </div>
+         </div>
+         <div class="col-sm-3">
+           <div class="st-swatch bg-secondary">
+             <span>secondary</span>
+           </div>
+         </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="st-swatch bg-silver">
+            <span>silver</span>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="st-swatch bg-iron">
+            <span>iron</span>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="st-swatch bg-dark">
+            <span>dark</span>
+          </div>
         </div>
       </div>
-      <div class="col-sm-3">
-        <div class="st-swatch bg-secondary">
-          <span>secondary</span>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="st-swatch bg-tertiary">
-          <span>tertiary</span>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="st-swatch bg-quaternary">
-          <span>quaternary</span>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="st-swatch st-swatch--dark bg-silver">
-          <span>silver</span>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="st-swatch bg-iron">
-          <span>iron</span>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="st-swatch bg-dark">
-          <span>dark</span>
-        </div>
-      </div>
-    </div>
-  </div>
+   </div>
+ </div>
 
   {# ****************** #}
   {# *** TYPOGRAPHY *** #}
   {# ****************** #}
-
+<div class="container">
   <div class="page-section">
     <div class="st-head">Typography</div>
 
@@ -123,6 +119,7 @@
       </ul>
     </div>
   </div>
+</div>
 
   {# Titles #}
   <div class="page-section">
@@ -135,7 +132,7 @@
   {# *************** #}
   {# *** BUTTONS *** #}
   {# *************** #}
-
+<div class="container">
   <div class="page-section">
     <div class="st-head">Buttons</div>
 
@@ -147,53 +144,53 @@
       <div class="btn btn-outline-primary">Primary</div>
       <div class="btn btn-outline-secondary">Secondary</div>
     </p>
-    <p>
-      {{ macros.share_button(_context, 'facebook', 'google.be') }}
-      {{ macros.share_button(_context, 'twitter', 'google.be') }}
-    </p>
-    <p>
-      {{ macros.share_button(_context, 'facebook', 'google.be', true) }}
-      {{ macros.share_button(_context, 'twitter', 'google.be', true) }}
-    </p>
   </div>
+</div>
 
   {# ****************** #}
   {# *** COMPONENTS *** #}
   {# ****************** #}
 
   <div class="page-section">
-    <div class="st-head">Components</div>
+    <div class="container">
+      <div class="st-head">Components</div>
+    </div>
 
     <div class="rhythm-mb-15">
 
       <div class="row">
         <div class="col">
-          {% include 'templates/inc/sections/hero.twig' %}
+          {% include 'templates/inc/components/hero.twig' %}
         </div>
       </div>
+      
 
-      <div class="row">
-        {% for i in 0..2 %}
-          <div class="col-sm-6 col-md-4">
-            {% include 'templates/inc/components/teaser.twig' %}
-          </div>
-        {% endfor %}
-      </div>
 
-      <div class="row">
-        {% for i in 0..2 %}
-          <div class="col-sm-6 col-md-4">
-            {% include 'templates/inc/components/feature.twig' %}
-          </div>
-        {% endfor %}
-      </div>
+      <div class="container">
+        <div class="st-head-sub">Teasers</div>
+        <div class="row">
+          {% for i in 0..2 %}
+            <div class="col-sm-6 col-md-4">
+              {% include 'templates/inc/components/teaser.twig' %}
+            </div>
+          {% endfor %}
+        </div>
 
-      <div class="row">
-        {% for i in 0..1 %}
-          <div class="col-xs-10 col-md-6">
-            {% include 'templates/inc/components/profile.twig' %}
-          </div>
-        {% endfor %}
+        <div class="row">
+          {% for i in 0..2 %}
+            <div class="col-sm-6 col-md-4">
+              {% include 'templates/inc/components/feature.twig' %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="row">
+          {% for i in 0..1 %}
+            <div class="col-xs-10 col-md-6">
+              {% include 'templates/inc/components/profile.twig' %}
+            </div>
+          {% endfor %}
+        </div>
       </div>
 
       <div class="row">
@@ -205,7 +202,7 @@
     </div>
 
   </div>
-</div>
+
 
 
 {% endblock %}
