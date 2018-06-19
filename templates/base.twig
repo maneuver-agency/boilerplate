@@ -44,6 +44,10 @@
     </script>#}
 
     {{ wp_head }}
+
+    {% block headscripts %}
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyTrHx5H3mejcjt8hBKsXW5BhKvVSbFGE"></script>
+    {% endblock %}
   </head>
 
   <body class="{% block body_class %}{{ body_classes|join(' ') }}{% endblock %}">

@@ -31,6 +31,7 @@
     "gulp-rsync": "0.0.8",
     "gulp-util": "^3.0.8",
     "jquery": "^3.2.1",
+    "leaflet.gridlayer.googlemutant": "^0.7.0",
     "minimist": "^1.2.0",
     "node-sass": "^4.7.2",
     "popper.js": "^1.12.9",

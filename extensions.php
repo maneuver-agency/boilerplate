@@ -49,33 +49,23 @@ $twig->addFunction(new Twig_SimpleFunction('menus', function(){
     'header' => [
       'items' => [
         [
-          'title' => 'product1',
-          'link' => '/product1',
+          'title' => 'over ons',
+          'link' => '#over-ons',
           'class' => ''
         ],
         [
-          'title' => 'product2',
-          'link' => '/product2',
+          'title' => 'diensten',
+          'link' => '#diensten',
           'class' => ''
         ],
         [
-          'title' => 'product3',
-          'link' => '/product3',
-          'class' => ''
-        ],
-        [
-          'title' => 'about',
-          'link' => '/about',
-          'class' => 'nav-more-item'
-        ],
-        [
-          'title' => 'extra',
-          'link' => '/extra',
+          'title' => 'sectoren',
+          'link' => '#sectoren',
           'class' => ''
         ],
         [
           'title' => 'contact',
-          'link' => '/contact',
+          'link' => '#contact',
           'class' => ''
         ],
       ]
@@ -156,15 +146,21 @@ $twig->addFilter(new Twig_SimpleFilter('share', function($url, $type, $title = '
 }));
 
 
-$twig->addFilter(new Twig_SimpleFilter('link_to_gmaps', function($location, $type = 'place', $zoom = 8){
-  $addr = $location['address'];
+$twig->addFilter(new Twig_SimpleFilter('link_to_gmaps', function($location, $type = 'search', $zoom = 8){
+  $addr = urlencode($location['address']);
   $lat = $location['lat'];
   $lng = $location['lng'];
 
   // Use 'dir' as type for directions.
-  $type = $type == 'dir' ? 'dir/Current+Location' : $type;
+  if ($type == 'search') {
+    return "https://www.google.com/maps/search/?api=1&query={$addr}";
+  }
+  if ($type == 'dir') {
+    return "https://www.google.com/maps/dir/?api=1&destination={$addr}&dir_action=navigate";
+  }
 
-  return "http://maps.google.com/maps/{$type}/{$addr}/@{$lat},{$lng},{$zoom}z";
+  // return "http://maps.google.com/maps/{$type}/{$addr}/@{$lat},{$lng},{$zoom}z";
+  
 }));
 
 $twig->addFunction(new Twig_SimpleFunction('lipsum', function($wordcount = 15){

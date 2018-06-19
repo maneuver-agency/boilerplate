@@ -1,14 +1,17 @@
-require('../scss/style.scss')
-require('./utils.js')
-
-// import slick from 'slick-carousel';
-
+import '../scss/style.scss'
+import './utils.js'
 import Vue from 'vue'
 import App from './vue/App.vue'
-new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+import Map from './components/Map'
+// import slick from 'slick-carousel';
+
+
+if (document.getElementById('app')) {
+  new Vue({
+    el: '#app',
+    render: h => h(App)
+  })
+}
 
 
 
@@ -16,6 +19,9 @@ new Vue({
 ;(function($){
   let ticking = false
 
+  if (document.getElementById('map')) {
+    Map.create('map')
+  }
   /*
    * Main method for binding some events to the document or window.
    */
@@ -52,10 +58,11 @@ new Vue({
     onScroll: function () {
       // do stuff here
       ticking = false
+
+      $('.site-header').toggleClass('site-header--shrink', window.pageYOffset > 70)
     }
   }
   bindEvents()
-
 
   // $('.slideshow').slick({
   //   dots: true,
