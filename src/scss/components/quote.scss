@@ -1,0 +1,26 @@
+.quote {
+  text-align: center;
+  quotes: "“" "”" "‘" "’";
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &:before {
+    display: block;
+    content: open-quote;
+    font-size: 3rem;
+    font-family: $headings-font-family;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    font-style: italic;
+    font-family: $headings-font-family;
+  }
+  &__author {
+    font-weight: bold;
+    &:before {
+      content: "-";
+    }
+  }
+}

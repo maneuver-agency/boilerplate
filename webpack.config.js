@@ -7,14 +7,16 @@
 
 const settings = require('./app.config.js')
 const Encore = require('@symfony/webpack-encore')
+const path = require('path')
 
 Encore
-    
     // the project directory where all compiled assets will be stored
     .setOutputPath(settings.outputDir + '/')
 
     // the public path used by the web server to access the previous directory
-    .setPublicPath('/' + settings.outputDir)
+    .setPublicPath(settings.publicPath + settings.outputDir)
+
+    .setManifestKeyPrefix(settings.outputDir + '/')
 
     // will create web/build/app.js and web/build/app.css
     .addEntry('app', './src/js/app.js')
@@ -30,6 +32,7 @@ Encore
       resolveUrlLoader: false
     })    
 
+    
     // allow legacy applications to use $/jQuery as a global variable
     .autoProvidejQuery()
 
@@ -50,6 +53,42 @@ Encore
       'bootstrap',
     ])
 
+    
+    // loader: 'file-loader',
+
+
+    .disableImagesLoader()
+    .addLoader({
+        test: /\.(png|jpg|jpeg|gif|ico|webp|svg)$/,
+        loader: 'file-loader',
+        options: {
+            extract: false
+        },
+        exclude: [
+            path.resolve(__dirname, "assets/icons")
+        ]
+    })
+
+    //add loader to crete svg sprites
+    .addLoader({
+        test: /\.svg$/,
+        use: {
+         
+            loader: 'svg-sprite-loader',
+            options: {
+                extract: false
+            }
+        },
+        include: [
+            path.resolve(__dirname, "assets/icons")
+        ]
+    })
+
+
+
+
+  
+
 
 if (Encore.isProduction()) {
     Encore
@@ -61,6 +100,21 @@ if (Encore.isProduction()) {
 }
 
 let config = Encore.getWebpackConfig()
+if (!Encore.isProduction()) {
+    config.devtool = 'eval-source-map';
+}
+
+
+
+config.node = {
+fs: 'empty'
+}
+
+
+// const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+// config.plugins.push(new SpriteLoaderPlugin())
+
+
 
 /**
  * Setup BrowserSync which is not yet supported out-of-the-box.

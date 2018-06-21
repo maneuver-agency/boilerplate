@@ -9,6 +9,7 @@
  #}
 {% macro fontawesome(ctx, name) %}
   {# <svg class="social-icon-{{ name }} svg-icon"><use xlink:href="{{ ctx.theme.link }}/assets/social-icons.svg#icon-{{ name }}"></use></svg> #}
+  {% set name = (name == 'facebook') ? name~'-square' : name %}
   <i class="fa fa-{{name}}"></i>
 {% endmacro %}
 

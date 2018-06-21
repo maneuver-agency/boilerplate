@@ -1,0 +1,14 @@
+$block: '.split-card';
+
+#{$block} {
+  &__image-col {
+    @include bg-fill();
+    min-height: 150px;
+  }
+  &__bottom {
+    width: 100%;
+  }
+  .card-body {
+    width: 100%;
+  }
+}

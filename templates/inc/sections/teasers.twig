@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row row-eq-heights rhythm-mb-4">
+    {% for teaser in teasers %}
+      <div class="col-md-6 d-flex">
+        {% include 'templates/inc/components/icon-card.twig' with {
+          data: teaser,
+          mods: ''
+        }%}
+      </div>
+    {% endfor %}  
+  </div>
+</div>

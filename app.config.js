@@ -2,8 +2,9 @@
 
 module.exports = {
   outputDir: 'dist',
-
+  publicPath: '/',
   devUrl: 'boilerplate.local.mnvr.be',
+  
 
   connection: {
     staging: {

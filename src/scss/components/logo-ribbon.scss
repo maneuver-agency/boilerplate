@@ -1,25 +1,17 @@
 .logo-ribbon {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+
   
   &:before {
     flex-basis: 0; /* safari bugfix */
     max-width: 0;
   }
 
-  &__item {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex: 1 1 20%;
-    margin-bottom: 50px;
-    padding: 0 2vw;
-
-    img {
-      max-height: 75px;
-      max-width: 140px;
-    }
+  &__image {
+    max-width: 140px;
+    margin: 2vw;
   }
 }

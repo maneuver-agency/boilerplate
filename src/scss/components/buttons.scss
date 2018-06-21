@@ -41,3 +41,11 @@
     }
   }
 }
+
+@each $color, $value in $theme-colors {
+  .btn-ghost-#{$color} {
+    @include button-variant(#fff, #fff);
+    color: $color !important;
+  }
+}
+

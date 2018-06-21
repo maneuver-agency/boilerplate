@@ -1,10 +1,12 @@
-.card {
-  &--narrow {
-    .card-header {
-      padding: 0.4rem 0.6rem
-    }
-    .card-body {
-      padding: 0.6rem;
-    }
+$block: '.card';
+#{$block}{
+  width: 100%;
+  
+  &-image {
+    flex-shrink: 0;
+  }
+  
+  &-text, &-title {
+    width: 100%;
   }
 }

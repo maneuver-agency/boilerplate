@@ -2,5 +2,17 @@
   position: relative;
   color: #fff;
   padding: $grid-gutter-width 0;
-  background: $gray-600;
+  background: black;
+  padding: 6rem 0;
+  font-family: $headings-font-family;
+
+  &__nav {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__nav-link {
+    color: #fff;
+    cursor: pointer;
+  }
 }

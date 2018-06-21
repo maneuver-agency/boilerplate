@@ -83,3 +83,26 @@
     bottom: 0;
   }
 }
+
+@mixin decorated-title() {
+  position: relative;
+  &:after {
+    content: "";
+    height: 0.3em;
+    width: 4em;
+    background: $primary;
+    display: block;
+    margin-top: 0.5em;
+  }
+
+  .text-center &:after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@mixin bg-fill() {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}

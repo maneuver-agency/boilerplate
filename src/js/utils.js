@@ -1,3 +1,9 @@
+import {ResponsiveBackgroundImage} from './ResponsiveBackgroundImages'
+
+let responsive_background_images = document.querySelectorAll('[data-responsive-background-image]');  
+for (let i=0; i<responsive_background_images.length; i++) {  
+  new ResponsiveBackgroundImage(responsive_background_images[i]);
+}
 
 /**
  * Make entire elements clickable

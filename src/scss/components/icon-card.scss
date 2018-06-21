@@ -1,0 +1,29 @@
+$block: '.icon-card';
+
+#{$block} {
+  background: #fff;
+  width: 100%;
+  
+  .card-content {
+    width: 100%;
+  }
+
+  .card-body {
+    width: 100%;
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  
+
+    @include media-breakpoint-up('sm') {
+      flex-direction: row;    
+      text-align: left;
+    }
+  }
+  .card-icon {
+    margin-right: 1.5rem;
+    max-width: 55px;
+  }
+}

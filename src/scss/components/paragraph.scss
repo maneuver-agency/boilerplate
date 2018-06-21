@@ -1,0 +1,16 @@
+$block: '.paragraph';
+
+#{$block} {
+  &__title {
+    
+  }
+
+  &--white {
+    #{$block}__title {
+      color: #fff;
+    }
+    #{$block}__text {
+      color: #fff;
+    }
+  }
+}

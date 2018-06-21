@@ -107,6 +107,102 @@ $app->get('/{template}', function(Silex\Application $app, $template) use ($confi
   if ($template == 'index') {
     $config['is_front'] = TRUE;
     $config['body_classes'][] = 'front';
+
+
+    $config['post'] = [
+      'hero' => [
+        'title' => 'Hero Title',
+        'overlay' => false,
+        'image' => 'https://images.unsplash.com/photo-1495650876818-1698322fbb61?ixlib=rb-0.3.5&s=20ec6688c21b4b67d814beab3fae5f40&auto=format&fit=crop&w=2500&h=900&q=80'
+      ],
+      'intro_paragraph' => [
+        'title' => 'Lorem ipsum dolor sit amet!',
+        'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga possimus vero cum? Quibusdam sunt, eaque repudiandae velit architecto quia itaque maxime animi voluptatum omnis vitae eius aperiam nemo enim possimus.',
+        'button' => [
+          'title' => 'get it now!',
+          'url' => 'http://maneuver.be',
+          'target' => '_blank'
+        ]
+      ],
+      'features' => [
+        [
+          'icon' => '/assets/tmp/feature1.svg',
+          'title' => 'Lorem ipsum',
+          'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt natus voluptatem assumenda, voluptate sint explicabo excepturi non omnis possimus recusandae dicta neque magnam dolore asperiores perspiciatis, praesentium amet consequatur similique!',
+          'button' => [
+            'title' => 'read more',
+            'url' => '#',
+            'target' => '_blank'
+          ]
+        ],
+        [
+          'icon' => '/assets/tmp/feature2.svg',
+          'title' => 'Dolor sit amet',
+          'text' => 'Voluptate sint explicabo excepturi non omnis possimus recusandae dicta neque magnam dolore asperiores perspiciatis, praesentium amet.!',
+          'button' => [
+            'title' => 'read more',
+            'url' => '#',
+            'target' => '_blank'
+          ]
+        ],
+        [
+          'icon' => '/assets/tmp/feature3.svg',
+          'title' => 'Voluptate sint',
+          'text' => 'Incidunt natus voluptatem assumenda, voluptate sint explicabo excepturi non omnis possimus recusandae dicta neque magnam dolore asperiores perspiciatis, praesentium amet consequatur similique!',
+          'button' => [
+            'title' => 'read more',
+            'url' => '#',
+            'target' => '_blank'
+          ]
+        ]
+      ],
+      'teasers' => [
+        [
+          'image' => 'https://images.unsplash.com/photo-1495650876818-1698322fbb61?ixlib=rb-0.3.5&s=20ec6688c21b4b67d814beab3fae5f40&auto=format&fit=crop&w=800&h=500&q=80',
+          'icon' => '/assets/tmp/feature1.svg',
+          'title' => 'Lorem ipsu qsdjmklf jqdsfklmj qkdls jfkmldq mkjfkmdqs fqd m',
+          'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt natus voluptatem assumenda, voluptate sint explicabo excepturi non omnis possimus recusandae dicta neque magnam dolore asperiores perspiciatis, praesentium amet consequatur similique!',
+          'button' => [
+            'title' => 'read more',
+            'url' => '#',
+            'target' => '_blank'
+          ]
+        ],
+        [
+          'image' => 'https://images.unsplash.com/photo-1529394207442-e4f98d63d085?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f12af2960e12cf77d7a757476ed02df6&auto=format&fit=crop&w=800&h=500&q=80',
+          'icon' => '/assets/tmp/feature2.svg',
+          'title' => 'Dolor sit amet',
+          'text' => 'Voluptate sint explicabo excepturi non omnis possimus recusandae dicta neque magnam dolore asperiores perspiciatis, praesentium amet.!',
+          'button' => [
+            'title' => 'read more',
+            'url' => '#',
+            'target' => '_blank'
+          ]
+        ],
+        [
+          'image' => 'https://images.unsplash.com/photo-1529391409740-59f2cea08bc6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9562830b5cd124982cba956afcdac9f7&auto=format&fit=crop&w=800&h=500&q=80',
+          'icon' => '/assets/tmp/feature3.svg',
+          'title' => 'Voluptate sint',
+          'text' => 'Incidunt natus voluptatem assumenda, voluptate sint explicabo excepturi non omnis possimus recusandae dicta neque magnam dolore asperiores perspiciatis, praesentium amet consequatur similique!',
+          'button' => [
+            'title' => 'read more',
+            'url' => '#',
+            'target' => '_blank'
+          ]
+        ]
+      ],
+      'quote' => [
+        'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aliquam, quo ea blanditiis laudantium quisquam nulla, dolor provident, expedita qui animi voluptatem, atque quae fugiat vel voluptates delectus? Nesciunt, dicta.',
+        'author' => 'Dimitri Desender'
+      ],
+      'testimonial' => [
+        'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta ducimus ullam, natus deserunt exercitationem modi, praesentium sapiente aliquam harum dolores ratione veniam recusandae repellat doloribus..',
+        'author' => 'Dimitri Desender',
+        'author_title' => 'CEO',
+        'author_image' => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=99c6d2880c20cb72f29b5a9eba8ea898&auto=format&fit=crop&w=200&h=200&q=80' 
+      ]
+    ];
+
   }
 
   return $app['twig']->render('/templates/'.$file, $config);

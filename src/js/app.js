@@ -1,5 +1,7 @@
 import '../scss/style.scss'
 import './utils.js'
+import './offcanvas.js'
+
 import Vue from 'vue'
 import App from './vue/App.vue'
 import Map from './components/Map'

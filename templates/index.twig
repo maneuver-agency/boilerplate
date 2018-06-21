@@ -6,15 +6,101 @@
 
 {% block content %}
 
-{% include 'templates/inc/components/hero.twig' %}
+{% include 'templates/inc/components/hero.twig' with {
+  data: post.hero,
+  mods: ''
+} %}
+
+<div class="py-9 bg-silver">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        {% include 'templates/inc/components/paragraph.twig' with {
+          data: post.intro_paragraph,
+          mods: ''
+        }%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="py-9">
+  {% include 'templates/inc/sections/features.twig' with {features: post.features} %}
+</div>
+
+<div class="py-9 bg-iron">
+  {% include 'templates/inc/sections/teasers.twig' with {teasers: post.teasers} %}
+</div>
+
+<div class="py-9 bg-white">
+  {% include 'templates/inc/sections/cards.twig' with {cards: post.teasers} %}
+</div>
+
+
+
+
+<div class="py-9 bg-silver">
+  <div class="container">
+    {% include 'templates/inc/components/paragraph.twig' with {
+      data: {
+        title: 'We doen nog veel meer..',
+        subtitle: 'Bekijk ons aanbod.'
+      },
+      mods: 'text-center text-primary mb-6'
+    } %}
+
+    <div class="row rhythm-mb-4">
+      {% for card in post.teasers %}
+        <div class="col-lg-6 d-flex">
+          {% include 'templates/inc/components/split-card.twig' with {data: card} %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="py-12 bg-primary">
+  <div class="container">
+    {% include 'templates/inc/components/quote.twig' with {
+      data: post.quote,
+      mods: 'text-white'
+    }%}
+  </div>
+</div>
+
+<div class="py-12 bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        {% include 'templates/inc/components/testimonial.twig' with {
+          data: post.testimonial,
+          mods: 'text-primary'
+        }%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="py-9 bg-silver">
+  <div class="container">
+    <div class="card-grid">
+      {% for card in post.teasers %}
+        {% include 'templates/inc/components/card.twig' with {
+          data: card,
+          mods: 'card-grid__item'
+        }%}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
 
 {% include 'templates/inc/components/map.twig' %}
 
-
-<div class="page-section py-6">
-  <div id="app"></div>
+<div class="py-9 bg-white">
+  <div class="container">
+    {% include 'templates/inc/components/logo-ribbon.twig' %}
+  </div>
 </div>
-
-{% include 'templates/inc/sections/intro.twig' %}
 
 {% endblock %}

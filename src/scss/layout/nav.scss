@@ -1,11 +1,17 @@
-.main-menu {
-  &__link {
-    text-transform: uppercase;
-    color: $gray-600 !important;
-    font-weight: $font-weight-light;
-
-    &:hover, &:focus {
-      color: theme-color('primary') !important;
+.navbar-nav {
+  .nav-item {
+    @include media-breakpoint-up('md') {
+      margin-left: 1.5rem;
+      &:first-child {
+        margin-left: 0;
+      }  
     }
+    
+  }
+  .nav-link {
+    font-family: $headings-font-family;
+    font-weight: normal;
+    line-height: 1.5;
+    cursor: pointer;
   }
 }

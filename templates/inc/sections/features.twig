@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row row-eq-height rhythm-mb-4 rhythm-mb-lg-0">
+    {% for feature in features %}
+      <div class="col-lg-4 d-flex">
+        {% include 'templates/inc/components/feature.twig' with {
+          data: feature,
+          mods: ''
+        }%}
+      </div>
+    {% endfor %}
+  </div>
+</div>

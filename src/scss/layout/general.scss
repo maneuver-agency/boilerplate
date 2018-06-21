@@ -1,7 +1,17 @@
+body {
+  overflow-x: hidden;
+}
+
 .site-wrap {
   min-height: 100vh;
 }
 
 .site-content {
   flex-grow: 1;
+
+  @include media-breakpoint-down('sm') {
+    .site-header.fixed-top & {
+      padding-top: $header-height;  
+    }
+  }
 }

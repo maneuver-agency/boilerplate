@@ -1,0 +1,32 @@
+{% set large = ('paragraph--large' in mods) %}
+<div class="paragraph rhythm-mb-3 {{ mods }}">
+  {% if data.title or data.subtitle %}
+  <div class="paragraph__header rhythm-mb-1">
+    {% if data.title %}
+    <h2 class="paragraph__title {% if large %}large-title{% endif %}">
+      {{ data.title }}
+    </h2>
+    {% endif %}
+
+    {% if data.subtitle %}
+    <h3 class="paragraph__subtitle {% if large %}medium-title{% endif %}">
+      {{ data.subtitle }}
+    </h3>
+    {% endif %}
+  </div>
+  {% endif %}
+  
+  {% if data.text %}
+  <div class="paragraph__text bodytext {% if large %}bodytext--large{% endif %}">
+    <p>
+      {{ data.text|raw }}
+    </p>
+  </div>
+  {% endif %}
+
+  {% if data.button.url %}
+  <a class="paragraph__button btn btn-primary" target="{{ data.button.target }}" href="{{ data.button.url }}">
+    {{ data.button.title }}
+  </a>
+  {% endif %}
+</div>

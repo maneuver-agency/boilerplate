@@ -7,32 +7,39 @@ $fa-font-path: "~font-awesome/fonts";
 $haf: '&:hover, &:active, &:focus';
 
 /** TYPE **/
-$font-size-base: .95rem; 
-$font-family-base: 'arial', sans-serif;
-$headings-font-family: 'arial';
+$font-size-base: 1rem; 
+$line-height-base: 1.5;
+$font-weight-base: 300;
+$font-weight-medium: 500;
+$font-family-base: 'Roboto', sans-serif;
+$headings-font-family: 'PT Serif', sans-serif;
 $headings-font-weight: 700;
+$headings-line-height: 1.5;
+
+$card-spacer-x: 1.5rem;
+$card-spacer-y: 1.5rem;
 
 $header-height: 70px;
 
-$primary: #aacc00;   // oranje/geel
-$secondary: #c44f3e; // rode
+$primary: #32717f;  
+$secondary: #c44f3e;
 $silver: #f5f5f5;
+$body-color: #333;
+$body-bg: #fafafa;
+
+$box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
 
 $theme-colors: (
   // "primary": #f8ad3b,
   "primary" : $primary,
   "secondary" : $secondary,
   "silver": $silver,
-  "iron": #999
+  "iron": #999,
+  "black": #000
 );
 
-$body-color: #666;
-$body-bg: #f1f2f2;
-$line-height-base: 1.95;
-$font-weight-base: 300;
-$font-weight-medium: 500;
-
-$enable-rounded:false;
+$enable-rounded:true;
+$border-radius: 0;
 $list-group-active-color: #fff;
 
 $btn-box-shadow: 0;
@@ -43,19 +50,53 @@ $badge-pill-padding-x: $badge-padding-x;
 $badge-pill-padding-y: $badge-padding-y;
 $badge-font-size: 100%;
 
+$btn-padding-y: 0.75rem;
+$btn-padding-x: 2rem;
+$btn-border-radius: 24px;
+
+$btn-padding-y-sm: 0.3rem;
+$btn-padding-x-sm: 0.75rem;
+$btn-border-radius-sm: 15px;
+
+
 
 // $input-border-color: #fff
 // $form-feedback-valid-color: $input-border-color;
 
-$h1-font-size:                $font-size-base * 2.5;
-$h2-font-size:                $font-size-base * 2.35;
-$h3-font-size:                $font-size-base * 2.05;
-$h4-font-size:                $font-size-base * 1.5;
-$h5-font-size:                $font-size-base * 1.25;
+$h1-font-size:                $font-size-base * 2;
+$h2-font-size:                $font-size-base * 1.5;
+$h3-font-size:                $font-size-base * 1.2;
+$h4-font-size:                $font-size-base * 1.1;
+$h5-font-size:                $font-size-base;
 $h6-font-size:                $font-size-base;
 
-$navbar-padding-y: 0.5rem;
+$navbar-offcanvas-width: 300px;
+$navbar-background-color: #000;
+
+$navbar-padding-y: 1rem;
 $navbar-padding-x: 1rem;
+
+
+
+$navbar-dark-color: #fff;
+$navbar-dark-active-color: $primary;
+$navbar-dark-toggler-border-color: transparent;
+$navbar-dark-disabled-color: #fff; 
+$navbar-dark-hover-color: $primary;
+$navbar-dark-background: #000;
+$navbar-dark-transparent-background: transparent;
+$navbar-dark-shrink-background: rgba(#000, 0.9);
+
+
+$navbar-light-color: $body-color;
+$navbar-light-active-color: $primary;
+$navbar-light-toggler-border-color: transparent;
+$navbar-light-disabled-color: $body-color; 
+$navbar-light-hover-color: $primary;
+$navbar-light-background:#fff;
+$navbar-light-transparent-background: transparent;
+$navbar-light-shrink-background: rgba(#fff, 0.9);
+
 
 $spacer: 0.5rem;
 $spacers: (

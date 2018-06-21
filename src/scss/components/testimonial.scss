@@ -1,0 +1,31 @@
+.testimonial {
+  quotes: "“" "”" "‘" "’";
+  border: 1px solid rgba($primary, 0.3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  &__avatar {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  &__text {
+    font-size: 1.5rem;
+    font-family: $headings-font-family;
+    &:before {
+      content: open-quote;
+    }
+    &:after {
+      content: close-quote;
+    }
+  }
+
+  &__author-name {
+    font-weight: bold;
+  }
+}

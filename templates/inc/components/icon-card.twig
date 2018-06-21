@@ -1,0 +1,29 @@
+<div class="card icon-card shadow {{ mods }}">
+  <div class="card-body rhythm-mb-2">
+    {% if data.icon %}
+    <img class="card-icon" src="{{ data.icon }}">
+    {% endif %}
+
+    <div class="card-content rhythm-mb-4">
+      {% if data.title %}
+        <h3 class="card-title item-title">
+          {{ data.title }}
+        </h3>
+      {% endif %}
+      
+      {% if data.text %}
+        <div class="card-text">
+          <div class="bodytext">
+            {{ data.text|raw }}  
+          </div>
+        </div>
+      {% endif %}
+      
+      {% if data.button.url %}
+        <a target="{{ data.button.target}}" class="btn btn-primary btn-sm" href="{{ data.button.url }}">
+          {{ data.button.title }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>

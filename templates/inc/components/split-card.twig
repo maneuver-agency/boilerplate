@@ -1,0 +1,29 @@
+<div class="split-card card {{ mods }}">
+  <div class="row flexgrow no-gutters">
+    <div class="col-sm-6 d-flex">
+      <div class="card-body d-flex flex-column rhythm-mb-3">
+        <h3 class="card-title item-title">
+          {{ data.title }}
+        </h3>
+        <div class="split-card__bottom mt-auto rhythm-mb-3">
+          <div class="card-text">
+            <div class="bodytext">
+              {{ data.text|raw }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 d-flex bg-primary split-card__image-col" data-responsive-background-image>
+      {# TODO: add srcset and sizes to  the image#}
+      <img class="d-none" src="{{ card.image }}" alt="">
+      <div class="card-body d-flex align-items-end justify-content-end">
+        {% if data.button.url %}
+          <a target="{{ data.button.target}}" class="split-card__button btn btn-ghost-primary btn-sm" href="{{ data.button.url }}">
+            {{ data.button.title }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

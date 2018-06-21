@@ -5,31 +5,52 @@ html {
     font-size: 16px;
   }
 }
+body {
+  -webkit-font-smoothing:antialiased; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale
+}
 
 strong, b {
   font-weight: $font-weight-bold;
 }
 
-.h2 {
-  &--medium {
-    font-weight: $font-weight-medium;
+.large-title {
+  font-size: 2rem;
+  font-family: $headings-font-family;
+  color: #000;
+  font-weight: bold;
+
+  &--white {
+    color: #fff;
+  }
+
+  &--deocorated {
+    @include decorated-title();
   }
 }
 
-h3, .h3 {
-  font-weight: $font-weight-light;
+.medium-title {
+  font-size: 2rem;
+  font-family: $headings-font-family;
+  color: #000;
+  font-weight: 300;
+
+  &--white {
+    color: #fff;
+  }
+
+  &--deocorated {
+    @include decorated-title();
+  }
 }
 
-h4, .h4 {
-  font-weight: $font-weight-light;
-}
-
-h5, .h5 {
-  font-weight: $font-weight-light;
+.item-title {
   font-family: $font-family-base;
-}
+  font-size: 1.25rem;
+  color: $body-color;
+  font-weight: $font-weight-medium;
+  margin-bottom: 1rem;
 
-h6, .h6 {
-  font-weight: normal;
-  font-family: $font-family-base;
+  &--decorated {
+    @include decorated-title();
+  }
 }

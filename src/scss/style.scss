@@ -1,6 +1,6 @@
 
 @import 'variables.scss';
-// @import '~font-awesome/scss/font-awesome';
+@import '~font-awesome/scss/font-awesome';
 @import '~bootstrap/scss/bootstrap';
 @import '~leaflet/dist/leaflet.css';
 // @import '~slick-carousel/slick/slick.scss';
@@ -14,7 +14,7 @@
 
 @import 'layout/type';
 @import 'layout/general';
-@import 'layout/header';
+@import 'layout/site-header';
 @import 'layout/footer';
 @import 'layout/bodytext';
 @import 'layout/nav';
@@ -25,18 +25,19 @@
 @import 'components/teaser';
 @import 'components/gallery';
 @import 'components/hero';
-@import 'components/page-section';
 @import 'components/site-socials';
 @import 'components/mnvr-badge';
 @import 'components/logo-ribbon';
+@import 'components/paragraph';
+@import 'components/feature';
 @import 'components/card';
+@import 'components/icon-card';
+@import 'components/split-card';
+@import 'components/quote';
+@import 'components/testimonial';
+@import 'components/avatar';
+@import 'components/card-grid';
 
-.at-resp-share-element .at-share-btn {
-  margin-bottom: 0 !important;
-  margin-top: 0 !important;
-  background: $gray-500 !important;
-
-}
 
 .fancybox-content {
   @include media-breakpoint-down(md) {

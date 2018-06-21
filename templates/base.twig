@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="Accept-CH" content="DPR,Width">
 
     <title>{{ meta_title }}</title>
     <meta name="description" content="{{ meta_desc }}">
@@ -44,6 +45,7 @@
     </script>#}
 
     {{ wp_head }}
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700|Roboto:300,500" rel="stylesheet">
 
     {% block headscripts %}
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyTrHx5H3mejcjt8hBKsXW5BhKvVSbFGE"></script>
@@ -64,10 +66,10 @@
 
     <div class="site-wrap d-flex flex-column">
       
-      <nav class="site-header navbar navbar-expand-md navbar-light bg-light sticky-top">
-        <div class="container">
+      <nav class="site-header navbar navbar-expand-md navbar-dark fixed-top site-header--gradient" data-offcanvas="left" data-offcanvas-shift=".site-wrap">
+        <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            {{ site.name }}
+            <img class="site-header__logo" src="{{ theme.link }}/assets/img/site-logo.svg" alt="{{ site.name }}">
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
