@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export const store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
     cart: {
       products: []
@@ -22,7 +22,6 @@ export const store = new Vuex.Store({
       }
     },
     removeFromCart (state, product) {
-      console.log(product)
       state.cart.products = state.cart.products.filter(item => item.product.id !== product.id)
     }
   },

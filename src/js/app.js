@@ -4,7 +4,8 @@ require('./utils.js')
 // import slick from 'slick-carousel';
 
 import Vue from 'vue'
-import { store } from './store/store'
+import store from './store'
+import api from './api'
 import { upperFirst, camelCase } from 'lodash'
 
 const requireComponent = require.context(
@@ -25,6 +26,14 @@ requireComponent.keys().forEach(fileName => {
 
   // Register component globally
   Vue.component(componentName, componentConfig.default || componentConfig)
+})
+
+Vue.mixin({
+  data () {
+    return {
+      api
+    }
+  }
 })
 
 new Vue({

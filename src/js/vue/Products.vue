@@ -9,18 +9,15 @@
 <script>
   export default {
     name: 'Products',
+    created() {
+      this.api.getProducts()
+      .then(response => {
+        this.products = response
+      })
+    },
     data() {
       return {
-        products: [
-          {
-            id: 1,
-            title: 'iPhone X'
-          },
-          {
-            id: 2,
-            title: 'MacBook Pro'
-          }
-        ]
+        products: []
       }
     }
   }
