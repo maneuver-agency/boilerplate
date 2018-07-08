@@ -31,13 +31,15 @@
     "gulp-rsync": "0.0.8",
     "gulp-util": "^3.0.8",
     "jquery": "^3.2.1",
+    "lodash": "^4.17.10",
     "minimist": "^1.2.0",
     "node-sass": "^4.7.2",
     "popper.js": "^1.12.9",
     "sass-loader": "^6.0.7",
     "vue": "^2.5.16",
     "vue-loader": "^14.2.1",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.5.16",
+    "vuex": "^3.0.1"
   },
   "browserslist": [
     "last 2 versions",
