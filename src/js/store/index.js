@@ -28,7 +28,9 @@ export default new Vuex.Store({
    * They will receive the state as first argument.
    */
   mutations: {
-
+    setAppData (state, data) {
+      state = Object.assign(state, data)
+    }
   },
 
   /**

@@ -1,12 +1,11 @@
 require('../scss/style.scss')
 require('./utils.js')
 
-// import slick from 'slick-carousel';
-
 import Vue from 'vue'
 import store from './store'
 import api from './api'
-import { upperFirst, camelCase } from 'lodash'
+
+import './components/_globals'
 
 Vue.mixin({
   data () {
@@ -18,29 +17,19 @@ Vue.mixin({
 
 new Vue({
   el: '#app',
-  store
-})
+  store,
+  mounted () {
+    let el = document.getElementById('appdata')
+    if (el) {
+      let appdata = JSON.parse(el.textContent)
+      if (appdata) {
+        this.$store.commit('setAppData', appdata)
+      }
+    }
+  },
+  components: {
 
-/**
- * Register all components globally.
- */
-const requireComponent = require.context(
-  './vue', false, /[\w-]+\.vue$/
-)
-requireComponent.keys().forEach(fileName => {
-  // Get component config
-  const componentConfig = requireComponent(fileName)
-
-  // Get PascalCase name of component
-  const componentName = upperFirst(
-    camelCase(
-      // Strip the leading `'./` and extension from the filename
-      fileName.replace(/^\.\//, '').replace(/\.\w+$/, '')
-    )
-  )
-
-  // Register component globally
-  Vue.component(componentName, componentConfig.default || componentConfig)
+  }
 })
 
 /*

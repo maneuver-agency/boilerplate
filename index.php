@@ -109,6 +109,14 @@ $app->get('/{template}', function(Silex\Application $app, $template) use ($confi
     $config['body_classes'][] = 'front';
   }
 
+  // $config['appdata'] = [];
+  $config['appdata'] = [
+    'debug'        => $app['debug'],
+    'env'          => $config['ENV'],
+    'lang'         => $config['lang'],
+    'default_lang' => $config['default_language'],
+  ];
+
   return $app['twig']->render('/templates/'.$file, $config);
 })
 ->value('template', 'index');
