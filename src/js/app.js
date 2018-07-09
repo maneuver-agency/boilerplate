@@ -8,10 +8,25 @@ import store from './store'
 import api from './api'
 import { upperFirst, camelCase } from 'lodash'
 
+Vue.mixin({
+  data () {
+    return {
+      api
+    }
+  }
+})
+
+new Vue({
+  el: '#app',
+  store
+})
+
+/**
+ * Register all components globally.
+ */
 const requireComponent = require.context(
   './vue', false, /[\w-]+\.vue$/
 )
-
 requireComponent.keys().forEach(fileName => {
   // Get component config
   const componentConfig = requireComponent(fileName)
@@ -26,19 +41,6 @@ requireComponent.keys().forEach(fileName => {
 
   // Register component globally
   Vue.component(componentName, componentConfig.default || componentConfig)
-})
-
-Vue.mixin({
-  data () {
-    return {
-      api
-    }
-  }
-})
-
-new Vue({
-  el: '#app',
-  store
 })
 
 /*
