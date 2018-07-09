@@ -7,6 +7,13 @@ import api from './api'
 
 import './components/_globals'
 
+/**
+ * Import and use a flexible modal/dialog component.
+ * @see https://github.com/euvl/vue-js-modal
+ */
+import VModal from 'vue-js-modal'
+Vue.use(VModal, { dialog: true })
+
 Vue.mixin({
   data () {
     return {
@@ -28,6 +35,9 @@ new Vue({
     }
   },
   components: {
+
+  },
+  methods: {
 
   }
 })

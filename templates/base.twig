@@ -67,6 +67,8 @@
 
         {% block content %}{% endblock %}
 
+        <v-dialog></v-dialog>
+
       </div>
 
       <footer class="site-footer">
@@ -82,12 +84,6 @@
         </div>
       </footer>
     </div>
-
-    {# Expose to javascript. #}
-    <script type="text/javascript">
-      var MNVR = MNVR || {};
-      MNVR.templateDir = "{{ theme.link }}";
-    </script>
 
     {# Implement in template file to add scripts. #}
     {% block scripts %}{% endblock %}
