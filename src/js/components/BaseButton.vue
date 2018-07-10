@@ -1,5 +1,5 @@
 <template>
-  <button type="button" class="btn">{{ label }}</button>
+  <button type="button" class="btn" @click="$emit('click')">{{ label }}</button>
 </template>
 
 <script>
