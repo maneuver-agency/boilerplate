@@ -41,24 +41,24 @@ $(document).on('click', 'a[href^="#"]', function (e) {
 $(document).on('click', '.btn-share', function (e) {
   e.preventDefault()
   const sizes = {
-    facebook: [555,500],
-    twitter: [600,266],
-    linkedin: [550,500],
-    google: [400,500]
+    facebook: [555, 500],
+    twitter: [600, 266],
+    linkedin: [550, 500],
+    google: [400, 500]
   }
-  
+
   let url = this.getAttribute('href')
   let w = 400
   let h = 500
 
-  for(var p in sizes) {
+  for (var p in sizes) {
     if (url.indexOf(p) !== -1) {
       w = sizes[p][0]
       h = sizes[p][1]
       break
     }
   }
-  window.open(url, 'windowShare', 'width='+w+',height='+h+',chrome=yes,centerscreen=1')
+  window.open(url, 'windowShare', 'width=' + w + ',height=' + h + ',chrome=yes,centerscreen=1')
 })
 
 /**
@@ -78,7 +78,7 @@ window.animateTo = function (id) {
     $('html, body').stop().animate({
       scrollTop: top
     }, 750, 'swing', function () {
-        // window.location.hash = id;
+      // window.location.hash = id;
     })
   }
 }
@@ -90,11 +90,3 @@ window.animateTo = function (id) {
 $('a[data-mailto]').each(function () {
   $(this).text($(this).attr('href').replace('mailto:', ''))
 })
-
-
-/**
- * Capitalize first character of string.
- */
-String.prototype.capitalize = function () {
-  return this.charAt(0).toUpperCase() + this.slice(1)
-}

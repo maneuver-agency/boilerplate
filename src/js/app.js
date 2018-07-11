@@ -1,5 +1,5 @@
-require('../scss/style.scss')
-require('./utils.js')
+import '../scss/style.scss'
+import './utils.js'
 
 import Vue from 'vue'
 import store from './store'
@@ -22,7 +22,7 @@ Vue.mixin({
   }
 })
 
-new Vue({
+new Vue({ // eslint-disable-line no-new
   el: '#app',
   store,
   mounted () {
