@@ -35,7 +35,7 @@ Encore
 
   // make sure 'Popper' exists for bootstrap
   .autoProvideVariables({
-    Popper: ['popper.js']
+    // Popper: ['popper.js']
   })
 
   .enableSourceMaps(!Encore.isProduction())
@@ -45,9 +45,9 @@ Encore
 
   // create a vendor js file with common code that rarely changes
   .createSharedEntry('vendor', [
-    'jquery',
-    'popper.js',
-    'bootstrap'
+    // 'jquery',
+    // 'popper.js',
+    'bootstrap-vue'
   ])
 
 if (Encore.isProduction()) {
