@@ -10,13 +10,13 @@ const Encore = require('@symfony/webpack-encore')
 
 Encore
 
-// the project directory where all compiled assets will be stored
+  // the project directory where all compiled assets will be stored
   .setOutputPath(settings.outputDir + '/')
 
-// the public path used by the web server to access the previous directory
+  // the public path used by the web server to access the previous directory
   .setPublicPath('/' + settings.outputDir)
 
-// will create web/build/app.js and web/build/app.css
+  // will create web/build/app.js and web/build/app.css
   .addEntry('app', './src/js/app.js')
 
   .configureExtractTextPlugin((options) => {
@@ -25,25 +25,25 @@ Encore
 
   .enableVueLoader()
 
-// allow sass/scss files to be processed
+  // allow sass/scss files to be processed
   .enableSassLoader(function (sassOptions) {}, {
     resolveUrlLoader: false
   })
 
-// allow legacy applications to use $/jQuery as a global variable
-  .autoProvidejQuery()
+  // allow legacy applications to use $/jQuery as a global variable
+  // .autoProvidejQuery()
 
-// make sure 'Popper' exists for bootstrap
+  // make sure 'Popper' exists for bootstrap
   .autoProvideVariables({
     Popper: ['popper.js']
   })
 
   .enableSourceMaps(!Encore.isProduction())
 
-// empty the outputPath dir before each build
+  // empty the outputPath dir before each build
   .cleanupOutputBeforeBuild()
 
-// create a vendor js file with common code that rarely changes
+  // create a vendor js file with common code that rarely changes
   .createSharedEntry('vendor', [
     'jquery',
     'popper.js',

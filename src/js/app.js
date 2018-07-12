@@ -1,38 +1,37 @@
 import '../scss/style.scss'
-import './utils.js'
 
 import Vue from 'vue'
 import store from './store'
-import api from './api'
+
+import './directives'
+import './plugins'
+import './mixins'
 
 import './components/_globals'
-
-/**
- * Import and use a flexible modal/dialog component.
- * @see https://github.com/euvl/vue-js-modal
- */
-import VModal from 'vue-js-modal'
-Vue.use(VModal, { dialog: true })
-
-Vue.mixin({
-  data () {
-    return {
-      api
-    }
-  }
-})
 
 new Vue({ // eslint-disable-line no-new
   el: '#app',
   store,
   mounted () {
-    let el = document.getElementById('appdata')
+    // Load appdata into store.
+    const el = document.getElementById('appdata')
     if (el) {
       let appdata = JSON.parse(el.textContent)
       if (appdata) {
         this.$store.commit('setAppData', appdata)
       }
     }
+
+    // Animate jump links.
+    document.querySelectorAll('a[href^="#"]').forEach(el => {
+      const id = el.getAttribute('href')
+      if (id.length > 1) {
+        el.addEventListener('click', event => {
+          event.preventDefault()
+          this.$scrollTo(id)
+        })
+      }
+    })
   },
   components: {
 
