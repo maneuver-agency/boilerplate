@@ -7,6 +7,10 @@
   align-items: center;
   position: relative;
 
+  &__content {
+    width: 100%;
+  }
+
   &__avatar {
     position: absolute;
     top: 0;

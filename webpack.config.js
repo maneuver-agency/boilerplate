@@ -93,7 +93,7 @@ Encore
 if (Encore.isProduction()) {
     Encore
         // See postcss.config.js for configuration
-        // .enablePostCssLoader()
+        .enablePostCssLoader()
 
         // create hashed filenames (e.g. app.abc123.css)
         .enableVersioning()

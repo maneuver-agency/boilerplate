@@ -3,11 +3,14 @@
   grid-gap: $grid-gutter-width;
   grid-template-columns: 50% 50%;
 
+  @include media-breakpoint-up('lg') {
+  }
+
   &__item {
-    grid-column: 2;
     &:first-child {
-      grid-row: 1/2;
-      grid-column: 1;
+      @include media-breakpoint-up('lg') {
+        grid-row: 1/3;
+      }  
     }
   }
 }

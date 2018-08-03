@@ -18,3 +18,11 @@
   text-transform: none;
   font-weight: $font-weight-light;
 }
+
+.sticky-top {
+  @supports (position: -webkit-sticky) {
+    position: -webkit-sticky;
+    top: 0;
+    z-index: $zindex-sticky;
+  }
+}

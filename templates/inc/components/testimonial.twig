@@ -1,17 +1,19 @@
 <div class="testimonial rhythm-mb-4 px-6 pt-10 pb-5 {{ mods }}">
-  <div class="testimonial__avatar avatar">
-    <img src="{{ data.author_image }}" class="rounded-circle avatar__image" alt="">
-  </div>
-
-  <div class="testimonial__text">
-    {{ data.text }}
-  </div>
-  <div class="testimonial__author">
-    <div class="testimonial__author-name">
-      {{ data.author }}
+  <div class="testimonial__content">
+    <div class="testimonial__avatar avatar">
+      <img src="{{ data.author_image }}" class="rounded-circle avatar__image" alt="">
     </div>
-    <div class="testimonial__author-title">
-      {{ data.author_title }}
+    
+    <div class="testimonial__text">
+      {{ data.text }}
+    </div>
+    <div class="testimonial__author">
+      <div class="testimonial__author-name">
+        {{ data.author }}
+      </div>
+      <div class="testimonial__author-title">
+        {{ data.author_title }}
+      </div>
     </div>
   </div>
 </div>
