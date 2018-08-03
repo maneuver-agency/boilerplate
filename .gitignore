@@ -5,3 +5,4 @@ cache
 npm-debug.log
 yarn-error.log
 dist
+.vscode

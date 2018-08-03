@@ -10,79 +10,64 @@ const Encore = require('@symfony/webpack-encore')
 const path = require('path')
 
 Encore
-    // the project directory where all compiled assets will be stored
-    .setOutputPath(settings.outputDir + '/')
+  // the project directory where all compiled assets will be stored
+  .setOutputPath(settings.outputDir + '/')
 
-    // the public path used by the web server to access the previous directory
-    .setPublicPath(settings.publicPath + settings.outputDir)
+  // the public path used by the web server to access the previous directory
+  .setPublicPath(settings.publicPath + settings.outputDir)
 
-    .setManifestKeyPrefix(settings.outputDir + '/')
+  .setManifestKeyPrefix(settings.outputDir + '/')
 
-    // will create web/build/app.js and web/build/app.css
-    .addEntry('app', './src/js/app.js')
+  // the public path used by the web server to access the previous directory
+  .setPublicPath('/' + settings.outputDir)
 
-    .configureExtractTextPlugin((options) => {
-        options.disable = !Encore.isProduction()
-    })
+  // will create web/build/app.js and web/build/app.css
+  .addEntry('app', './src/js/app.js')
 
-    .enableVueLoader()
+  .configureExtractTextPlugin((options) => {
+    options.disable = !Encore.isProduction()
+  })
 
-    // allow sass/scss files to be processed
-    .enableSassLoader(function(sassOptions) {}, {
-      resolveUrlLoader: false
-    })    
+  .enableVueLoader()
+  // allow sass/scss files to be processed
+  .enableSassLoader(function (sassOptions) {}, {
+    resolveUrlLoader: false
+  })
 
-    
-    // allow legacy applications to use $/jQuery as a global variable
-    .autoProvidejQuery()
+  // make sure 'Popper' exists for bootstrap
+  .autoProvideVariables({
+  })
 
-    // make sure 'Popper' exists for bootstrap
-    .autoProvideVariables({
-      Popper: ['popper.js']
-    })
+  .enableSourceMaps(!Encore.isProduction())
 
-    .enableSourceMaps(!Encore.isProduction())
+  // empty the outputPath dir before each build
+  .cleanupOutputBeforeBuild()
+  .disableImagesLoader()
+  .addLoader({
+    test: /\.(png|jpg|jpeg|gif|ico|webp|svg)$/,
+    loader: 'file-loader',
+    options: {
+        extract: false
+    },
+    exclude: [
+        path.resolve(__dirname, "assets/icons")
+    ]
+})
 
-    // empty the outputPath dir before each build
-    .cleanupOutputBeforeBuild()
-
-    // create a vendor js file with common code that rarely changes
-    .createSharedEntry('vendor', [
-      'jquery',
-      'popper.js',
-      'bootstrap',
-    ])
-
-    
-    // loader: 'file-loader',
-
-
-    .disableImagesLoader()
-    .addLoader({
-        test: /\.(png|jpg|jpeg|gif|ico|webp|svg)$/,
-        loader: 'file-loader',
+//add loader to crete svg sprites
+.addLoader({
+    test: /\.svg$/,
+    use: {
+     
+        loader: 'svg-sprite-loader',
         options: {
             extract: false
-        },
-        exclude: [
-            path.resolve(__dirname, "assets/icons")
-        ]
-    })
-
-    //add loader to crete svg sprites
-    .addLoader({
-        test: /\.svg$/,
-        use: {
-         
-            loader: 'svg-sprite-loader',
-            options: {
-                extract: false
-            }
-        },
-        include: [
-            path.resolve(__dirname, "assets/icons")
-        ]
-    })
+        }
+    },
+    include: [
+        path.resolve(__dirname, "assets/icons")
+    ]
+})
 
 
 
@@ -91,12 +76,12 @@ Encore
 
 
 if (Encore.isProduction()) {
-    Encore
-        // See postcss.config.js for configuration
-        .enablePostCssLoader()
-
-        // create hashed filenames (e.g. app.abc123.css)
-        .enableVersioning()
+  Encore
+    .enablePostCssLoader()
+    .createSharedEntry('vendor', [
+      'bootstrap-vue'
+    ])
+    .enableVersioning()
 }
 
 let config = Encore.getWebpackConfig()
@@ -120,34 +105,33 @@ fs: 'empty'
  * Setup BrowserSync which is not yet supported out-of-the-box.
  * @see https://github.com/symfony/webpack-encore/issues/2
  */
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 config.plugins.push(new BrowserSyncPlugin(
-    {
-        proxy: settings.devUrl, // coming from some settings variables
-        host: 'localhost',
-        port: 3000,
-        files: [ // watching on changes
-            {
-                match: [
-                    './**/*.twig'
-                ],
-                fn: function (event, file) {
-                    if (event === 'change') {
-                        // get the named instance
-                        const bs = require('browser-sync').get('bs-webpack-plugin');
-                        bs.reload();
-                    }
-                }
-            }
+  {
+    proxy: settings.devUrl, // coming from some settings variables
+    host: 'localhost',
+    port: 3000,
+    files: [ // watching on changes
+      {
+        match: [
+          './**/*.twig'
         ],
-        injectChanges: true
-    },
-    {
-        reload: false, // this allow webpack server to take care of instead browser sync
-        name: 'bs-webpack-plugin' // notice the name when getting instance above
-    }
-));
+        fn: function (event, file) {
+          if (event === 'change') {
+            // get the named instance
+            const bs = require('browser-sync').get('bs-webpack-plugin')
+            bs.reload()
+          }
+        }
+      }
+    ],
+    injectChanges: true
+  },
+  {
+    reload: false, // this allow webpack server to take care of instead browser sync
+    name: 'bs-webpack-plugin' // notice the name when getting instance above
+  }
+))
 
 // export the final configuration
 module.exports = config
-
