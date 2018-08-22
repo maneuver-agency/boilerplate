@@ -77,7 +77,7 @@ Encore
 
 if (Encore.isProduction()) {
   Encore
-    .enablePostCssLoader()
+    //.enablePostCssLoader()
     .createSharedEntry('vendor', [
       'bootstrap-vue'
     ])
