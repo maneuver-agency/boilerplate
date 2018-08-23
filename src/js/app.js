@@ -10,19 +10,19 @@ import './mixins'
 
 import './components/_globals'
 
+// Load appdata into store.
+const el = document.getElementById('appdata')
+if (el) {
+  let appdata = JSON.parse(el.textContent)
+  if (appdata) {
+    this.$store.commit('setAppData', appdata)
+  }
+}
+
 new Vue({ // eslint-disable-line no-new
   el: '#app',
   store,
   mounted () {
-    // Load appdata into store.
-    const el = document.getElementById('appdata')
-    if (el) {
-      let appdata = JSON.parse(el.textContent)
-      if (appdata) {
-        this.$store.commit('setAppData', appdata)
-      }
-    }
-
     // Animate jump links.
     document.querySelectorAll('a[href^="#"]').forEach(el => {
       const id = el.getAttribute('href')
