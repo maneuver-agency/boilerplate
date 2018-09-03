@@ -18,9 +18,6 @@ Encore
 
   .setManifestKeyPrefix(settings.outputDir + '/')
 
-  // the public path used by the web server to access the previous directory
-  .setPublicPath('/' + settings.outputDir)
-
   // will create web/build/app.js and web/build/app.css
   .addEntry('app', './src/js/app.js')
 
@@ -47,37 +44,31 @@ Encore
     test: /\.(png|jpg|jpeg|gif|ico|webp|svg)$/,
     loader: 'file-loader',
     options: {
-        extract: false
+      extract: false
     },
     exclude: [
-        path.resolve(__dirname, "assets/icons")
+      path.resolve(__dirname, 'assets/icons')
     ]
-})
+  })
 
-//add loader to crete svg sprites
-.addLoader({
+// add loader to crete svg sprites
+  .addLoader({
     test: /\.svg$/,
     use: {
-     
-        loader: 'svg-sprite-loader',
-        options: {
-            extract: false
-        }
+
+      loader: 'svg-sprite-loader',
+      options: {
+        extract: false
+      }
     },
     include: [
-        path.resolve(__dirname, "assets/icons")
+      path.resolve(__dirname, 'assets/icons')
     ]
-})
-
-
-
-
-  
-
+  })
 
 if (Encore.isProduction()) {
   Encore
-    //.enablePostCssLoader()
+    // .enablePostCssLoader()
     .createSharedEntry('vendor', [
       'bootstrap-vue'
     ])
@@ -86,20 +77,15 @@ if (Encore.isProduction()) {
 
 let config = Encore.getWebpackConfig()
 if (!Encore.isProduction()) {
-    config.devtool = 'eval-source-map';
+  config.devtool = 'eval-source-map'
 }
-
-
 
 config.node = {
-fs: 'empty'
+  fs: 'empty'
 }
-
 
 // const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 // config.plugins.push(new SpriteLoaderPlugin())
-
-
 
 /**
  * Setup BrowserSync which is not yet supported out-of-the-box.
