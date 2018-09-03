@@ -15,7 +15,7 @@ const el = document.getElementById('appdata')
 if (el) {
   let appdata = JSON.parse(el.textContent)
   if (appdata) {
-    this.$store.commit('setAppData', appdata)
+    store.commit('setAppData', appdata)
   }
 }
 
@@ -24,7 +24,7 @@ new Vue({ // eslint-disable-line no-new
   store,
   mounted () {
     // Animate jump links.
-    document.querySelectorAll('a[href^="#"]').forEach(el => {
+    Array.from(document.querySelectorAll('a[href^="#"]')).forEach(el => {
       const id = el.getAttribute('href')
       if (id.length > 1) {
         el.addEventListener('click', event => {
