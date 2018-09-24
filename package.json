@@ -4,9 +4,8 @@
   "description": "Tiny opiniated framework for quickly prototyping a website",
   "main": "index.php",
   "scripts": {
+    "start": "composer install && npm install",
     "watch": "./node_modules/.bin/encore dev-server --hot",
-    "yens": "./node_modules/.bin/encore dev-server --hot --host 10.13.7.57",
-    "david": "./node_modules/.bin/encore dev-server --hot --host 10.13.7.121",
     "dev": "./node_modules/.bin/encore dev",
     "prod": "./node_modules/.bin/encore production",
     "stage": "node ./node_modules/@fieldmarshal/deploy/index.js user@ssh001.webhosting.be subsites/website.mnvr.be && npm run prod && gulp deploy --staging",

@@ -12,16 +12,17 @@
 
 4. Open config.php and change settings.
 
-
 5. Kickstart the automation and watch regular updated files (styles, scripts and images):
   ```
   npm run dev
   ```
   Or with Hot Module reloading and brower-sync enabled:
+  ```
   npm run watch 
   ```
 
-6. Deploy to staging server:
+6. Deploying:
+  To a staging server:
   ```
   npm run stage
   ```
